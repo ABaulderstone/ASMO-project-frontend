@@ -4,6 +4,8 @@ const defaultState = {
   token: sessionStorage.getItem("token") || null
 };
 
+// added error case to handle server errors surrounding login and register  
+
 export default (state = defaultState, action) => {
   switch (action.type) {
     case AUTH_TOKEN:
