@@ -12,9 +12,11 @@ class RegisterForm extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit} = this.props;
+    
     return (
+      <>
+      
       <form onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
           <label>Email</label>
@@ -26,6 +28,8 @@ class RegisterForm extends Component {
         </div>
         <input type="submit" value="Register" />
       </form>
+      </>
+      
     );
   }
 }
@@ -45,6 +49,7 @@ const WrappedRegisterForm = reduxForm({
     return errors;
   }
 })(RegisterForm);
+
 
 export default connect(
   null,

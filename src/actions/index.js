@@ -22,12 +22,10 @@ export const registerUser = (email, password) => {
     try{
     const response = await LocalAPI.post(`/auth/register`, { email, password });
     const { token } = response.data;
-    // console.log(response);
     dispatch(setAuthToken(token));
     }
     catch(error) {
-      console.log(error.response);
-      dispatch(setError(error.message));
+      dispatch(setError(error.response.data));
     }
    
   };
