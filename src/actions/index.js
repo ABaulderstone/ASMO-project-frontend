@@ -17,13 +17,17 @@ export const setAuthToken = token => {
 
 export const registerUser = (email, password) => {
   return async (dispatch, getState) => {
+   
+
     try{
     const response = await LocalAPI.post(`/auth/register`, { email, password });
     const { token } = response.data;
+    // console.log(response);
     dispatch(setAuthToken(token));
     }
     catch(error) {
-      dispatch(setError(error));
+      console.log(error.response);
+      dispatch(setError(error.message));
     }
    
   };
