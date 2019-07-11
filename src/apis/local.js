@@ -21,9 +21,11 @@ LocalAPI.interceptors.response.use(response => response, (error) => {
     if (error.response.status === 401) {
         // sessionStorage.removeItem("token");
         // LocalAPI.defaults.headers.common["Authorization"] = null;
-        history.push("/");
-        return Promise.reject("Invalid Token");
+        // history.push("/");
+        console.log(error);
     }
+
+    return Promise.reject(error);
 });
 
 export default LocalAPI;
