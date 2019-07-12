@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { loginUser } from "./../../actions";
-import LocalAPI from "./../../apis/local";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import {
   Button,

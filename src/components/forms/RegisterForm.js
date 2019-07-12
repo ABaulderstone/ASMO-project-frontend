@@ -1,20 +1,25 @@
 import React, { Component } from "react";
 import { registerUser } from "./../../actions";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 
 class RegisterForm extends Component {
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    await this.props.registerUser(email, password);
+    await this.props.registerUser(email, password)
+      .catch(err => { 
+        throw new SubmissionError(err.response.data);
+      })
     this.props.reset();
   };
 
   render() {
-    const { handleSubmit } = this.props;
-
+    const { handleSubmit, error} = this.props;
+    
     return (
+      <>
+      {error}
       <form onSubmit={handleSubmit(this.onFormSubmit)}>
         <div>
           <label>Email</label>
@@ -26,6 +31,8 @@ class RegisterForm extends Component {
         </div>
         <input type="submit" value="Register" />
       </form>
+      </>
+      
     );
   }
 }
@@ -45,6 +52,7 @@ const WrappedRegisterForm = reduxForm({
     return errors;
   }
 })(RegisterForm);
+
 
 export default connect(
   null,
