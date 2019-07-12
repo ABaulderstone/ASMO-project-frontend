@@ -15,15 +15,19 @@ import {
 class LoginForm extends Component {
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    await this.props.loginUser(email, password);
+    await this.props.loginUser(email, password)
+    .catch(err => { 
+        throw new SubmissionError(err.response.data);
+      });
     this.props.reset();
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, error } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onFormSubmit)}>
+        {error}
         <div>
           <label>Email</label>
           <Field name="email" component={Input} type="text" />
