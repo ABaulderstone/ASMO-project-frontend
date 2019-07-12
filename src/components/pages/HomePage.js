@@ -5,7 +5,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <h1>ASMO HomePage</h1>
+                <h1>Satisfeed HomePage</h1>
                 <div>
                     <Link to="/login">
                         <button>Login</button>
