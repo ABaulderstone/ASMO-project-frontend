@@ -8,6 +8,7 @@ import PrivateRoute from "./PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
 import history from "./../history";
+import MemberSignUpPage from "./pages/MemberSignUpPage";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -24,6 +25,11 @@ class App extends Component {
             <Route exact path="/login" component={LoginPage} />
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute
+              exact
+              path="/customers"
+              component={MemberSignUpPage}
+            />
             <Route component={NotFoundPage} />
           </Switch>
         </div>
