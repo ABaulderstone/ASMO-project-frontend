@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import RegisterForm from "./../forms/RegisterForm";
-import { connect } from "react-redux";
+
 
 
 class RegisterPage extends Component {
     render() {
         const {error} = this.props;
-        console.log();
         return(
             <div className="ui container" style={{marginTop: "10px"}}>
                 <div className="ui segment">
@@ -18,10 +17,6 @@ class RegisterPage extends Component {
         );
     }
 }
-const mapStateToProps = state => {
-    return {
-      error: state.auth.error 
-    };
-  };
 
-export default connect(mapStateToProps)(RegisterPage);
+
+export default RegisterPage;

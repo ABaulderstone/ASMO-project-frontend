@@ -1,25 +1,25 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { loginUser } from "./../../actions";
-import LocalAPI from "./../../apis/local";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import "./../../styles/LoginForm.css"
 
 
 class LoginForm extends Component {
- 
+  onFormSubmit = async formValues => {
+    const { email, password } = formValues;
+    await this.props.loginUser(email, password)
+    .catch(err => { 
+        throw new SubmissionError(err.response.data);
+      });
+    this.props.reset();
+  };
 
-    onFormSubmit = async (formValues) => {
-        const {email, password} = formValues
-        await this.props.loginUser(email, password);
-        this.props.reset();
-    }
 
-   
 
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, error } = this.props;
 
         return (
             
@@ -64,19 +64,22 @@ class LoginForm extends Component {
 }
 
 const WrappedLoginForm = reduxForm({
-    form: "register",
-    validate: (formValues) => {
-        const errors = {};
-        if (!formValues.email) {
-            errors.email = "Email is required"
-        }
-
-        if (!formValues.password) {
-            errors.password = "Password is required"
-        }
-
-        return errors
+  form: "register",
+  validate: formValues => {
+    const errors = {};
+    if (!formValues.email) {
+      errors.email = "Email is required";
     }
+
+    if (!formValues.password) {
+      errors.password = "Password is required";
+    }
+
+    return errors;
+  }
 })(LoginForm);
 
-export default connect(null, {loginUser })(WrappedLoginForm);
+export default connect(
+  null,
+  { loginUser }
+)(WrappedLoginForm);
