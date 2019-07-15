@@ -1,12 +1,12 @@
-import{ AUTH_TOKEN, ERROR } from "./types";
+import { AUTH_TOKEN, ERROR } from "./types";
 import LocalAPI from "./../apis/local";
 
 export const setError = error => {
   return {
     type: ERROR,
     payload: error
-  }
-}
+  };
+};
 export const setAuthToken = token => {
   sessionStorage.setItem("token", token);
   return {
@@ -17,19 +17,26 @@ export const setAuthToken = token => {
 
 export const registerUser = (email, password) => {
   return async (dispatch, getState) => {
-   
     const response = await LocalAPI.post(`/auth/register`, { email, password });
     const { token } = response.data;
     dispatch(setAuthToken(token));
-    
-   
   };
 };
 
 export const loginUser = (email, password) => {
-    return async (dispatch, getState) => {
-        const response = await LocalAPI.post(`/auth/login`, { email, password });
-        const { token } = response.data;
-        dispatch(setAuthToken(token));
-      };
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.post(`/auth/login`, { email, password });
+    const { token } = response.data;
+    dispatch(setAuthToken(token));
+  };
+};
+
+export const registerMember = (name, phone, email) => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.post(`/customers`, {
+      name,
+      phone,
+      email
+    });
+  };
 };

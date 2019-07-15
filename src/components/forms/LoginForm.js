@@ -4,16 +4,15 @@ import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
-import "./../../styles/LoginForm.css"
 
+import "./../../styles/LoginForm.css"
 
 class LoginForm extends Component {
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    await this.props.loginUser(email, password)
-    .catch(err => { 
-        throw new SubmissionError(err.response.data);
-      });
+    await this.props.loginUser(email, password).catch(err => {
+      throw new SubmissionError(err.response.data);
+    });
     this.props.reset();
   };
 
