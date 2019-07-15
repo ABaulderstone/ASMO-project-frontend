@@ -1,31 +1,31 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
-import { Field, reduxForm , SubmissionError} from "redux-form";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 
+import "./../../styles/LoginForm.css"
+
 class LoginForm extends Component {
- 
+  onFormSubmit = async formValues => {
+    const { email, password } = formValues;
+    await this.props.loginUser(email, password).catch(err => {
+      throw new SubmissionError(err.response.data);
+    });
+    this.props.reset();
+  };
 
-    onFormSubmit = async (formValues) => {
-        const {email, password} = formValues
-        await this.props.loginUser(email, password)
-        .catch(err => { 
-            throw new SubmissionError(err.response.data);
-          });
-        this.props.reset();
-    }
 
-   
 
     render() {
         const { handleSubmit, error } = this.props;
 
         return (
-            <>
-            {error}
-            <form onSubmit={handleSubmit(this.onFormSubmit)}>
-                <div>
+            
+            <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+                {error}
+                <div className="field">
                     <label>Email</label>
                     <Field
                         name="email"
@@ -33,7 +33,7 @@ class LoginForm extends Component {
                         type="text"
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label>Password</label>
                     <Field
                         name="password"
@@ -41,27 +41,48 @@ class LoginForm extends Component {
                         type="password"
                     />
                 </div>
-                <input type="submit" value="Login" />
+                <div className="button-container">
+                    <div className="button-wrapper">
+                        <input className="ui button button-pos" type="submit" value="Login"/>
+                    </div>
+                </div>
+                <div className="forget-pass-container">
+                    <div className="forget-pass-wrapper">
+                        <button className="button-style button-effect">Forgot Password?</button>
+                    </div>
+                </div>
+                <div className="add-new-container">
+                    <div className="add-new-wrapper">
+                        <Link to="/register">
+                        <button className="button-style new-account-button button-effect">Create new account</button>
+                        </Link>
+                        {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
+                       
+                    </div>
+                </div>
             </form>
-            </>
+            
         );
     }
 }
 
 const WrappedLoginForm = reduxForm({
-    form: "register",
-    validate: (formValues) => {
-        const errors = {};
-        if (!formValues.email) {
-            errors.email = "Email is required"
-        }
-
-        if (!formValues.password) {
-            errors.password = "Password is required"
-        }
-
-        return errors
+  form: "register",
+  validate: formValues => {
+    const errors = {};
+    if (!formValues.email) {
+      errors.email = "Email is required";
     }
+
+    if (!formValues.password) {
+      errors.password = "Password is required";
+    }
+
+    return errors;
+  }
 })(LoginForm);
 
-export default connect(null, {loginUser })(WrappedLoginForm);
+export default connect(
+  null,
+  { loginUser }
+)(WrappedLoginForm);

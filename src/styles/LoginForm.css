@@ -1,0 +1,45 @@
+
+
+
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.forget-pass-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.button-style {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: blue;
+  background-color: transparent;
+  /* show a hand cursor     on hover; some argue that we
+  should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}
+
+.button-effect:hover {
+    transition-duration: 0.2s;
+    color: lightblue;
+}
+
+.button-effect {
+    transition-duration: 0.2s;
+}
+
+.add-new-container {
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.new-account-button {
+    margin-top: 15px;
+}
