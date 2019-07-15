@@ -64,7 +64,7 @@ const WrappedRegisterForm = reduxForm({
     }
 
 
-    if (!formValues.passwordConfirm) {
+    if (!formValues.confrimPassword) {
       errors.confrimPassword = " Confirm Password is required";
     }
 

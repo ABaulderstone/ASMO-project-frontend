@@ -24,6 +24,7 @@ class LoginForm extends Component {
         return (
             
             <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+                {error}
                 <div className="field">
                     <label>Email</label>
                     <Field
