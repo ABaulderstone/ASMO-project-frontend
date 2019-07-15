@@ -53,6 +53,8 @@ class LoginForm extends Component {
                 <div className="add-new-container">
                     <div className="add-new-wrapper">
                         <a><button className="button-style new-account-button button-effect">Create new account</button></a>
+                        {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
+                       
                     </div>
                 </div>
             </form>

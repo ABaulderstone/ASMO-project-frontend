@@ -8,10 +8,12 @@ class RegisterPage extends Component {
         const {error} = this.props;
         console.log();
         return(
-            <div>
-                <h1>Register a new user</h1>
-                {error && <div> {error} </div>}
-                <RegisterForm {...this.props} />
+            <div className="ui container" style={{marginTop: "10px"}}>
+                <div className="ui segment">
+                    <h1 className="text">Register a new user</h1>
+                    {error && <div> {error} </div>}
+                    <RegisterForm {...this.props} />
+                </div>
             </div>
         );
     }
