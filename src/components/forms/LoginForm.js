@@ -4,6 +4,8 @@ import LocalAPI from "./../../apis/local";
 import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import Input from "./fields/Input";
+import "./../../styles/LoginForm.css"
+
 
 class LoginForm extends Component {
  
@@ -20,8 +22,9 @@ class LoginForm extends Component {
         const { handleSubmit } = this.props;
 
         return (
-            <form onSubmit={handleSubmit(this.onFormSubmit)}>
-                <div>
+            
+            <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+                <div className="field">
                     <label>Email</label>
                     <Field
                         name="email"
@@ -29,7 +32,7 @@ class LoginForm extends Component {
                         type="text"
                     />
                 </div>
-                <div>
+                <div className="field">
                     <label>Password</label>
                     <Field
                         name="password"
@@ -37,8 +40,23 @@ class LoginForm extends Component {
                         type="password"
                     />
                 </div>
-                <input type="submit" value="Login" />
+                <div className="button-container">
+                    <div className="button-wrapper">
+                        <input className="ui button button-pos" type="submit" value="Login"/>
+                    </div>
+                </div>
+                <div className="forget-pass-container">
+                    <div className="forget-pass-wrapper">
+                        <button className="button-style button-effect">Forgot Password?</button>
+                    </div>
+                </div>
+                <div className="add-new-container">
+                    <div className="add-new-wrapper">
+                        <a><button className="button-style new-account-button button-effect">Create new account</button></a>
+                    </div>
+                </div>
             </form>
+            
         );
     }
 }
