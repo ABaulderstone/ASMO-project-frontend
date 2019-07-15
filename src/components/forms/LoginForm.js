@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
@@ -53,7 +54,9 @@ class LoginForm extends Component {
                 </div>
                 <div className="add-new-container">
                     <div className="add-new-wrapper">
-                        <a><button className="button-style new-account-button button-effect">Create new account</button></a>
+                        <Link to="/register">
+                        <button className="button-style new-account-button button-effect">Create new account</button>
+                        </Link>
                         {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
                        
                     </div>
