@@ -42,7 +42,7 @@ class MemberSignUpForm extends Component {
 }
 
 const WrappedMemberSignUpForm = reduxForm({
-  form: "member",
+  form: "membersignup",
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {

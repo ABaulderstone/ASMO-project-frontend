@@ -60,7 +60,7 @@ class LoginForm extends Component {
 }
 
 const WrappedLoginForm = reduxForm({
-  form: "register",
+  form: "login",
   validate: formValues => {
     const errors = {};
     if (!formValues.email) {
