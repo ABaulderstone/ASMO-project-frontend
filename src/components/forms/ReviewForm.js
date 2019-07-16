@@ -17,17 +17,25 @@ class ReviewForm extends Component {
     onFormSubmit = async formValues => {
       const { foodRating, serviceRating, comment } = this.state;
       if (comment) {
+        return(
       await this.props.reviewSubmission(foodRating, serviceRating, comment)
         .catch(err => { 
           throw new SubmissionError(err.response.data);
         })
+        )
       }
 
       await this.props.reviewSubmission(foodRating, serviceRating)
         .catch(err => { 
           throw new SubmissionError(err.response.data);
         })
-      this.props.reset();
+      this.setstate({
+        foodRating: null,
+        serviceRating: null,
+        comment: null
+      }) 
+       
+      
     };
 
     onInputChange = (name, event) => {
@@ -38,7 +46,7 @@ class ReviewForm extends Component {
     onCommentChange = (name, event) => {
       this.setState({ [name]: event.target.value })
     }
-  
+
     render() {
       const { handleSubmit, error} = this.props;
       return (
@@ -70,13 +78,15 @@ class ReviewForm extends Component {
               <label><h3>Any comments?</h3></label>
             </div>
               <div>
-                <textarea className="text-area" onChange={(event) => this.onCommentChange("serviceRating", event)}></textarea>
+                <textarea className="text-area" onInput={(event) => this.onCommentChange("comment", event)}></textarea>
               </div>
             </div>
           </div>
           <div className="button-container">
             <div className="button-wrapper">
+              
               <input className="ui button" type="submit" value="Send" />
+          
             </div>
           </div>
          
