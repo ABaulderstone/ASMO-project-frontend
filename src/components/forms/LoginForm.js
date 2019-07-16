@@ -4,6 +4,7 @@ import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import "./../../styles/LoginForm.css";
 
 class LoginForm extends Component {
   onFormSubmit = async formValues => {
