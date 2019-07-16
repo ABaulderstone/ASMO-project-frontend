@@ -11,18 +11,9 @@ class AddressForm extends Component {
     super(props);
 
     this.state = this.getInitialState();
-
-    // User has entered something in the address bar
-    this.onQuery = this.onQuery.bind(this);
-    // User has entered something in an address field
-    this.onAddressChange = this.onAddressChange.bind(this);
-    // User has clicked the check button
-    this.onCheck = this.onCheck.bind(this);
-    // User has clicked the clear button
-    this.onClear = this.onClear.bind(this);
   }
-
-  onQuery(evt) {
+  // User has entered something in the address bar
+  onQuery = evt => {
     const query = evt.target.value;
 
     if (!query.length > 0) {
@@ -54,11 +45,12 @@ class AddressForm extends Component {
           self.setState(state);
         }
       });
-  }
+  };
 
   getInitialState() {
     return {
       address: {
+        houseNumber: "",
         street: "",
         city: "",
         state: "",
@@ -71,22 +63,22 @@ class AddressForm extends Component {
       coords: {}
     };
   }
-
-  onClear(evt) {
+  // User has clicked the clear button
+  onClear = evt => {
     const state = this.getInitialState();
     this.setState(state);
-  }
-
-  onAddressChange(evt) {
+  };
+  // User has entered something in an address field
+  onAddressChange = evt => {
     const id = evt.target.id;
     const val = evt.target.value;
 
     let state = this.state;
     state.address[id] = val;
     this.setState(state);
-  }
-
-  onCheck(evt) {
+  };
+  // User has clicked the check button
+  onCheck = evt => {
     let params = {
       app_id: APP_ID_HERE,
       app_code: APP_CODE_HERE
@@ -96,6 +88,7 @@ class AddressForm extends Component {
       params["locationId"] = this.state.locationId;
     } else {
       params["searchtext"] =
+        this.state.address.houseNumber +
         this.state.address.street +
         this.state.address.city +
         this.state.address.state +
@@ -139,7 +132,7 @@ class AddressForm extends Component {
           coords: null
         });
       });
-  }
+  };
 
   alert() {
     if (!this.state.isChecked) {
@@ -155,8 +148,7 @@ class AddressForm extends Component {
     } else {
       return (
         <div className="alert alert-success" role="alert">
-          <b>Valid Address.</b> Location is {this.state.coords.lat},{" "}
-          {this.state.coords.lon}.
+          <b>Valid Address.</b>
         </div>
       );
     }
@@ -168,6 +160,7 @@ class AddressForm extends Component {
       <div className="container">
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <AddressInput
+          houseNumber={this.state.address.houseNumber}
           street={this.state.address.street}
           city={this.state.address.city}
           state={this.state.address.state}

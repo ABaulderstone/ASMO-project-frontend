@@ -16,23 +16,16 @@ class AddressInput extends Component {
       <div className="card">
         <div className="card-body">
           <AddressItem
+            label="House Number"
+            id="houseNumber"
+            value={this.props.houseNumber}
+            onChange={this.handleChange}
+            placeholder=""
+          />
+          <AddressItem
             label="Street"
             id="street"
             value={this.props.street}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="City"
-            id="city"
-            value={this.props.city}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="State"
-            id="state"
-            value={this.props.state}
             onChange={this.handleChange}
             placeholder=""
           />
