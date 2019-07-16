@@ -9,7 +9,6 @@ class ReviewPage extends Component {
         return(
             <div className="ui container" style={{marginTop: "10px"}}>
                 <div className="ui segment">
-                    <h1 className="text">Leave a Review!</h1>
                     {error && <div> {error} </div>}
                     <ReviewForm {...this.props} />
                 </div>
