@@ -40,3 +40,13 @@ export const registerMember = (name, phone, email) => {
     });
   };
 };
+
+export const reviewSubmission = (foodRating, serviceRating, comment) => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.post(`/reviews`, {
+      foodRating,
+      serviceRating,
+      comment
+    });
+  }
+}
