@@ -1,6 +1,12 @@
-import { AUTH_TOKEN, ERROR } from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
 import LocalAPI from "./../apis/local";
 
+const submitReview = () => {
+  return {
+    type: REVIEW_SUBMITTED,
+    payload: true
+  }
+}
 export const setError = error => {
   return {
     type: ERROR,
@@ -48,6 +54,6 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
       serviceRating,
       comment
     });
-    console.log(this.props.history)
+    dispatch(submitReview());
   }
 }

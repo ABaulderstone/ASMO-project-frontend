@@ -49,6 +49,10 @@ class ReviewForm extends Component {
 
     render() {
       const { handleSubmit, error} = this.props;
+      if (this.props.review.isSubmitted) {
+        
+        this.props.history.push("/thankyou")
+      }
       return (
         <>
         
@@ -113,10 +117,14 @@ class ReviewForm extends Component {
       return errors;
     }
   })(ReviewForm);
-  
+  function mapStateToProps(state) {
+    return {
+      review: state.review
+    }
+  }
   
   export default connect(
-    null,
+    mapStateToProps,
     { reviewSubmission }
   )(WrappedReviewForm);
 
