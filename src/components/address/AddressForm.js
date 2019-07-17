@@ -27,7 +27,7 @@ class AddressForm extends Component {
         params: {
           app_id: APP_ID_HERE,
           app_code: APP_CODE_HERE,
-          query: query,
+          query: query + " Australia" + " Sydney",
           maxresults: 1
         }
       })
@@ -51,7 +51,9 @@ class AddressForm extends Component {
     return {
       address: {
         houseNumber: "",
+        unit: "",
         street: "",
+        district: "",
         city: "",
         state: "",
         postalCode: "",
@@ -89,7 +91,9 @@ class AddressForm extends Component {
     } else {
       params["searchtext"] =
         this.state.address.houseNumber +
+        this.state.address.unit +
         this.state.address.street +
+        this.state.address.district +
         this.state.address.city +
         this.state.address.state +
         this.state.address.postalCode +
@@ -107,19 +111,16 @@ class AddressForm extends Component {
           self.setState({
             isChecked: "true",
             locationId: "",
-            query: location.Address.Label,
-            address: {
-              street:
-                location.Address.HouseNumber + " " + location.Address.Street,
-              city: location.Address.City,
-              state: location.Address.State,
-              postalCode: location.Address.PostalCode,
-              country: location.Address.Country
-            },
-            coords: {
-              lat: location.DisplayPosition.Latitude,
-              lon: location.DisplayPosition.Longitude
-            }
+            query: location.Address.Label
+            // address: {
+            //   street:
+            //     location.Address.HouseNumber + " " + location.Address.Street,
+            //   district: location.Address.Disctrict,
+            //   city: location.Address.City,
+            //   state: location.Address.State,
+            //   postalCode: location.Address.PostalCode,
+            //   country: location.Address.Country
+            // },
           });
         } else {
           this.setState({ isChecked: true, coords: null });
@@ -161,7 +162,9 @@ class AddressForm extends Component {
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <AddressInput
           houseNumber={this.state.address.houseNumber}
+          unit={this.state.address.unit}
           street={this.state.address.street}
+          district={this.state.address.district}
           city={this.state.address.city}
           state={this.state.address.state}
           postalCode={this.state.address.postalCode}

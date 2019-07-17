@@ -23,9 +23,23 @@ class AddressInput extends Component {
             placeholder=""
           />
           <AddressItem
+            label="Unit Number"
+            id="unitNumber"
+            value={this.props.unit}
+            onChange={this.handleChange}
+            placeholder=""
+          />
+          <AddressItem
             label="Street"
             id="street"
             value={this.props.street}
+            onChange={this.handleChange}
+            placeholder=""
+          />
+          <AddressItem
+            label="District"
+            id="district"
+            value={this.props.district}
             onChange={this.handleChange}
             placeholder=""
           />
