@@ -8,7 +8,7 @@ class AddressSuggest extends Component {
         label="Address"
         value={this.props.query}
         onChange={this.props.onChange}
-        placeholder="start typing"
+        placeholder="If unit for e.g. (5/11)"
       />
     );
   }

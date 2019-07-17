@@ -13,7 +13,7 @@ class AddressInput extends Component {
 
   render() {
     return (
-      <div className="card">
+      <div className="card" style={{ display: "none" }}>
         <div className="card-body">
           <AddressItem
             label="House Number"
@@ -24,7 +24,7 @@ class AddressInput extends Component {
           />
           <AddressItem
             label="Unit Number"
-            id="unitNumber"
+            id="unit"
             value={this.props.unit}
             onChange={this.handleChange}
             placeholder=""
