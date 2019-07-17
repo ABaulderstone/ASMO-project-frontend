@@ -50,7 +50,6 @@ class ReviewForm extends Component {
     render() {
       const { handleSubmit, error} = this.props;
       if (this.props.review.isSubmitted) {
-        
         this.props.history.push("/thankyou")
       }
       return (
