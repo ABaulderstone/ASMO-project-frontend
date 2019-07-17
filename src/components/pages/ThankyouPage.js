@@ -10,8 +10,13 @@ class ThankyouPage extends Component {
     }
 
     render () {
-        return (        
-            <h1>Thankyou For Your Feedback!</h1>
+        return (
+            <div className="ui container">
+                <div className="ui segment" style={{textAlign: "center"}}>
+                    <h1>Thankyou For Your Feedback!</h1>
+                </div> 
+            </div>       
+            
         )
 
     
