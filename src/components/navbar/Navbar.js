@@ -6,6 +6,7 @@ import NavbarBurger from "./NavbarBurger";
 
 
 
+
 export default class Navbar extends Component {
   state = {
     activeMenu: false,
@@ -39,9 +40,11 @@ export default class Navbar extends Component {
   };
   render() {
     let { pages = [], color } = this.state;
-    let navbarItems = this.state.pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />);
+    // let navbarItems = pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />);
     return (
-      <nav className="navbar" role="navigation" aria-label="dropdown navigation">
+
+      
+      <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <NavbarItem page="Satisfeed" />
           <NavbarBurger
@@ -50,9 +53,10 @@ export default class Navbar extends Component {
           />
         </div>
         <div
-          className={`navbar-menu ${this.state.activeMenu ? 'is-active' : ''}`}
+              // className="navbar-menu"
+           className={`navbar-menu ${this.state.activeMenu ? 'is-active' : ''}`}
         >
-          <div className="navbar-start">{navbarItems}</div>
+          <div className="navbar-start">{pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />)}</div>
         </div>
       </nav>
     );
@@ -63,4 +67,6 @@ Navbar.propTypes = {
   pages: PropTypes.array.isRequired,
   color: PropTypes.string,
 };
+
+
 
