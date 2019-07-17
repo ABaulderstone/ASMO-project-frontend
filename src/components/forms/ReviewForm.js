@@ -20,14 +20,14 @@ class ReviewForm extends Component {
         return(
       await this.props.reviewSubmission(foodRating, serviceRating, comment)
         .catch(err => { 
-          throw new SubmissionError(err.response.data);
+          throw new SubmissionError(err);
         })
         )
       }
 
       await this.props.reviewSubmission(foodRating, serviceRating)
         .catch(err => { 
-          throw new SubmissionError(err.response.data);
+          throw new SubmissionError(err);
         })
       this.setstate({
         foodRating: null,
@@ -84,9 +84,9 @@ class ReviewForm extends Component {
           </div>
           <div className="button-container">
             <div className="button-wrapper">
-              <Link to="/thankyou">
+              
                 <input className="ui button" type="submit" value="Send" />
-              </Link>
+              
           
             </div>
           </div>

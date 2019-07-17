@@ -48,5 +48,6 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
       serviceRating,
       comment
     });
+    console.log(this.props.history)
   }
 }
