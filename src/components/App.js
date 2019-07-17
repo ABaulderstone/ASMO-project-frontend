@@ -13,6 +13,7 @@ import history from "./../history";
 import MemberSignUpPage from "./pages/MemberSignUpPage";
 import CustomerShowPage from "./pages/CustomerShowPage";
 import CommentsShowPage from "./pages/CommentsShowPage";
+import StaffShowPage from "./pages/StaffShowPage";
 import AppChoicePage from "./pages/AppChoicePage"
 import { connect } from "react-redux";
 
@@ -39,6 +40,7 @@ class App extends Component {
             <PrivateRoute exact path="/review" component={ReviewPage} />
             <PrivateRoute exact path="/thankyou" component={ThankyouPage} />
             <PrivateRoute exact path="/comments/show" component={CommentsShowPage} />
+            <PrivateRoute exact path="/staff/show" component={StaffShowPage} />
             <PrivateRoute exact path ="/app_choice" component={AppChoicePage} />
             <Route component={NotFoundPage} />
           </Switch>
