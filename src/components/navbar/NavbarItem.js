@@ -2,15 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const NavbarItem = props => (
-    
+        
 
-        <div className="navbar-dropdown">
-        <Link to={props.URL}>
-        <a className="navbar-item ">
-        {props.page}
-        </a>
-        </Link>
-    </div>
+        <Link className="navbar-item " to={props.URL}>
+            {props.page} 
+         </Link> 
 
 
   );
