@@ -5,7 +5,7 @@ import { Component } from "react";
 class ThankyouPage extends Component {
     componentDidMount() {
         setTimeout(() => {
-            this.props.history.push("/reviews")
+            this.props.history.push("/review")
         }, 3000)
     }
 
