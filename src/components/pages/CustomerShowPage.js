@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { render } from 'react-dom';
 import Navbar from "./../navbar/Navbar";
-import 'bulma/css/bulma.css';
 
-
-
-
-
-
-class Dashboard extends Component {
+class CustomerShowPage extends Component {
     render() {
         return (
             <>
             <Navbar />
             <div>
-                <h1>Dashboard</h1>
+                <h1>Cusomters</h1>
                 <div>
-                    Land of Smiles
+                   
                 </div>
             </div>
             </>
@@ -25,4 +18,4 @@ class Dashboard extends Component {
     }
 }
 
-export default Dashboard;
+export default CustomerShowPage;
