@@ -7,6 +7,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import PrivateRoute from "./PrivateRoute";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
+import ReviewPage from "./pages/ReviewPage";
+import ThankyouPage from "./pages/ThankyouPage";
 import history from "./../history";
 import MemberSignUpPage from "./pages/MemberSignUpPage";
 import { connect } from "react-redux";
@@ -30,6 +32,8 @@ class App extends Component {
               path="/customers"
               component={MemberSignUpPage}
             />
+            <PrivateRoute exact path="/reviews" component={ReviewPage} />
+            <PrivateRoute exact path="/thankyou" component={ThankyouPage} />
             <Route component={NotFoundPage} />
           </Switch>
         </div>

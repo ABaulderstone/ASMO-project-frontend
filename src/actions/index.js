@@ -1,5 +1,15 @@
-import { AUTH_TOKEN, ERROR } from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
 import LocalAPI from "./../apis/local";
+
+const submitReview = (pload) => {
+  return {
+    type: REVIEW_SUBMITTED,
+    payload: pload
+  }
+}
+
+
+
 
 export const setError = error => {
   return {
@@ -40,3 +50,23 @@ export const registerMember = (name, phone, email) => {
     });
   };
 };
+
+export const reviewSubmission = (foodRating, serviceRating, comment) => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.post(`/reviews`, {
+      foodRating,
+      serviceRating,
+      comment
+    });
+    dispatch(submitReview(true));
+  }
+}
+
+export const resetReview = () => {
+  return (dispatch, getState) => { 
+    dispatch(submitReview(false));
+  }
+}
+  
+
+
