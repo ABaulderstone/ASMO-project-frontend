@@ -10,22 +10,22 @@ export default class Navbar extends Component {
   state = {
     activeMenu: false,
     pages: [{
-              name: "dashboard", URL: "./dashboard"
+              name: "dashboard", URL: "/dashboard"
             },
             {
-              name: "customers", URL: "./customers/show"
+              name: "customers", URL: "/customers/show"
             },
             {
-              name: "comments", URL: "./comments/show"
+              name: "comments", URL: "/comments/show"
             },
             {
-              name: "staff", URL: "./staff/show"
+              name: "staff", URL: "/staff/show"
             },
             {
-              name: "roster", URL: "./roster"
+              name: "roster", URL: "/roster"
             },
             {
-              name: "app", URL: "./app_choice"
+              name: "app", URL: "/app_choice"
             },]
     
     
