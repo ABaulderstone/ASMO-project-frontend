@@ -3,6 +3,8 @@ import { registerMember } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import AddressForm from "../address/AddressForm";
+import "./../../styles/MemberSignUpForm.css";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
@@ -17,7 +19,7 @@ class MemberSignUpForm extends Component {
     const { handleSubmit, error } = this.props;
 
     return (
-      <form onSubmit={handleSubmit(this.onFormSubmit)}>
+      <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
         {error}
         <div>
           <label>Name</label>
@@ -32,17 +34,18 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
-          <label>Address</label>
-          <Field name="address" component={Input} type="text" />
+          <AddressForm />
         </div>
-        <input type="submit" value="Submit" />
+        <div className="button-container">
+          <input className="ui button" type="submit" value="Submit" />
+        </div>
       </form>
     );
   }
 }
 
 const WrappedMemberSignUpForm = reduxForm({
-  form: "member",
+  form: "membersignup",
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {
