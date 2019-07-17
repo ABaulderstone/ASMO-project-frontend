@@ -9,9 +9,29 @@ import NavbarBurger from "./NavbarBurger";
 export default class Navbar extends Component {
   state = {
     activeMenu: false,
-    pages: ["DashBoard", "Customer", "sitemap"],
-    color: "green"
+    pages: [{
+              name: "dashboard", URL: "./dashboard"
+            },
+            {
+              name: "customers", URL: "./customers/show"
+            },
+            {
+              name: "comments", URL: "./comments/show"
+            },
+            {
+              name: "staff", URL: "./staff/show"
+            },
+            {
+              name: "roster", URL: "./roster"
+            },
+            {
+              name: "app", URL: "./app_choice"
+            },]
+    
+    
   };
+
+
   toggleMenu = () => {
     this.setState({
       activeMenu: !this.state.activeMenu,
@@ -19,7 +39,7 @@ export default class Navbar extends Component {
   };
   render() {
     let { pages = [], color } = this.state;
-    let navbarItems = this.state.pages.map(page => <NavbarItem page={page} key={page} />);
+    let navbarItems = this.state.pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />);
     return (
       <nav className="navbar" role="navigation" aria-label="dropdown navigation">
         <div className="navbar-brand">
