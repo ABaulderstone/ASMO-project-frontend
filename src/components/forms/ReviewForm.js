@@ -29,11 +29,7 @@ class ReviewForm extends Component {
         .catch(err => { 
           throw new SubmissionError(err);
         })
-      this.setstate({
-        foodRating: null,
-        serviceRating: null,
-        comment: null
-      }) 
+      
        
       
     };
@@ -49,12 +45,10 @@ class ReviewForm extends Component {
 
     render() {
       const { handleSubmit, error} = this.props;
-      if (this.props.review.isSubmitted) {
-        this.props.history.push("/thankyou")
-      }
+
       return (
         <>
-        
+        {error}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
         
           <div className="field">
@@ -116,15 +110,11 @@ class ReviewForm extends Component {
       return errors;
     }
   })(ReviewForm);
-  function mapStateToProps(state) {
-    return {
-      review: state.review
-    }
-  }
+
   
   export default connect(
-    mapStateToProps,
-    { reviewSubmission }
+    null,
+    {reviewSubmission}
   )(WrappedReviewForm);
 
   

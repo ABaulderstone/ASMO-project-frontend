@@ -1,12 +1,16 @@
 import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
 import LocalAPI from "./../apis/local";
 
-const submitReview = () => {
+const submitReview = (pload) => {
   return {
     type: REVIEW_SUBMITTED,
-    payload: true
+    payload: pload
   }
 }
+
+
+
+
 export const setError = error => {
   return {
     type: ERROR,
@@ -54,6 +58,15 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
       serviceRating,
       comment
     });
-    dispatch(submitReview());
+    dispatch(submitReview(true));
   }
 }
+
+export const resetReview = () => {
+  return (dispatch, getState) => { 
+    dispatch(submitReview(false));
+  }
+}
+  
+
+
