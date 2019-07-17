@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom"
 import { registerUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import "./../../styles/RegisterForm.css"
+
 
 class RegisterForm extends Component {
   onFormSubmit = async formValues => {
@@ -43,6 +45,9 @@ class RegisterForm extends Component {
             <input className="ui button" type="submit" value="create" />
           </div>
         </div>
+        <Link to="/login">
+          <button className="button-style new-account-button button-effect">Already have an Account?</button>
+        </Link>
        
       </form>
       </>
