@@ -12,6 +12,7 @@ import ThankyouPage from "./pages/ThankyouPage";
 import history from "./../history";
 import MemberSignUpPage from "./pages/MemberSignUpPage";
 import CustomerShowPage from "./pages/CustomerShowPage";
+import AppChoicePage from "./pages/AppChoicePage"
 import { connect } from "react-redux";
 
 class App extends Component {
