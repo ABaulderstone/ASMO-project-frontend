@@ -9,8 +9,8 @@ import "./../../styles/RegisterForm.css"
 
 class RegisterForm extends Component {
   onFormSubmit = async formValues => {
-    const { email, password } = formValues;
-    await this.props.registerUser(email, password)
+    const { email, password, confrimPassword} = formValues;
+    await this.props.registerUser(email, password, confrimPassword)
       .catch(err => { 
         throw new SubmissionError(err.response.data);
       })
