@@ -18,7 +18,7 @@
     "semantic-ui-react": "^0.87.3"
   },
   "scripts": {
-    "deploy": "git checkout master && npm run build && aws s3 sync build/ s3://satisfeed-react-app", 
+    "deploy": "git checkout master && npm run build && aws s3 sync build/ s3://satisfeed-react-app",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

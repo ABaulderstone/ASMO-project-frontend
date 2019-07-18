@@ -5,15 +5,29 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import "./../../styles/MemberSignUpForm.css";
+import stringifyAddress from "./../../utility/stringifyAddress";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
-    const { name, phone, email } = formValues;
+    const { name, phone, email, unit } = formValues;
+    const address = this.props.address.address;
+    
+    if (address){
+            const addressString = stringifyAddress(unit, address)
+            return (
+            await this.props.registerMember(name, phone, email, addressString)
+          .catch(err => {
+            throw new SubmissionError(err.response.data);
+            })
+            );
+          }   
+
     await this.props.registerMember(name, phone, email).catch(err => {
       throw new SubmissionError(err.response.data);
     });
     this.props.reset();
-  };
+  }
+  
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -34,6 +48,11 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
+          <label>Unit</label>
+          <Field name="unit" component={Input} type="text" placeholder="optional" />
+        </div>
+
+        <div>
           <AddressForm />
         </div>
         <div className="button-container">
@@ -43,6 +62,7 @@ class MemberSignUpForm extends Component {
     );
   }
 }
+
 
 const WrappedMemberSignUpForm = reduxForm({
   form: "membersignup",
@@ -64,7 +84,14 @@ const WrappedMemberSignUpForm = reduxForm({
   }
 })(MemberSignUpForm);
 
+
+function mapStateToProps(state) {
+  return {
+    address: state.address
+  }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { registerMember }
 )(WrappedMemberSignUpForm);
