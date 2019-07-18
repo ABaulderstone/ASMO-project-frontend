@@ -11,23 +11,21 @@ class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
     const address = this.props.address.address;
-    
-    if (address){
-            const addressString = stringifyAddress(unit, address)
-            return (
-            await this.props.registerMember(name, phone, email, addressString)
-          .catch(err => {
-            throw new SubmissionError(err.response.data);
-            })
-            );
-          }   
+
+    if (address) {
+      const addressString = stringifyAddress(unit, address);
+      return await this.props
+        .registerMember(name, phone, email, addressString)
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
+    }
 
     await this.props.registerMember(name, phone, email).catch(err => {
       throw new SubmissionError(err.response.data);
     });
     this.props.reset();
-  }
-  
+  };
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -49,7 +47,12 @@ class MemberSignUpForm extends Component {
         </div>
         <div>
           <label>Unit</label>
-          <Field name="unit" component={Input} type="text" placeholder="optional" />
+          <Field
+            name="unit"
+            component={Input}
+            type="text"
+            placeholder="optional"
+          />
         </div>
 
         <div>
@@ -62,7 +65,6 @@ class MemberSignUpForm extends Component {
     );
   }
 }
-
 
 const WrappedMemberSignUpForm = reduxForm({
   form: "membersignup",
@@ -84,11 +86,10 @@ const WrappedMemberSignUpForm = reduxForm({
   }
 })(MemberSignUpForm);
 
-
 function mapStateToProps(state) {
   return {
     address: state.address
-  }
+  };
 }
 
 export default connect(
