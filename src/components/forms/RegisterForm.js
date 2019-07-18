@@ -9,8 +9,8 @@ import "./../../styles/RegisterForm.css"
 
 class RegisterForm extends Component {
   onFormSubmit = async formValues => {
-    const { email, password } = formValues;
-    await this.props.registerUser(email, password)
+    const { email, password, confrimPassword} = formValues;
+    await this.props.registerUser(email, password, confrimPassword)
       .catch(err => { 
         throw new SubmissionError(err.response.data);
       })
@@ -22,7 +22,7 @@ class RegisterForm extends Component {
     
     return (
       <>
-      
+      {error}
       <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
       <div className="field">
           <label>Restaurant Name</label>
@@ -75,6 +75,10 @@ const WrappedRegisterForm = reduxForm({
 
     if (!formValues.restaurantName) {
       errors.restaurantName = " Restaurant name is required";
+    }
+
+    if (formValues.password !== formValues.confrimPassword) {
+      errors.confrimPassword = "Must match password"
     }
 
     return errors;
