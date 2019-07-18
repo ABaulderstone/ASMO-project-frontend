@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom"
 import StaffForm from "./../forms/StaffForm";
+import 'bulma/css/bulma.css';
 
 
 class NewStaffPage extends Component {
