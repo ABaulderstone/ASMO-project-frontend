@@ -1,14 +1,29 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED} from "./types";
 import LocalAPI from "./../apis/local";
+import { async } from "q";
 
-const submitReview = (pload) => {
+
+const submitMember = (boolean) => {
   return {
-    type: REVIEW_SUBMITTED,
-    payload: pload
+    type: MEMBER_SUMBITTED,
+    payload: boolean
   }
 }
 
+const submitReview = (boolean) => {
+  return {
+    type: REVIEW_SUBMITTED,
+    payload: boolean
+  }
+}
 
+ export const setAddress = (address) => {
+  console.log(address);
+  return {
+    type: SET_ADDRESS,
+    payload: address
+  }
+}
 
 
 export const setError = error => {
@@ -41,15 +56,26 @@ export const loginUser = (email, password) => {
   };
 };
 
-export const registerMember = (name, phone, email) => {
+export const registerMember = (name, phone, email, address) => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.post(`/customers`, {
       name,
       phone,
-      email
+      email,
+      address
     });
+    dispatch(submitMember(true));
   };
 };
+
+export const newStaffSubmission = (name, avatar) => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.post(`/staff`, {
+      name,
+      avatar
+    })
+  }
+}
 
 export const reviewSubmission = (foodRating, serviceRating, comment) => {
   return async (dispatch, getState) => {
@@ -65,6 +91,12 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
 export const resetReview = () => {
   return (dispatch, getState) => { 
     dispatch(submitReview(false));
+  }
+}
+
+export const resetMember = () => {
+  return (dispatch, getState) => { 
+    dispatch(submitMember(false));
   }
 }
   

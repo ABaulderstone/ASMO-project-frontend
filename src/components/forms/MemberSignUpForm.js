@@ -6,10 +6,22 @@ import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import AddressItem from "../address/AddressItem";
 import "./../../styles/MemberSignUpForm.css";
+import stringifyAddress from "./../../utility/stringifyAddress";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
-    const { name, phone, email } = formValues;
+    const { name, phone, email, unit } = formValues;
+    const address = this.props.address.address;
+
+    if (address) {
+      const addressString = stringifyAddress(unit, address);
+      return await this.props
+        .registerMember(name, phone, email, addressString)
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
+    }
+
     await this.props.registerMember(name, phone, email).catch(err => {
       throw new SubmissionError(err.response.data);
     });
@@ -35,12 +47,12 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
-          <label>Unit Number</label>
+          <label>Unit</label>
           <Field
             name="unit"
             component={Input}
             type="text"
-            placeholder="(optional)"
+            placeholder="optional"
           />
         </div>
 
@@ -75,7 +87,13 @@ const WrappedMemberSignUpForm = reduxForm({
   }
 })(MemberSignUpForm);
 
+function mapStateToProps(state) {
+  return {
+    address: state.address
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { registerMember }
 )(WrappedMemberSignUpForm);

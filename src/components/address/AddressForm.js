@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import AddressSuggest from "./AddressSuggest";
 import AddressInput from "./AddressInput";
 import axios from "axios";
+import { connect } from "react-redux";
+import {setAddress} from "./../../actions"
+
 
 const APP_ID_HERE = process.env.REACT_APP_ID;
 const APP_CODE_HERE = process.env.REACT_APP_CODE;
@@ -134,6 +137,9 @@ class AddressForm extends Component {
           coords: null
         });
       });
+
+      const {address} = this.state;
+      this.props.setAddress(address);
   };
 
   alert() {
@@ -188,4 +194,4 @@ class AddressForm extends Component {
   }
 }
 
-export default AddressForm;
+export default connect(null, {setAddress})(AddressForm);
