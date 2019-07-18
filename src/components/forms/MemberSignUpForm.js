@@ -5,6 +5,7 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import "./../../styles/MemberSignUpForm.css";
+import Modal from "./../modal/Modal";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
@@ -39,6 +40,9 @@ class MemberSignUpForm extends Component {
         <div className="button-container">
           <input className="ui button" type="submit" value="Submit" />
         </div>
+        {/* <div>
+          <Modal />
+        </div> */}
       </form>
     );
   }
