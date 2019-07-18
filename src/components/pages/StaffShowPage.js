@@ -11,7 +11,7 @@ class StaffShowPage extends Component {
             <Navbar />
             <div className="ui container">
                 <div className="ui segment">
-                    <h1>Staff</h1>
+                    <h1 className= {{fontSize: "30px"}}>Staff</h1>
                     <Link to="/staff/new">
                         <button>Add Staff</button>
                     </Link>
