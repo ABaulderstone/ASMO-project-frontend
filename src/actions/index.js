@@ -1,4 +1,4 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED} from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED } from "./types";
 import LocalAPI from "./../apis/local";
 import { async } from "q";
 
@@ -17,7 +17,7 @@ const submitReview = (boolean) => {
   }
 }
 
- export const setAddress = (address) => {
+export const setAddress = (address) => {
   console.log(address);
   return {
     type: SET_ADDRESS,
@@ -97,16 +97,16 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
 // }
 
 export const resetReview = () => {
-  return (dispatch, getState) => { 
+  return (dispatch, getState) => {
     dispatch(submitReview(false));
   }
 }
 
 export const resetMember = () => {
-  return (dispatch, getState) => { 
+  return (dispatch, getState) => {
     dispatch(submitMember(false));
   }
 }
-  
+
 
 
