@@ -49,7 +49,7 @@ class MemberSignUpForm extends Component {
         </div>
         <div>
           <label>Unit</label>
-          <Field name="unit" component={Input} type="text" />
+          <Field name="unit" component={Input} type="text" placeholder="optional" />
         </div>
 
         <div>
