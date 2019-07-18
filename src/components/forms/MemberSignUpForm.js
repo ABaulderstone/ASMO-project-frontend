@@ -5,17 +5,29 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import "./../../styles/MemberSignUpForm.css";
+import stringifyAddress from "./../../utility/stringifyAddress";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
     const address = this.props.address.address;
     
-    await this.props.registerMember(name, phone, email, unit, address).catch(err => {
+    if (address){
+            const addressString = stringifyAddress(unit, address)
+            return (
+            await this.props.registerMember(name, phone, email, addressString)
+          .catch(err => {
+            throw new SubmissionError(err.response.data);
+            })
+            );
+          }   
+
+    await this.props.registerMember(name, phone, email).catch(err => {
       throw new SubmissionError(err.response.data);
     });
     this.props.reset();
-  };
+  }
+  
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -50,6 +62,7 @@ class MemberSignUpForm extends Component {
     );
   }
 }
+
 
 const WrappedMemberSignUpForm = reduxForm({
   form: "membersignup",
