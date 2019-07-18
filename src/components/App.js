@@ -18,6 +18,7 @@ import AppChoicePage from "./pages/AppChoicePage"
 import RosterPage from "./pages/RosterPage";
 import CustomerSearchPage from "./pages/CustomerSearchPage";
 import { connect } from "react-redux";
+import NewStaffPage from "./pages/NewStaffPage";
 
 class App extends Component {
   render() {
@@ -42,8 +43,9 @@ class App extends Component {
             <PrivateRoute exact path="/customers/show" component={CustomerShowPage} />
             <PrivateRoute exact path="/review" component={ReviewPage} />
             <PrivateRoute exact path="/thankyou" component={ThankyouPage} />
-            <PrivateRoute exact path="/comments/show" component={CommentsShowPage} />
-            <PrivateRoute exact path="/staff/show" component={StaffShowPage} />
+            <PrivateRoute exact path="/comments" component={CommentsShowPage} />
+            <PrivateRoute exact path="/staff" component={StaffShowPage} />
+            <PrivateRoute exact path="/staff/new" component={NewStaffPage} />
             <PrivateRoute exact path ="/app_choice" component={AppChoicePage} />
             <PrivateRoute exact path ="/member_search" component={CustomerSearchPage} />
             <Route component={NotFoundPage} />
