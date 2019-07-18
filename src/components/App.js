@@ -17,8 +17,11 @@ import StaffShowPage from "./pages/StaffShowPage";
 import AppChoicePage from "./pages/AppChoicePage"
 import RosterPage from "./pages/RosterPage";
 import CustomerSearchPage from "./pages/CustomerSearchPage";
-import { connect } from "react-redux";
 import NewStaffPage from "./pages/NewStaffPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ThankyouMemberPage from "./pages/ThankyouMemberPage";
+import { connect } from "react-redux";
+
 
 class App extends Component {
   render() {
@@ -32,6 +35,8 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/forgot_password" component={ForgotPasswordPage} />
+
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute
@@ -48,6 +53,8 @@ class App extends Component {
             <PrivateRoute exact path="/staff/new" component={NewStaffPage} />
             <PrivateRoute exact path ="/app_choice" component={AppChoicePage} />
             <PrivateRoute exact path ="/member_search" component={CustomerSearchPage} />
+            <PrivateRoute exact path ="/thankyou_member" component={ThankyouMemberPage} />
+
             <Route component={NotFoundPage} />
           </Switch>
         </div>
