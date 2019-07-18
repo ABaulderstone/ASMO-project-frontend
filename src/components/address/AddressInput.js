@@ -13,45 +13,40 @@ class AddressInput extends Component {
 
   render() {
     return (
-      <div className="card" style={{ display: "none" }}>
-        <div className="card-body">
-          <AddressItem
-            label="House Number"
-            id="houseNumber"
-            value={this.props.houseNumber}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="Unit Number"
-            id="unit"
-            value={this.props.unit}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="Street"
-            id="street"
-            value={this.props.street}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="District"
-            id="district"
-            value={this.props.district}
-            onChange={this.handleChange}
-            placeholder=""
-          />
-          <AddressItem
-            label="Postal Code"
-            id="postalCode"
-            value={this.props.postalCode}
-            onChange={this.handleChange}
-            placeholder=""
-          />
+      <>
+        <div className="card" style={{ display: "none" }}>
+          <div className="card-body">
+            <AddressItem
+              label="House Number"
+              id="houseNumber"
+              value={this.props.houseNumber}
+              onChange={this.handleChange}
+              placeholder=""
+            />
+            <AddressItem
+              label="Street"
+              id="street"
+              value={this.props.street}
+              onChange={this.handleChange}
+              placeholder=""
+            />
+            <AddressItem
+              label="District"
+              id="district"
+              value={this.props.district}
+              onChange={this.handleChange}
+              placeholder=""
+            />
+            <AddressItem
+              label="Postal Code"
+              id="postalCode"
+              value={this.props.postalCode}
+              onChange={this.handleChange}
+              placeholder=""
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
