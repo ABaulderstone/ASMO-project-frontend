@@ -1,15 +1,29 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED} from "./types";
 import LocalAPI from "./../apis/local";
 import { async } from "q";
 
-const submitReview = (pload) => {
+
+const submitMember = (boolean) => {
   return {
-    type: REVIEW_SUBMITTED,
-    payload: pload
+    type: MEMBER_SUMBITTED,
+    payload: boolean
   }
 }
 
+const submitReview = (boolean) => {
+  return {
+    type: REVIEW_SUBMITTED,
+    payload: boolean
+  }
+}
 
+ export const setAddress = (address) => {
+  console.log(address);
+  return {
+    type: SET_ADDRESS,
+    payload: address
+  }
+}
 
 
 export const setError = error => {
@@ -26,9 +40,9 @@ export const setAuthToken = token => {
   };
 };
 
-export const registerUser = (email, password) => {
+export const registerUser = (email, password, confrimPassword) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/auth/register`, { email, password });
+    const response = await LocalAPI.post(`/auth/register`, { email, password, confrimPassword });
     const { token } = response.data;
     dispatch(setAuthToken(token));
   };
@@ -36,19 +50,21 @@ export const registerUser = (email, password) => {
 
 export const loginUser = (email, password) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/auth/login`, { email, password });
+    const response = await LocalAPI.post(`/auth/login`, { email, password, });
     const { token } = response.data;
     dispatch(setAuthToken(token));
   };
 };
 
-export const registerMember = (name, phone, email) => {
+export const registerMember = (name, phone, email, address) => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.post(`/customers`, {
       name,
       phone,
-      email
+      email,
+      address
     });
+    dispatch(submitMember(true));
   };
 };
 
@@ -83,6 +99,12 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
 export const resetReview = () => {
   return (dispatch, getState) => { 
     dispatch(submitReview(false));
+  }
+}
+
+export const resetMember = () => {
+  return (dispatch, getState) => { 
+    dispatch(submitMember(false));
   }
 }
   
