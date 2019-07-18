@@ -8,8 +8,10 @@ import "./../../styles/MemberSignUpForm.css";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
-    const { name, phone, email } = formValues;
-    await this.props.registerMember(name, phone, email).catch(err => {
+    const { name, phone, email, unit } = formValues;
+    const address = this.props.address.address;
+    
+    await this.props.registerMember(name, phone, email, unit, address).catch(err => {
       throw new SubmissionError(err.response.data);
     });
     this.props.reset();
@@ -69,7 +71,14 @@ const WrappedMemberSignUpForm = reduxForm({
   }
 })(MemberSignUpForm);
 
+
+function mapStateToProps(state) {
+  return {
+    address: state.address
+  }
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   { registerMember }
 )(WrappedMemberSignUpForm);

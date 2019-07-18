@@ -1,5 +1,6 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED} from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS} from "./types";
 import LocalAPI from "./../apis/local";
+import stringifyAddress from "./../../src/utility/stringifyAddress"
 
 const submitReview = (pload) => {
   return {
@@ -8,7 +9,13 @@ const submitReview = (pload) => {
   }
 }
 
-
+ export const setAddress = (address) => {
+  console.log(address);
+  return {
+    type: SET_ADDRESS,
+    payload: address
+  }
+}
 
 
 export const setError = error => {
@@ -41,12 +48,14 @@ export const loginUser = (email, password) => {
   };
 };
 
-export const registerMember = (name, phone, email) => {
+export const registerMember = (name, phone, email, unit, add) => {
+  const address = stringifyAddress(unit, add)
   return async (dispatch, getState) => {
     const response = await LocalAPI.post(`/customers`, {
       name,
       phone,
-      email
+      email,
+      address
     });
   };
 };
