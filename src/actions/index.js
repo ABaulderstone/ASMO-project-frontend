@@ -1,12 +1,19 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS} from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED} from "./types";
 import LocalAPI from "./../apis/local";
 import { async } from "q";
 
 
-const submitReview = (pload) => {
+const submitMember = (boolean) => {
+  return {
+    type: MEMBER_SUMBITTED,
+    payload: boolean
+  }
+}
+
+const submitReview = (boolean) => {
   return {
     type: REVIEW_SUBMITTED,
-    payload: pload
+    payload: boolean
   }
 }
 
@@ -57,6 +64,7 @@ export const registerMember = (name, phone, email, address) => {
       email,
       address
     });
+    dispatch(submitMember(true));
   };
 };
 
@@ -83,6 +91,12 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
 export const resetReview = () => {
   return (dispatch, getState) => { 
     dispatch(submitReview(false));
+  }
+}
+
+export const resetMember = () => {
+  return (dispatch, getState) => { 
+    dispatch(submitMember(false));
   }
 }
   
