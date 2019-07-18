@@ -144,7 +144,7 @@ class AddressForm extends Component {
     if (this.state.coords === null) {
       return (
         <div className="alert alert-warning" role="alert">
-          <b>Invalid.</b> The address is not recognized.
+          <b>Invalid.</b> This address is not recognized.
         </div>
       );
     } else {
@@ -172,10 +172,9 @@ class AddressForm extends Component {
           onChange={this.onAddressChange}
         />
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
-        <br />
         {result}
         <button className="btn btn-primary" onClick={this.onCheck}>
-          Check
+          Verify Address
         </button>
         {/* <button
           type="submit"

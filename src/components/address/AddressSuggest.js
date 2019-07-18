@@ -5,10 +5,10 @@ class AddressSuggest extends Component {
   render() {
     return (
       <AddressItem
-        label="Address"
+        label="Street Address"
         value={this.props.query}
         onChange={this.props.onChange}
-        placeholder="If unit for e.g. (5/11)"
+        placeholder="e.g. house number, street, suburb"
       />
     );
   }

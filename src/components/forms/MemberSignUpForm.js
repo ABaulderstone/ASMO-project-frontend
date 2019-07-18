@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
+import AddressItem from "../address/AddressItem";
 import "./../../styles/MemberSignUpForm.css";
 
 class MemberSignUpForm extends Component {
@@ -34,8 +35,13 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
-          <label>Unit</label>
-          <Field name="unit" component={Input} type="text" />
+          <label>Unit Number</label>
+          <Field
+            name="unit"
+            component={Input}
+            type="text"
+            placeholder="(optional)"
+          />
         </div>
 
         <div>
