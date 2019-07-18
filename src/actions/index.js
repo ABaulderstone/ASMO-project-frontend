@@ -72,6 +72,14 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
   }
 }
 
+// export const ForgotPasswordSubmission = (email) => {
+//   return async (dispatch, getState) => {
+//     const response = await LocalAPI.get(), {
+//       email
+//     }
+//   }
+// }
+
 export const resetReview = () => {
   return (dispatch, getState) => { 
     dispatch(submitReview(false));

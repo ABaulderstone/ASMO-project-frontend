@@ -40,10 +40,13 @@ class LoginForm extends Component {
         </div>
         <div className="forget-pass-container">
           <div className="forget-pass-wrapper">
-            <button className="button-style button-effect">
-              Forgot Password?
-            </button>
-          </div>
+          <Link to="forgot_password">
+              <button className="button-style button-effect">
+                Forgot Password?
+              </button>
+          </Link>
+            </div>
+         
         </div>
         <div className="add-new-container">
           <div className="add-new-wrapper">
@@ -52,6 +55,7 @@ class LoginForm extends Component {
                 Create new account
               </button>
             </Link>
+            
             {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
           </div>
         </div>
