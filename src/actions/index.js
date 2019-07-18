@@ -26,9 +26,9 @@ export const setAuthToken = token => {
   };
 };
 
-export const registerUser = (email, password) => {
+export const registerUser = (email, password, confrimPassword) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/auth/register`, { email, password });
+    const response = await LocalAPI.post(`/auth/register`, { email, password, confrimPassword });
     const { token } = response.data;
     dispatch(setAuthToken(token));
   };
@@ -36,7 +36,7 @@ export const registerUser = (email, password) => {
 
 export const loginUser = (email, password) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/auth/login`, { email, password });
+    const response = await LocalAPI.post(`/auth/login`, { email, password, });
     const { token } = response.data;
     dispatch(setAuthToken(token));
   };
