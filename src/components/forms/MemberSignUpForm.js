@@ -35,6 +35,11 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
+          <label>Unit</label>
+          <Field name="unit" component={Input} type="text" />
+        </div>
+
+        <div>
           <AddressForm />
         </div>
         <div className="button-container">
