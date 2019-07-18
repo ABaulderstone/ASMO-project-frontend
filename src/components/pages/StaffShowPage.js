@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 
 import Navbar from "./../navbar/Navbar";
 
@@ -7,10 +9,17 @@ class StaffShowPage extends Component {
         return (
             <>
             <Navbar />
-            <div>
-                <h1>Staff</h1>
-                
+            <div className="ui container">
+                <div className="ui segment">
+                    <h1>Staff</h1>
+                    <Link to="/staff/new">
+                        <button>Add Staff</button>
+                    </Link>
+                        
+                    </div>
             </div>
+
+             
             </>
         );
     }
