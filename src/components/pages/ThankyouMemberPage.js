@@ -2,6 +2,12 @@ import React, { Component } from "react";
 
 
 class ThankyouMemberPage extends Component {
+    componentDidMount() {
+        setTimeout(() => {
+            this.props.history.push("/customer")
+        }, 3000)
+    }
+    
     render() {
         return (
             <div className="ui container">

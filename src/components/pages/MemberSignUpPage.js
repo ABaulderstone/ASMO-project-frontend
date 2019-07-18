@@ -7,7 +7,7 @@ class MemberSignUpPage extends Component {
   render() {
     if (this.props.member.isSubmitted) {
       this.props.resetMember();
-      this.props.history.push("/thankyou")
+      this.props.history.push("/thankyou_member")
   }
     return (
       <div className="ui container" style={{ marginTop: "10px" }}>
