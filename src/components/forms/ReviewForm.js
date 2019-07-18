@@ -100,22 +100,20 @@ class ReviewForm extends Component {
                 <label><h3>Any comments?</h3></label>
               </div>
               <div>
-                <textarea className="text-area" onInput={(event) => this.onCommentChange("comment", event)}></textarea>
+                <textarea
+                  className="text-area"
+                  onInput={event => this.onCommentChange("comment", event)}
+                />
               </div>
             </div>
           </div>
           <div className="button-container">
             <div className="button-wrapper">
-
               <input className="ui button" type="submit" value="Send" />
-
-
             </div>
           </div>
-
         </form>
       </>
-
     );
   }
 }
@@ -136,9 +134,7 @@ const WrappedReviewForm = reduxForm({
   }
 })(ReviewForm);
 
-
 export default connect(
   null,
   { reviewSubmission }
 )(WrappedReviewForm);
-

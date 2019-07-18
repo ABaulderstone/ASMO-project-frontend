@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import AddressSuggest from "./AddressSuggest";
 import AddressInput from "./AddressInput";
 import axios from "axios";
+import { connect } from "react-redux";
+import {setAddress} from "./../../actions"
+
 
 const APP_ID_HERE = process.env.REACT_APP_ID;
 const APP_CODE_HERE = process.env.REACT_APP_CODE;
@@ -27,7 +30,7 @@ class AddressForm extends Component {
         params: {
           app_id: APP_ID_HERE,
           app_code: APP_CODE_HERE,
-          query: query + " Australia" + " Sydney",
+          query: query + " Australia",
           maxresults: 1
         }
       })
@@ -66,10 +69,10 @@ class AddressForm extends Component {
     };
   }
   // User has clicked the clear button
-  onClear = evt => {
-    const state = this.getInitialState();
-    this.setState(state);
-  };
+  // onClear = evt => {
+  //   const state = this.getInitialState();
+  //   this.setState(state);
+  // };
   // User has entered something in an address field
   onAddressChange = evt => {
     const id = evt.target.id;
@@ -81,6 +84,7 @@ class AddressForm extends Component {
   };
   // User has clicked the check button
   onCheck = evt => {
+    evt.preventDefault();
     let params = {
       app_id: APP_ID_HERE,
       app_code: APP_CODE_HERE
@@ -133,6 +137,9 @@ class AddressForm extends Component {
           coords: null
         });
       });
+
+      const {address} = this.state;
+      this.props.setAddress(address);
   };
 
   alert() {
@@ -159,7 +166,6 @@ class AddressForm extends Component {
     let result = this.alert();
     return (
       <div className="container">
-        <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <AddressInput
           houseNumber={this.state.address.houseNumber}
           unit={this.state.address.unit}
@@ -171,25 +177,22 @@ class AddressForm extends Component {
           country={this.state.address.country}
           onChange={this.onAddressChange}
         />
+        <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <br />
         {result}
-        <button
-          type="submit"
-          className="btn btn-primary"
-          onClick={this.onCheck}
-        >
+        <button className="btn btn-primary" onClick={this.onCheck}>
           Check
         </button>
-        <button
+        {/* <button
           type="submit"
           className="btn btn-outline-secondary"
           onClick={this.onClear}
         >
           Clear
-        </button>
+        </button> */}
       </div>
     );
   }
 }
 
-export default AddressForm;
+export default connect(null, {setAddress})(AddressForm);

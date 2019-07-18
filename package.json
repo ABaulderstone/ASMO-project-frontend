@@ -8,6 +8,7 @@
     "jsonwebtoken": "^8.5.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-modal": "^3.9.1",
     "react-rating": "^1.7.2",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
@@ -18,7 +19,7 @@
     "semantic-ui-react": "^0.87.3"
   },
   "scripts": {
-    "deploy": "git checkout master && npm run build && aws s3 sync build/ s3://satisfeed-react-app", 
+    "deploy": "git checkout master && npm run build && aws s3 sync build/ s3://satisfeed-react-app",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

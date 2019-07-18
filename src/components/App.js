@@ -15,7 +15,13 @@ import CustomerShowPage from "./pages/CustomerShowPage";
 import CommentsShowPage from "./pages/CommentsShowPage";
 import StaffShowPage from "./pages/StaffShowPage";
 import AppChoicePage from "./pages/AppChoicePage"
+import RosterPage from "./pages/RosterPage";
+import CustomerSearchPage from "./pages/CustomerSearchPage";
+import NewStaffPage from "./pages/NewStaffPage";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ThankyouMemberPage from "./pages/ThankyouMemberPage";
 import { connect } from "react-redux";
+
 
 class App extends Component {
   render() {
@@ -29,6 +35,8 @@ class App extends Component {
             <Route exact path="/" component={HomePage} />
             <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/forgot_password" component={ForgotPasswordPage} />
+
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute
@@ -36,12 +44,17 @@ class App extends Component {
               path="/customer"
               component={MemberSignUpPage}
             />
+            <PrivateRoute exact path="/roster" component={RosterPage} />
             <PrivateRoute exact path="/customers/show" component={CustomerShowPage} />
             <PrivateRoute exact path="/review" component={ReviewPage} />
             <PrivateRoute exact path="/thankyou" component={ThankyouPage} />
-            <PrivateRoute exact path="/comments/show" component={CommentsShowPage} />
-            <PrivateRoute exact path="/staff/show" component={StaffShowPage} />
+            <PrivateRoute exact path="/comments" component={CommentsShowPage} />
+            <PrivateRoute exact path="/staff" component={StaffShowPage} />
+            <PrivateRoute exact path="/staff/new" component={NewStaffPage} />
             <PrivateRoute exact path ="/app_choice" component={AppChoicePage} />
+            <PrivateRoute exact path ="/member_search" component={CustomerSearchPage} />
+            <PrivateRoute exact path ="/thankyou_member" component={ThankyouMemberPage} />
+
             <Route component={NotFoundPage} />
           </Switch>
         </div>

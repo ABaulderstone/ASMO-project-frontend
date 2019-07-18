@@ -17,10 +17,10 @@ export default class Navbar extends Component {
               name: "customers", URL: "/customers/show"
             },
             {
-              name: "comments", URL: "/comments/show"
+              name: "comments", URL: "/comments"
             },
             {
-              name: "staff", URL: "/staff/show"
+              name: "staff", URL: "/staff"
             },
             {
               name: "roster", URL: "/roster"
