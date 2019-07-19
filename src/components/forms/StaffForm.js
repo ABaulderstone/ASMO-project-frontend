@@ -4,11 +4,15 @@ import { newStaffSubmission } from "../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import renderFile from "./../../components/RenderFile";
+
 
 
 
 
 class StaffForm extends Component {
+
+  
     onFormSubmit = async formValues => {
       const { name, avatar } = formValues;
       await this.props.newStaffSubmission(name, avatar)
@@ -16,7 +20,8 @@ class StaffForm extends Component {
           throw new SubmissionError(err.response.data);
         })
       this.props.reset();
-    };    
+    };
+        
 
     render() {
       const { handleSubmit, error} = this.props;
@@ -33,7 +38,7 @@ class StaffForm extends Component {
         </div>
         <div className="field">
           <label>Image</label>
-          <Field name="avatar" component={Input} type="file" />
+          <Field name="avatar" component={renderFile} type="file" />
         </div>
         <div className="button-container">
           <div className="button-wrapper">
