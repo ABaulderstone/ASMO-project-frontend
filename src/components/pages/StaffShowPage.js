@@ -31,6 +31,7 @@ class StaffShowPage extends Component {
   };
 
   render() {
+    const { staff } = this.props;
     return (
       <>
         <Navbar />
@@ -49,12 +50,9 @@ class StaffShowPage extends Component {
           </div>
         </div>
         <div>
-          <StaffCard />
-          {/* <ul>
-            {staff.map(s => {
-              return <li key={s._id}>{s.name}</li>;
-            })}
-          </ul> */}
+          {staff.map(s => {
+            return <StaffCard name={s.name} avatar={s.avatar} />;
+          })}
         </div>
       </>
     );
