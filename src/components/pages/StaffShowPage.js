@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import StaffForm from "./../forms/StaffForm";
+import StaffList from "./../lists/StaffList";
 import Modal from "react-modal";
 
 import Navbar from "./../navbar/Navbar";
@@ -40,6 +41,9 @@ class StaffShowPage extends Component {
               <button onClick={this.closeModal}>Close</button>
             </Modal>
           </div>
+        </div>
+        <div>
+          <StaffList />
         </div>
       </>
     );
