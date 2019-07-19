@@ -54,6 +54,7 @@ class App extends Component {
             <PrivateRoute exact path ="/app_choice" component={AppChoicePage} />
             <PrivateRoute exact path ="/member_search" component={CustomerSearchPage} />
             <PrivateRoute exact path ="/thankyou_member" component={ThankyouMemberPage} />
+            
 
             <Route component={NotFoundPage} />
           </Switch>
