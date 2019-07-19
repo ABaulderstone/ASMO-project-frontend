@@ -1,12 +1,14 @@
-import {
-  AUTH_TOKEN,
-  ERROR,
-  REVIEW_SUBMITTED,
-  SET_ADDRESS,
-  MEMBER_SUMBITTED,
-  SET_COMMENTS,
-  SET_STAFF
-} from "./types";
+import { 
+   AUTH_TOKEN,
+   ERROR, 
+   REVIEW_SUBMITTED, 
+   SET_ADDRESS, 
+   MEMBER_SUMBITTED, 
+   SET_COMMENTS,
+   SET_CUSTOMERS,
+   SET_STAFF 
+  } from "./types";
+
 import LocalAPI from "./../apis/local";
 import { async } from "q";
 
@@ -21,10 +23,22 @@ const submitReview = boolean => {
   return {
     type: REVIEW_SUBMITTED,
     payload: boolean
+<<<<<<< HEAD
+  }
+}
+const setCustomers = customers => { 
+    return {
+      type: SET_CUSTOMERS,
+      payload: customers
+    }
+}
+export const setAddress = (address) => {
+=======
   };
 };
 
 export const setAddress = address => {
+>>>>>>> dev
   console.log(address);
   return {
     type: SET_ADDRESS,
@@ -124,9 +138,27 @@ export const fetchComments = () => {
     dispatch({
       type: SET_COMMENTS,
       payload: response.data
+<<<<<<< HEAD
+    })
+
+  }
+}
+
+export const searchCustomerByNumber = (phone) => {
+  return async (dispatch, getState) => {
+    
+     const response = await LocalAPI.get(`/customers?phone=${phone}`)
+     dispatch(setCustomers(response.data))
+
+  }
+}
+
+
+=======
     });
   };
 };
+>>>>>>> dev
 
 export const fetchStaff = () => {
   return async (dispatch, getState) => {
