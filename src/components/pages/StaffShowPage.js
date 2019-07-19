@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import StaffForm from "./../forms/StaffForm";
+// import StaffList from "../staff/StaffList";
+import StaffCard from "./../../components/staff/StaffCard";
 import Modal from "react-modal";
-
 import Navbar from "./../navbar/Navbar";
+import { connect } from "react-redux";
+import { fetchStaff } from "./../../actions/index";
 
 Modal.setAppElement("#root");
 
 class StaffShowPage extends Component {
+  componentDidMount() {
+    this.props.fetchStaff();
+  }
+
   state = {
     modalIsOpen: false
   };
@@ -24,6 +31,7 @@ class StaffShowPage extends Component {
   };
 
   render() {
+    const { staff } = this.props;
     return (
       <>
         <Navbar />
@@ -41,9 +49,23 @@ class StaffShowPage extends Component {
             </Modal>
           </div>
         </div>
+        <div className="ui six doubling cards">
+          {staff.map(s => {
+            return <StaffCard id={s._id} name={s.name} avatar={s.avatar} />;
+          })}
+        </div>
       </>
     );
   }
 }
 
-export default StaffShowPage;
+const mapStateToProps = state => {
+  return {
+    staff: state.staff
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { fetchStaff }
+)(StaffShowPage);
