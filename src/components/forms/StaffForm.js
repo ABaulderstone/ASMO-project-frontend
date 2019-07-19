@@ -4,15 +4,21 @@ import { newStaffSubmission } from "../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import renderFile from "./../../components/RenderFile";
+
 
 class StaffForm extends Component {
-  onFormSubmit = async formValues => {
-    const { name, avatar } = formValues;
-    await this.props.newStaffSubmission(name, avatar).catch(err => {
-      throw new SubmissionError(err.response.data);
-    });
-    this.props.reset();
-  };
+
+  
+    onFormSubmit = async formValues => {
+      const { name, avatar } = formValues;
+      await this.props.newStaffSubmission(name, avatar)
+        .catch(err => { 
+          throw new SubmissionError(err.response.data);
+        })
+      this.props.reset();
+    };
+        
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -21,27 +27,24 @@ class StaffForm extends Component {
       <>
         {error}
         <>
-          <form
-            className="ui form"
-            style={{ paddingTop: "40px" }}
-            onSubmit={handleSubmit(this.onFormSubmit)}
-          >
-            <div className="field">
-              <label>Name</label>
-              <Field name="name" component={Input} type="text" />
-            </div>
-            <div className="field">
-              <label>Image</label>
-              <Field name="avatar" component={Input} type="file" />
-            </div>
-            <div className="button-container">
-              <div className="button-wrapper">
-                <input className="ui button" type="submit" value="create" />
-              </div>
-            </div>
-          </form>
-        </>
+      
+      <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+      <div className="field">
+          <label>Name</label>
+          <Field name="name" component={Input} type="text" />
+        </div>
+        <div className="field">
+          <label>Image</label>
+          <Field name="avatar" component={renderFile} type="file" />
+        </div>
+        <div className="button-container">
+          <div className="button-wrapper">
+            <input className="ui button" type="submit" value="create" />
+          </div>
+        </div>
+      </form>
       </>
+        </>
     );
   }
 }
