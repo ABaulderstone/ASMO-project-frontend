@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import StaffForm from "./../forms/StaffForm";
-import StaffList from "./../lists/StaffList";
+// import StaffList from "../staff/StaffList";
+import StaffCard from "./../../components/staff/StaffCard";
 import Modal from "react-modal";
 
 import Navbar from "./../navbar/Navbar";
@@ -43,7 +44,7 @@ class StaffShowPage extends Component {
           </div>
         </div>
         <div>
-          <StaffList />
+          <StaffCard />
         </div>
       </>
     );
