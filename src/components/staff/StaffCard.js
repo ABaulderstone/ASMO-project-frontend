@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function StaffCard(props) {
   return (
@@ -10,10 +11,12 @@ function StaffCard(props) {
 
         <div className="content">
           <a class="header">{props.name}</a>
-          <a>
-            <i className="edit icon" />
-            Edit
-          </a>
+          <Link to="/dashboard">
+            <a>
+              <i className="edit icon" />
+              Edit
+            </a>
+          </Link>
         </div>
       </div>
     </>
