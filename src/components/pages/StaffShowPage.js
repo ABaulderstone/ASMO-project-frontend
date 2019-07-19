@@ -1,28 +1,49 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import StaffForm from "./../forms/StaffForm";
+import Modal from "react-modal";
 
 import Navbar from "./../navbar/Navbar";
 
-class StaffShowPage extends Component {
-    render() {
-        return (
-            <>
-            <Navbar />
-            <div className="ui container">
-                <div className="ui segment">
-                    <h1>Staff</h1>
-                    <Link to="/staff/new">
-                        <button>Add Staff</button>
-                    </Link>
-                        
-                    </div>
-            </div>
+Modal.setAppElement("#root");
 
-             
-            </>
-        );
-    }
+class StaffShowPage extends Component {
+  state = {
+    modalIsOpen: false
+  };
+  openModal = () => {
+    this.setState({
+      modalIsOpen: true
+    });
+  };
+
+  closeModal = () => {
+    this.setState({
+      modalIsOpen: false
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <Navbar />
+        <div className="ui container">
+          <div className="ui segment">
+            <h1>Staff</h1>
+            <button onClick={this.openModal}>Add Staff</button>
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onRequestClose={this.closeModal}
+              contentLabel="staffform"
+            >
+              <StaffForm />
+              <button onClick={this.closeModal}>Close</button>
+            </Modal>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default StaffShowPage;

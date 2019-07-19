@@ -7,9 +7,6 @@ import Input from "./fields/Input";
 import renderFile from "./../../components/RenderFile";
 
 
-
-
-
 class StaffForm extends Component {
 
   
@@ -23,11 +20,11 @@ class StaffForm extends Component {
     };
         
 
-    render() {
-      const { handleSubmit, error} = this.props;
+  render() {
+    const { handleSubmit, error } = this.props;
 
-      return (
-        <>
+    return (
+      <>
         {error}
         <>
       
@@ -48,27 +45,23 @@ class StaffForm extends Component {
       </form>
       </>
         </>
-        
-      );
-    }
+    );
   }
-  
-  const WrappedStaffForm = reduxForm({
-    form: "staff",
-    validate: formValues => {
-      const errors = {};
-      if (!formValues.name) {
-        errors.name = "Name is Required";
-      }
-     
-      return errors;
+}
+
+const WrappedStaffForm = reduxForm({
+  form: "staff",
+  validate: formValues => {
+    const errors = {};
+    if (!formValues.name) {
+      errors.name = "Name is Required";
     }
-  })(StaffForm);
 
-  
-  export default connect(
-    null,
-    {newStaffSubmission}
-  )(WrappedStaffForm);
+    return errors;
+  }
+})(StaffForm);
 
-  
+export default connect(
+  null,
+  { newStaffSubmission }
+)(WrappedStaffForm);
