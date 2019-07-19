@@ -3,16 +3,17 @@ import React from "react";
 function StaffCard(props) {
   return (
     <>
-      <div class="ui four column grid">
-        <div className="column">
-          <div className="ui fluid card">
-            <div className="image">
-              <img src={props.avatar} />
-            </div>
-            <div className="content">
-              <a className="header">{props.name}</a>
-            </div>
-          </div>
+      <div className="card">
+        <div className="image">
+          <img src={props.avatar} />
+        </div>
+
+        <div className="content">
+          <a class="header">{props.name}</a>
+          <a>
+            <i className="edit icon" />
+            Edit
+          </a>
         </div>
       </div>
     </>

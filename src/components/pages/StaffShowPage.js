@@ -49,9 +49,9 @@ class StaffShowPage extends Component {
             </Modal>
           </div>
         </div>
-        <div>
+        <div className="ui six doubling cards">
           {staff.map(s => {
-            return <StaffCard name={s.name} avatar={s.avatar} />;
+            return <StaffCard id={s._id} name={s.name} avatar={s.avatar} />;
           })}
         </div>
       </>
