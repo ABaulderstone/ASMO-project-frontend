@@ -1,4 +1,4 @@
-import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED } from "./types";
+import { AUTH_TOKEN, ERROR, REVIEW_SUBMITTED, SET_ADDRESS, MEMBER_SUMBITTED, SET_COMMENTS } from "./types";
 import LocalAPI from "./../apis/local";
 import { async } from "q";
 
@@ -103,8 +103,19 @@ export const resetReview = () => {
 }
 
 export const resetMember = () => {
-  return (dispatch, getState) => {
+  return(dispatch, getState) => {
     dispatch(submitMember(false));
+  }
+}
+
+export const fetchComments = () => {
+  return  async (dispatch, getState) => {
+    const response = await LocalAPI.get("/reviews");
+    dispatch({
+      type: SET_COMMENTS,
+      payload: response.data
+    })
+
   }
 }
 
