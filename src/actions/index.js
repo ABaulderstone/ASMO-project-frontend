@@ -137,3 +137,10 @@ export const fetchStaff = () => {
     });
   };
 };
+
+// export const editStaff = (id, name) => {
+//   return async (dispatch, getState) => {
+//     const response = await LocalAPI.put(`/staff/${id}`, { name });
+//     dispatch({});
+//   };
+// };
