@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./../navbar/Navbar";
 import { connect } from "react-redux"
 import {fetchComments} from "./../../actions/index"
+import CommentCard from "./../CommentCard"
 
 // import { Link } from "react-router-dom";
 
@@ -20,7 +21,7 @@ class CommentsShowPage extends Component {
 
                         <ul> {reviews.map (review => {
                             return(<li key={review._id}>
-                                {review.comment}
+                                <CommentCard content={review.comment} foodRating={review.foodRating} serviceRating={review.serviceRating}/>
                             </li>)
                         })}
 
