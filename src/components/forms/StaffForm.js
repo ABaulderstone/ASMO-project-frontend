@@ -12,6 +12,7 @@ class StaffForm extends Component {
   
     onFormSubmit = async formValues => {
       const { name, image} = formValues;
+      if (image) {
       const formData = new FormData();
       formData.append("image",image);
       const response = await ImageUploadAPI.post("/images/", formData);
@@ -22,6 +23,14 @@ class StaffForm extends Component {
           throw new SubmissionError(err.response.data);
         })
       this.props.reset();
+      } else {
+        await this.props.newStaffSubmission(name)
+        .catch(err => { 
+          throw new SubmissionError(err.response.data);
+        })
+      this.props.reset();
+
+      }
     };
         
 
