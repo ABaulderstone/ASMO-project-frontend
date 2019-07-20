@@ -37,8 +37,8 @@ class StaffShowPage extends Component {
         <Navbar />
         <div className="ui container">
           <div className="ui segment">
-            <h1>Staff</h1>
-            <button onClick={this.openModal}>Add Staff</button>
+            <h1 style={{textAlign: "center", fontSize:"40px"}}>Staff</h1>
+            <button className="ui button" onClick={this.openModal}>Add Staff</button>
             <Modal
               isOpen={this.state.modalIsOpen}
               onRequestClose={this.closeModal}
@@ -49,10 +49,12 @@ class StaffShowPage extends Component {
             </Modal>
           </div>
         </div>
-        <div className="ui six doubling cards">
-          {staff.map(s => {
-            return <StaffCard id={s._id} name={s.name} avatar={s.avatar} />;
-          })}
+        <div className="ui container">
+          <div className="ui six doubling cards" style={{marginTop: "10px"}}>
+            {staff.map(s => {
+              return <StaffCard id={s._id} name={s.name} avatar={s.avatar} />;
+            })}
+          </div>
         </div>
       </>
     );
