@@ -9,9 +9,7 @@ import {
 
 import LocalAPI from "./../apis/local";
 
-
-
- const setCustomers = customers => {
+const setCustomers = customers => {
   return {
     type: SET_CUSTOMERS,
     payload: customers
@@ -32,7 +30,7 @@ export const setError = error => {
     payload: error
   };
 };
- const setAuthToken = token => {
+const setAuthToken = token => {
   sessionStorage.setItem("token", token);
   return {
     type: AUTH_TOKEN,
@@ -60,18 +58,19 @@ export const loginUser = (email, password) => {
   };
 };
 
-
-
 export const newStaffSubmission = (name, avatar) => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.post(`/staff`, {
       name,
       avatar
+    }).then(response => {
+      dispatch({
+        type: SET_STAFF,
+        payload: response.data
+      });
     });
   };
 };
-
-
 
 // export const ForgotPasswordSubmission = (email) => {
 //   return async (dispatch, getState) => {
@@ -80,8 +79,6 @@ export const newStaffSubmission = (name, avatar) => {
 //     }
 //   }
 // }
-
-
 
 export const fetchComments = () => {
   return async (dispatch, getState) => {
@@ -113,7 +110,7 @@ export const fetchStaff = () => {
 export const fetchCustomers = () => {
   return async (dispatch, getState) => {
     const response = await LocalAPI.get("/customers");
-    const customers = response.data
+    const customers = response.data;
     dispatch(setCustomers(customers));
   };
 };
@@ -124,3 +121,13 @@ export const fetchCustomers = () => {
 //     dispatch({});
 //   };
 // };
+
+export const deleteStaff = id => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.delete(`/staff/${id}`);
+    dispatch({
+      type: SET_STAFF,
+      payload: response.data
+    });
+  };
+};

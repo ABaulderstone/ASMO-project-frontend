@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { newStaffSubmission } from "../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
@@ -7,8 +6,6 @@ import Input from "./fields/Input";
 import FileInput from "./fields/FileInput";
 import renderFile from "./../../components/RenderFile";
 import ImageUploadAPI from "./../../apis/image_upload";
-
-
 
 class StaffForm extends Component {
 
@@ -34,7 +31,7 @@ class StaffForm extends Component {
     return (
       <>
         {error}
-        <>
+      
       
       <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
       <div className="field">
@@ -52,7 +49,8 @@ class StaffForm extends Component {
         </div>
       </form>
       </>
-        </>
+      
+      
     );
   }
 }
