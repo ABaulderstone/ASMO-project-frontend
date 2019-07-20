@@ -36,7 +36,6 @@ class EditStaffPage extends Component {
 
   render() {
     const { handleSubmit, error, name } = this.props;
-    console.log(this.props);
     return (
       <>
         {error}
