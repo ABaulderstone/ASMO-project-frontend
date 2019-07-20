@@ -6,7 +6,7 @@ import LocalAPI from "./../../apis/local";
 import Input from "./../forms/fields/Input";
 import AddressForm from "../address/AddressForm";
 import stringifyAddress from "./../../utility/stringifyAddress";
-import { deleteCustomer } from "./../../actions/index/";
+import { deleteCustomer } from "./../../actions/index";
 
 class CustomerEditPage extends Component {
   onFormSubmit = async formValues => {
@@ -23,7 +23,7 @@ class CustomerEditPage extends Component {
       })
         .then(() => {
           this.props.reset();
-          this.props.history.push("/customer");
+          this.props.history.push("/customers/show");
         })
         .catch(err => {
           throw new SubmissionError(err.response.data);
@@ -46,8 +46,15 @@ class CustomerEditPage extends Component {
 
   onDeleteButtonClick = async () => {
     const { id } = this.state;
+    console.log(id);
     await this.props.deleteCustomer(id);
   };
+
+  componentDidMount() {
+    const { pathname } = this.props.location;
+    const id = pathname.split("/")[2];
+    this.setState({ id: id });
+  }
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -91,7 +98,7 @@ class CustomerEditPage extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/customer/show">
+        <Link to="/customers/show">
           <div className="button-container">
             <div className="button-wrapper">
               <input
@@ -134,6 +141,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  mapStateToProps,
-  null
+  null,
+  { deleteCustomer }
 )(WrappedCustomerEditPage);

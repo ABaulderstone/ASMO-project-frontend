@@ -134,7 +134,7 @@ export const deleteStaff = id => {
 
 export const deleteCustomer = id => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.delete(`/customer/${id}`);
+    const response = await LocalAPI.delete(`/customers/${id}`);
     dispatch({
       type: SET_CUSTOMERS,
       payload: response.data
