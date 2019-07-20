@@ -1,9 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./../navbar/Navbar";
+import { fetchCustomers } from "./../../actions/index";
+import {connect} from "react-redux";
+import LocalAPI from "./../../apis/local";
 
 class CustomerShowPage extends Component {
+    state = {
+        customers: []
+    }
+    componentDidMount() {
+      LocalAPI.get("/customers")
+        .then(response => {
+            this.setState({
+                customers: response
+            })
+        })
+    }
+
+    
+   
     render() {
+        // const { customers } = this.state;
+        console.log(this.state.customers)
         return (
             <>
             <Navbar />
@@ -21,4 +40,5 @@ class CustomerShowPage extends Component {
     }
 }
 
-export default CustomerShowPage;
+
+export default CustomerShowPage

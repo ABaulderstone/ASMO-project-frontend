@@ -11,7 +11,7 @@ import LocalAPI from "./../apis/local";
 
 
 
-const setCustomers = customers => {
+ const setCustomers = customers => {
   return {
     type: SET_CUSTOMERS,
     payload: customers
@@ -107,6 +107,14 @@ export const fetchStaff = () => {
       type: SET_STAFF,
       payload: response.data
     });
+  };
+};
+
+export const fetchCustomers = () => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get("/customers");
+    const customers = response.data
+    dispatch(setCustomers(customers));
   };
 };
 
