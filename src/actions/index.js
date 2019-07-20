@@ -107,6 +107,14 @@ export const fetchStaff = () => {
   };
 };
 
+export const fetchCustomers = () => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get("/customers");
+    const customers = response.data;
+    dispatch(setCustomers(customers));
+  };
+};
+
 // export const editStaff = (id, name) => {
 //   return async (dispatch, getState) => {
 //     const response = await LocalAPI.put(`/staff/${id}`, { name });
