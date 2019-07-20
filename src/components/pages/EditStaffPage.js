@@ -4,6 +4,7 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./../forms/fields/Input";
 import renderFile from "./../../components/RenderFile";
 import localapi from "./../../apis/local";
+import { Link } from "react-router-dom";
 
 class EditStaffPage extends Component {
   onFormSubmit = async formValues => {
@@ -52,6 +53,14 @@ class EditStaffPage extends Component {
                 <input className="ui button" type="submit" value="Save" />
               </div>
             </div>
+
+            <Link to="/staff">
+              <div className="button-container">
+                <div className="button-wrapper">
+                  <input className="ui button" type="submit" value="Cancel" />
+                </div>
+              </div>
+            </Link>
           </form>
         </>
       </>
