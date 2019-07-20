@@ -7,12 +7,15 @@ class CustomerShowPage extends Component {
         return (
             <>
             <Navbar />
-            <div>
-                <h1>Cusomters</h1>
-                <div>
-                   
-                </div>
-            </div>
+                <h1>Customers</h1>
+                <table className="ui celled table">
+                <thead>
+                    <tr><th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    </tr>
+                </thead>
+                </table>
             </>
         );
     }
