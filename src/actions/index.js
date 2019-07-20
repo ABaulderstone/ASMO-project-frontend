@@ -1,44 +1,24 @@
-import { 
-   AUTH_TOKEN,
-   ERROR, 
-   REVIEW_SUBMITTED, 
-   SET_ADDRESS, 
-   MEMBER_SUMBITTED, 
-   SET_COMMENTS,
-   SET_CUSTOMERS,
-   SET_STAFF 
-  } from "./types";
+import {
+  AUTH_TOKEN,
+  ERROR,
+  SET_ADDRESS,
+  SET_COMMENTS,
+  SET_CUSTOMERS,
+  SET_STAFF
+} from "./types";
 
 import LocalAPI from "./../apis/local";
-import { async } from "q";
 
-const submitMember = boolean => {
-  return {
-    type: MEMBER_SUMBITTED,
-    payload: boolean
-  };
-};
 
-const submitReview = boolean => {
+
+ const setCustomers = customers => {
   return {
-    type: REVIEW_SUBMITTED,
-    payload: boolean
-<<<<<<< HEAD
-  }
-}
-const setCustomers = customers => { 
-    return {
-      type: SET_CUSTOMERS,
-      payload: customers
-    }
-}
-export const setAddress = (address) => {
-=======
+    type: SET_CUSTOMERS,
+    payload: customers
   };
 };
 
 export const setAddress = address => {
->>>>>>> dev
   console.log(address);
   return {
     type: SET_ADDRESS,
@@ -52,7 +32,7 @@ export const setError = error => {
     payload: error
   };
 };
-export const setAuthToken = token => {
+ const setAuthToken = token => {
   sessionStorage.setItem("token", token);
   return {
     type: AUTH_TOKEN,
@@ -80,17 +60,7 @@ export const loginUser = (email, password) => {
   };
 };
 
-export const registerMember = (name, phone, email, address) => {
-  return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/customers`, {
-      name,
-      phone,
-      email,
-      address
-    });
-    dispatch(submitMember(true));
-  };
-};
+
 
 export const newStaffSubmission = (name, avatar) => {
   return async (dispatch, getState) => {
@@ -101,16 +71,7 @@ export const newStaffSubmission = (name, avatar) => {
   };
 };
 
-export const reviewSubmission = (foodRating, serviceRating, comment) => {
-  return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/reviews`, {
-      foodRating,
-      serviceRating,
-      comment
-    });
-    dispatch(submitReview(true));
-  };
-};
+
 
 // export const ForgotPasswordSubmission = (email) => {
 //   return async (dispatch, getState) => {
@@ -120,17 +81,7 @@ export const reviewSubmission = (foodRating, serviceRating, comment) => {
 //   }
 // }
 
-export const resetReview = () => {
-  return (dispatch, getState) => {
-    dispatch(submitReview(false));
-  };
-};
 
-export const resetMember = () => {
-  return (dispatch, getState) => {
-    dispatch(submitMember(false));
-  };
-};
 
 export const fetchComments = () => {
   return async (dispatch, getState) => {
@@ -138,27 +89,16 @@ export const fetchComments = () => {
     dispatch({
       type: SET_COMMENTS,
       payload: response.data
-<<<<<<< HEAD
-    })
-
-  }
-}
-
-export const searchCustomerByNumber = (phone) => {
-  return async (dispatch, getState) => {
-    
-     const response = await LocalAPI.get(`/customers?phone=${phone}`)
-     dispatch(setCustomers(response.data))
-
-  }
-}
-
-
-=======
     });
   };
 };
->>>>>>> dev
+
+export const searchCustomerByNumber = phone => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get(`/customers?phone=${phone}`);
+    dispatch(setCustomers(response.data));
+  };
+};
 
 export const fetchStaff = () => {
   return async (dispatch, getState) => {
@@ -169,3 +109,18 @@ export const fetchStaff = () => {
     });
   };
 };
+
+export const fetchCustomers = () => {
+  return async (dispatch, getState) => {
+    const response = await LocalAPI.get("/customers");
+    const customers = response.data
+    dispatch(setCustomers(customers));
+  };
+};
+
+// export const editStaff = (id, name) => {
+//   return async (dispatch, getState) => {
+//     const response = await LocalAPI.put(`/staff/${id}`, { name });
+//     dispatch({});
+//   };
+// };
