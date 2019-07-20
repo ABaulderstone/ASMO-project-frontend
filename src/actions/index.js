@@ -63,6 +63,11 @@ export const newStaffSubmission = (name, avatar) => {
     const response = await LocalAPI.post(`/staff`, {
       name,
       avatar
+    }).then(response => {
+      dispatch({
+        type: SET_STAFF,
+        payload: response.data
+      });
     });
   };
 };
