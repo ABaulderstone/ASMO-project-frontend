@@ -1,9 +1,7 @@
 import {
   AUTH_TOKEN,
   ERROR,
-  REVIEW_SUBMITTED,
   SET_ADDRESS,
-  MEMBER_SUMBITTED,
   SET_COMMENTS,
   SET_CUSTOMERS,
   SET_STAFF
@@ -34,7 +32,7 @@ export const setError = error => {
     payload: error
   };
 };
-export const setAuthToken = token => {
+ const setAuthToken = token => {
   sessionStorage.setItem("token", token);
   return {
     type: AUTH_TOKEN,
@@ -73,9 +71,7 @@ export const newStaffSubmission = (name, avatar) => {
   };
 };
 
-;
-  };
-};
+
 
 // export const ForgotPasswordSubmission = (email) => {
 //   return async (dispatch, getState) => {
