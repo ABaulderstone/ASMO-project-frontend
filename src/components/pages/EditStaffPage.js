@@ -4,6 +4,9 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./../forms/fields/Input";
 import renderFile from "./../../components/RenderFile";
 import localapi from "./../../apis/local";
+import { Link } from "react-router-dom";
+import { deleteStaff } from "./../../actions/index";
+import { async } from "q";
 
 class EditStaffPage extends Component {
   onFormSubmit = async formValues => {
@@ -18,6 +21,11 @@ class EditStaffPage extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  onDeleteButtonClick = async () => {
+    const { id } = this.state;
+    await this.props.deleteStaff(id);
   };
 
   componentDidMount() {
@@ -53,6 +61,25 @@ class EditStaffPage extends Component {
               </div>
             </div>
           </form>
+          <Link to="/staff">
+            <div className="button-container">
+              <div className="button-wrapper">
+                <input className="ui button" value="Cancel" />
+              </div>
+            </div>
+          </Link>
+
+          <Link to="/staff">
+            <div className="button-container">
+              <div className="button-wrapper">
+                <input
+                  className="ui button"
+                  onClick={this.onDeleteButtonClick}
+                  value="Delete"
+                />
+              </div>
+            </div>
+          </Link>
         </>
       </>
     );
@@ -73,5 +100,5 @@ const WrappedEditStaffForm = reduxForm({
 
 export default connect(
   null,
-  {}
+  { deleteStaff }
 )(WrappedEditStaffForm);
