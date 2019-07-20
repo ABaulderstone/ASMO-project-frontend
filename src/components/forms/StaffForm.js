@@ -7,6 +7,7 @@ import Input from "./fields/Input";
 import renderFile from "./../../components/RenderFile";
 
 
+
 class StaffForm extends Component {
 
   
@@ -14,6 +15,7 @@ class StaffForm extends Component {
       const { name, avatar } = formValues;
       await this.props.newStaffSubmission(name, avatar)
         .catch(err => { 
+          console.log("here");
           throw new SubmissionError(err.response.data);
         })
       this.props.reset();
