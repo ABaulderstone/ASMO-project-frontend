@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { reviewSubmission } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
+import LocalAPI from "./../../apis/local";
 import Input from "./fields/Input";
 import Rating from "react-rating";
 import "./../../styles/ReviewForm.css";
@@ -27,20 +26,33 @@ class ReviewForm extends Component {
     serviceRating: null,
     comment: null
   }
-  onFormSubmit = async formValues => {
+  onFormSubmit = async () => {
     const { foodRating, serviceRating, comment } = this.state;
     if (comment) {
       return (
-        await this.props.reviewSubmission(foodRating, serviceRating, comment)
+        await LocalAPI.post(`/reviews`, {
+          foodRating,
+          serviceRating,
+          comment
+        }).then(() => {
+          this.props.reset();
+          this.props.history.push("/thankyou")
+        })
           .catch(err => {
-            throw new SubmissionError(err);
+            throw new SubmissionError(err.response.data);
           })
       )
     }
 
-    await this.props.reviewSubmission(foodRating, serviceRating)
+    await LocalAPI.post(`/reviews`, {
+      foodRating,
+      serviceRating
+    }).then(() => {
+      this.props.reset();
+      this.props.history.push("/thankyou")
+    })
       .catch(err => {
-        throw new SubmissionError(err);
+        throw new SubmissionError(err.response.data);
       })
   };
 
@@ -134,7 +146,4 @@ const WrappedReviewForm = reduxForm({
   }
 })(ReviewForm);
 
-export default connect(
-  null,
-  { reviewSubmission }
-)(WrappedReviewForm);
+export default (WrappedReviewForm);

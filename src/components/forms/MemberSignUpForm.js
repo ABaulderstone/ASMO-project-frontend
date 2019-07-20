@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { registerMember } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
+import LocalAPI from "./../../apis/local";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import "./../../styles/MemberSignUpForm.css";
@@ -10,21 +10,37 @@ import stringifyAddress from "./../../utility/stringifyAddress";
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
-    const address = this.props.address.address;
+    const add = this.props.address.address;
 
-    if (address) {
-      const addressString = stringifyAddress(unit, address);
-      return await this.props
-        .registerMember(name, phone, email, addressString)
+    if (add) {
+      const address = stringifyAddress(unit, add);
+      await LocalAPI.post(`/customers`, {
+        name,
+        phone,
+        email,
+        address
+      })
+        .then(() => {
+          this.props.reset();
+          this.props.history.push("/thankyou_member");
+        })
         .catch(err => {
           throw new SubmissionError(err.response.data);
         });
     }
 
-    await this.props.registerMember(name, phone, email).catch(err => {
-      throw new SubmissionError(err.response.data);
-    });
-    this.props.reset();
+    await LocalAPI.post(`/customers`, {
+      name,
+      phone,
+      email
+    })
+      .then(() => {
+        this.props.reset();
+        this.props.history.push("/thankyou_member");
+      })
+      .catch(err => {
+        throw new SubmissionError(err.response.data);
+      });
   };
 
   render() {
@@ -94,5 +110,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { registerMember }
+  null
 )(WrappedMemberSignUpForm);
