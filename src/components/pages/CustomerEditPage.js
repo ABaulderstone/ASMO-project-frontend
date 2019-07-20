@@ -12,10 +12,11 @@ class CustomerEditPage extends Component {
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
     const add = this.props.address.address;
+    const { id } = this.state;
 
     if (add) {
       const address = stringifyAddress(unit, add);
-      await LocalAPI.put(`/customers`, {
+      await LocalAPI.put(`/customers/${id}`, {
         name,
         phone,
         email,
@@ -30,14 +31,14 @@ class CustomerEditPage extends Component {
         });
     }
 
-    await LocalAPI.post(`/customers`, {
+    await LocalAPI.put(`/customers/${id}`, {
       name,
       phone,
       email
     })
       .then(() => {
         this.props.reset();
-        this.props.history.push("/thankyou_member");
+        this.props.history.push("/customers/show");
       })
       .catch(err => {
         throw new SubmissionError(err.response.data);
@@ -88,7 +89,7 @@ class CustomerEditPage extends Component {
             <AddressForm />
           </div>
           <div className="button-container">
-            <input className="ui button" type="submit" value="Submit" />
+            <input className="ui button" type="submit" value="Save" />
           </div>
         </form>
         <Link to="/customers/show">
@@ -141,6 +142,6 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   { deleteCustomer }
 )(WrappedCustomerEditPage);
