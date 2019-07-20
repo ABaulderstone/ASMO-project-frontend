@@ -4,6 +4,7 @@ import Navbar from "./../navbar/Navbar";
 import { fetchCustomers } from "./../../actions/index";
 import {connect} from "react-redux";
 import LocalAPI from "./../../apis/local";
+import CustomerItem from "./../../components/CustomerItem";
 
 class CustomerShowPage extends Component {
     state = {
@@ -13,7 +14,7 @@ class CustomerShowPage extends Component {
       LocalAPI.get("/customers")
         .then(response => {
             this.setState({
-                customers: response
+                customers: response.data
             })
         })
     }
@@ -21,20 +22,28 @@ class CustomerShowPage extends Component {
     
    
     render() {
-        // const { customers } = this.state;
-        console.log(this.state.customers)
+         const { customers } = this.state;
+        console.log(customers)
         return (
             <>
             <Navbar />
                 <h1>Customers</h1>
+                <div className="ui container">
+                
                 <table className="ui celled table">
                 <thead>
                     <tr><th>Name</th>
                     <th>Email</th>
                     <th>Phone</th>
+                    <th>Edit</th>
                     </tr>
                 </thead>
+                {customers.map(customer => {
+                    return <CustomerItem id={customer.id} name={customer.name} email={customer.email} phone={customer.phone} />
+                })}
                 </table>
+                
+                </div>
             </>
         );
     }
