@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import StaffForm from "./../forms/StaffForm";
 import StaffCard from "./../../components/staff/StaffCard";
 import Modal from "react-modal";
@@ -43,7 +42,7 @@ class StaffShowPage extends Component {
               onRequestClose={this.closeModal}
               contentLabel="staffform"
             >
-              <StaffForm />
+              <StaffForm history={this.props.history} />
               <button onClick={this.closeModal}>Close</button>
             </Modal>
           </div>

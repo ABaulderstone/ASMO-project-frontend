@@ -21,6 +21,7 @@ import NewStaffPage from "./pages/NewStaffPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import ThankyouMemberPage from "./pages/ThankyouMemberPage";
 import EditStaffPage from "./pages/EditStaffPage";
+import CustomerEditPage from "./pages/CustomerEditPage";
 import { connect } from "react-redux";
 
 class App extends Component {
@@ -43,6 +44,11 @@ class App extends Component {
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/customer" component={MemberSignUpPage} />
+            <PrivateRoute
+              exact
+              path="/customer/:id"
+              component={CustomerEditPage}
+            />
             <PrivateRoute exact path="/roster" component={RosterPage} />
             <PrivateRoute
               exact
