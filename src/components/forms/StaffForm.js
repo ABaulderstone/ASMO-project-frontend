@@ -4,7 +4,9 @@ import { newStaffSubmission } from "../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import FileInput from "./fields/FileInput";
 import renderFile from "./../../components/RenderFile";
+import ImageUploadAPI from "./../../apis/image_upload";
 
 
 
@@ -12,10 +14,14 @@ class StaffForm extends Component {
 
   
     onFormSubmit = async formValues => {
-      const { name, avatar } = formValues;
-      await this.props.newStaffSubmission(name, avatar)
+      const { name, image} = formValues;
+      const formData = new FormData();
+      formData.append("image",image);
+      const response = await ImageUploadAPI.post("/images/", formData);
+      const {imageUrl:avatar} = response.data
+      console.log(avatar);
+      await this.props.newStaffSubmission(name,avatar)
         .catch(err => { 
-          console.log("here");
           throw new SubmissionError(err.response.data);
         })
       this.props.reset();
@@ -37,7 +43,7 @@ class StaffForm extends Component {
         </div>
         <div className="field">
           <label>Image</label>
-          <Field name="avatar" component={renderFile} type="file" />
+          <Field name="image" component={FileInput} type="file" />
         </div>
         <div className="button-container">
           <div className="button-wrapper">
