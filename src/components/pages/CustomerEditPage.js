@@ -1,77 +1,113 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
+import LocalAPI from "./../../apis/local";
 import Input from "./../forms/fields/Input";
-import renderFile from "./../../components/RenderFile";
-import localapi from "./../../apis/local";
+import AddressForm from "../address/AddressForm";
+import stringifyAddress from "./../../utility/stringifyAddress";
 
 class CustomerEditPage extends Component {
   onFormSubmit = async formValues => {
-    const { name, avatar } = formValues;
-    const { id } = this.state;
-    const response = await localapi
-      .put(`/staff/${id}`, { name })
+    const { name, phone, email, unit } = formValues;
+    const add = this.props.address.address;
+
+    if (add) {
+      const address = stringifyAddress(unit, add);
+      await LocalAPI.put(`/customers`, {
+        name,
+        phone,
+        email,
+        address
+      })
+        .then(() => {
+          this.props.reset();
+          this.props.history.push("/customer");
+        })
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
+    }
+
+    await LocalAPI.post(`/customers`, {
+      name,
+      phone,
+      email
+    })
       .then(() => {
         this.props.reset();
-        this.props.history.push("/staff");
+        this.props.history.push("/thankyou_member");
       })
       .catch(err => {
-        console.log(err);
+        throw new SubmissionError(err.response.data);
       });
   };
 
-  componentDidMount() {
-    const { pathname } = this.props.location;
-    const id = pathname.split("/")[2];
-    this.setState({ id: id });
-  }
-
   render() {
-    const { handleSubmit, error, name } = this.props;
-    console.log(this.props);
+    const { handleSubmit, error } = this.props;
+
     return (
-      <>
+      <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
         {error}
-        <>
-          <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
-            <div className="field">
-              <label>Name</label>
-              <Field
-                name="name"
-                component={Input}
-                type="text"
-                placeholder={this.props.location.state.name}
-              />
-            </div>
-            <div className="field">
-              <label>Image</label>
-              <Field name="avatar" component={renderFile} type="file" />
-            </div>
-            <div className="button-container">
-              <div className="button-wrapper">
-                <input className="ui button" type="submit" value="Save" />
-              </div>
-            </div>
-          </form>
-        </>
-      </>
+        <div>
+          <label>Name</label>
+          <Field name="name" component={Input} type="text" />
+        </div>
+        <div>
+          <label>Phone</label>
+          <Field name="phone" component={Input} type="number" />
+        </div>
+        <div>
+          <label>Email</label>
+          <Field name="email" component={Input} type="text" />
+        </div>
+        <div>
+          <label>Unit</label>
+          <Field
+            name="unit"
+            component={Input}
+            type="text"
+            placeholder="optional"
+          />
+        </div>
+
+        <div>
+          <AddressForm />
+        </div>
+        <div className="button-container">
+          <input className="ui button" type="submit" value="Submit" />
+        </div>
+      </form>
     );
   }
 }
 
-const WrappedEditStaffForm = reduxForm({
-  form: "edit staff",
+const WrappedCustomerEditPage = reduxForm({
+  form: "customer edit",
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {
-      errors.name = "Name is Required";
+      errors.name = "Name is required";
+    }
+
+    if (!formValues.phone) {
+      errors.phone = "Phone is required";
+    }
+
+    if (!formValues.email) {
+      errors.email = "Email is required";
     }
 
     return errors;
   }
-})(EditStaffPage);
+})(CustomerEditPage);
+
+function mapStateToProps(state) {
+  return {
+    address: state.address
+  };
+}
 
 export default connect(
-  null,
-  {}
-)(WrappedEditStaffForm);
+  mapStateToProps,
+  null
+)(WrappedCustomerEditPage);
