@@ -2,25 +2,51 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./../forms/fields/Input";
-import renderFile from "./../../components/RenderFile";
+import FileInput from "./../forms/fields/FileInput"
 import localapi from "./../../apis/local";
+import ImageUploadAPI from "./../../apis/image_upload";
 import { Link } from "react-router-dom";
 import { deleteStaff } from "./../../actions/index";
 import { async } from "q";
 
 class EditStaffPage extends Component {
   onFormSubmit = async formValues => {
-    const { name, avatar } = formValues;
+    const { name, image } = formValues;
     const { id } = this.state;
-    const response = await localapi
-      .put(`/staff/${id}`, { name })
+    if (image){
+    const formData = new FormData();
+      formData.append("image",image);
+      const response = await ImageUploadAPI.post("/images/", formData);
+      const {imageUrl:avatar} = response.data
+      console.log(avatar);
+
+      await localapi.put(`/staff/${id}`, { name, avatar })
       .then(() => {
+        ;
         this.props.reset();
         this.props.history.push("/staff");
       })
       .catch(err => {
+
         console.log(err);
       });
+      
+    } else {
+      await localapi.put(`/staff/${id}`, { name})
+      .then(() => {
+        ;
+        this.props.reset();
+        this.props.history.push("/staff");
+      })
+      .catch(err => {
+
+        console.log(err);
+      });
+    }
+
+
+
+
   };
 
   onDeleteButtonClick = async () => {
@@ -52,7 +78,7 @@ class EditStaffPage extends Component {
             </div>
             <div className="field">
               <label>Image</label>
-              <Field name="avatar" component={renderFile} type="file" />
+              <Field name="image" component={FileInput} type="file" />
             </div>
             <div className="button-container">
               <div className="button-wrapper">
