@@ -1,10 +1,7 @@
 import React, {Component} from 'react'
 
 export default class FileInput  extends Component{
-  constructor(props) {
-    super(props)
-    
-  }
+ 
 
   onChange = (event) => {
     const { input: { onChange } } = this.props

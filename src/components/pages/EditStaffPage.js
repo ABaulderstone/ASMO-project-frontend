@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./../forms/fields/Input";
-import FileInput from "./../forms/fields/FileInput"
+import FileInput from "./../forms/fields/FileInput";
 import localapi from "./../../apis/local";
 import ImageUploadAPI from "./../../apis/image_upload";
 import { Link } from "react-router-dom";
@@ -13,45 +13,43 @@ class EditStaffPage extends Component {
   onFormSubmit = async formValues => {
     const { name, image } = formValues;
     const { id } = this.state;
-    if (image){
-    const formData = new FormData();
-      formData.append("image",image);
+    if (image) {
+      const formData = new FormData();
+      formData.append("image", image);
       const response = await ImageUploadAPI.post("/images/", formData);
-      const {imageUrl:avatar} = response.data
+      const { imageUrl: avatar } = response.data;
       console.log(avatar);
 
-      await localapi.put(`/staff/${id}`, { name, avatar })
-      .then(() => {
-        ;
-        this.props.reset();
-        this.props.history.push("/staff");
-      })
-      .catch(err => {
-
-        console.log(err);
-      });
-      
+      await localapi
+        .put(`/staff/${id}`, { name, avatar })
+        .then(() => {
+          this.props.reset();
+          this.props.history.push("/staff");
+        })
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
     } else {
-      await localapi.put(`/staff/${id}`, { name})
-      .then(() => {
-        ;
-        this.props.reset();
-        this.props.history.push("/staff");
-      })
-      .catch(err => {
-
-        console.log(err);
-      });
+      await localapi
+        .put(`/staff/${id}`, { name })
+        .then(() => {
+          this.props.reset();
+          this.props.history.push("/staff");
+        })
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
     }
-
-
-
-
   };
 
   onDeleteButtonClick = async () => {
     const { id } = this.state;
-    await this.props.deleteStaff(id);
+    await this.props.deleteStaff(id)
+    .then(() => {
+      this.props.history.push("/staff");
+    }).catch(err => {
+      throw new SubmissionError(err.response.data);
+    })
   };
 
   componentDidMount() {
@@ -89,22 +87,21 @@ class EditStaffPage extends Component {
           <Link to="/staff">
             <div className="button-container">
               <div className="button-wrapper">
-                <input className="ui button" value="Cancel" />
+                <button className="ui button"> Cancel </button>
               </div>
             </div>
           </Link>
 
-          <Link to="/staff">
+          
             <div className="button-container">
               <div className="button-wrapper">
-                <input
+                <button 
                   className="ui button"
                   onClick={this.onDeleteButtonClick}
-                  value="Delete"
-                />
+                > Delete </button>
               </div>
             </div>
-          </Link>
+          
         </>
       </>
     );

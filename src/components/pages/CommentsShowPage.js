@@ -20,6 +20,7 @@ class CommentsShowPage extends Component {
           <h1>Comments</h1>
           <div className="cards">
             {reviews.map(review => {
+              if (review.comment){
               return (
                 <CommentCard
                   id={review._id}
@@ -28,6 +29,7 @@ class CommentsShowPage extends Component {
                   serviceRating={review.serviceRating}
                 />
               );
+              }
             })}
           </div>
         </div>
