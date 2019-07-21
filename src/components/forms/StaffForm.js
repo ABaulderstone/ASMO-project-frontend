@@ -4,35 +4,28 @@ import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import FileInput from "./fields/FileInput";
-import renderFile from "./../../components/RenderFile";
 import ImageUploadAPI from "./../../apis/image_upload";
 
 class StaffForm extends Component {
-
-  
-    onFormSubmit = async formValues => {
-      const { name, image} = formValues;
-      if (image) {
+  onFormSubmit = async formValues => {
+    const { name, image } = formValues;
+    if (image) {
       const formData = new FormData();
-      formData.append("image",image);
+      formData.append("image", image);
       const response = await ImageUploadAPI.post("/images/", formData);
-      const {imageUrl:avatar} = response.data
+      const { imageUrl: avatar } = response.data;
       console.log(avatar);
-      await this.props.newStaffSubmission(name,avatar)
-        .catch(err => { 
-          throw new SubmissionError(err.response.data);
-        })
+      await this.props.newStaffSubmission(name, avatar).catch(err => {
+        throw new SubmissionError(err.response.data);
+      });
       this.props.reset();
-      } else {
-        await this.props.newStaffSubmission(name)
-        .catch(err => { 
-          throw new SubmissionError(err.response.data);
-        })
+    } else {
+      await this.props.newStaffSubmission(name).catch(err => {
+        throw new SubmissionError(err.response.data);
+      });
       this.props.reset();
-
-      }
-    };
-        
+    }
+  };
 
   render() {
     const { handleSubmit, error } = this.props;
@@ -40,26 +33,23 @@ class StaffForm extends Component {
     return (
       <>
         {error}
-      
-      
-      <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
-      <div className="field">
-          <label>Name</label>
-          <Field name="name" component={Input} type="text" />
-        </div>
-        <div className="field">
-          <label>Image</label>
-          <Field name="image" component={FileInput} type="file" />
-        </div>
-        <div className="button-container">
-          <div className="button-wrapper">
-            <input className="ui button" type="submit" value="create" />
+
+        <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+          <div className="field">
+            <label>Name</label>
+            <Field name="name" component={Input} type="text" />
           </div>
-        </div>
-      </form>
+          <div className="field">
+            <label>Image</label>
+            <Field name="image" component={FileInput} type="file" />
+          </div>
+          <div className="button-container">
+            <div className="button-wrapper">
+              <input className="ui button" type="submit" value="create" />
+            </div>
+          </div>
+        </form>
       </>
-      
-      
     );
   }
 }
