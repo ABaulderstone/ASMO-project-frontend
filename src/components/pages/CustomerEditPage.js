@@ -48,7 +48,11 @@ class CustomerEditPage extends Component {
   onDeleteButtonClick = async () => {
     const { id } = this.state;
     console.log(id);
-    await this.props.deleteCustomer(id);
+    await this.props.deleteCustomer(id).then (() => {
+      this.props.history.push("/customers/show")
+    }).catch (err => {
+      throw new SubmissionError(err.response.data)
+    });
   };
 
   componentDidMount() {
@@ -99,7 +103,7 @@ class CustomerEditPage extends Component {
             </div>
           </div>
         </Link>
-        <Link to="/customers/show">
+        
           <div className="button-container">
             <div className="button-wrapper">
               <input
@@ -109,7 +113,7 @@ class CustomerEditPage extends Component {
               />
             </div>
           </div>
-        </Link>
+        
       </>
     );
   }
