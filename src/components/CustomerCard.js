@@ -5,7 +5,7 @@ const CustomerCard = props => {
     <div className="ui card" id={props.id}>
       <div className="content">
       <div className="header">{props.name}</div>
-      <div className= "description">{props.address}</div>
+      <div className= "description">{props.address || "No listed address"}</div>
       </div>
       <div className="extra content">
         Email:{props.email} Phone Number: {props.phone}
