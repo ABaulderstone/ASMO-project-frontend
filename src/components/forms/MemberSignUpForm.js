@@ -27,7 +27,7 @@ class MemberSignUpForm extends Component {
         .catch(err => {
           throw new SubmissionError(err.response.data);
         });
-    }
+    } else 
 
     await LocalAPI.post(`/customers`, {
       name,
