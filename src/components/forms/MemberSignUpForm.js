@@ -55,7 +55,7 @@ class MemberSignUpForm extends Component {
         </div>
         <div>
           <label>Phone</label>
-          <Field name="phone" component={Input} type="number" />
+          <Field name="phone" component={Input} type="text" />
         </div>
         <div>
           <label>Email</label>
@@ -96,6 +96,10 @@ const WrappedMemberSignUpForm = reduxForm({
 
     if (!formValues.email) {
       errors.email = "Email is required";
+    }
+
+    if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
+      errors.phone ="Not a valid Australian mobile number"
     }
 
     return errors;
