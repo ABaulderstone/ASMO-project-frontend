@@ -66,51 +66,56 @@ class CustomerEditPage extends Component {
 
     return (
       <>
-        <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
-          {error}
-          <div>
-            <label>Name</label>
-            <Field name="name" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Phone</label>
-            <Field name="phone" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Email</label>
-            <Field name="email" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Unit</label>
-            <Field
-              name="unit"
-              component={Input}
-              type="text"
-              placeholder="optional"
-            />
-          </div>
-          <div>
-            <AddressForm />
-          </div>
-          <div className="button-container">
-            <input className="ui green button" type="submit" value="Save" />
-          </div>
-        </form>
-        <Link to="/customers/show">
-          <div className="button-container">
-            <div className="button-wrapper">
-              <button className="ui yellow button">Cancel</button>
-            </div>
-          </div>
-        </Link>
+        <div className="ui container">
+          <div className="ui segment">
+            <h1 style={{ textAlign: "center", fontSize: "1.5rem" }}>Edit Customer</h1>
+            <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+              {error}
+              <div>
+                <label>Name</label>
+                <Field name="name" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Phone</label>
+                <Field name="phone" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Email</label>
+                <Field name="email" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Unit</label>
+                <Field
+                  name="unit"
+                  component={Input}
+                  type="text"
+                  placeholder="optional"
+                />
+              </div>
+              <div>
+                <AddressForm />
+              </div>
+              <div className="button-container">
+                <input className="ui green button" type="submit" value="Save" />
+              </div>
+            </form>
+            <Link to="/customers/show">
+              <div className="button-container">
+                <div className="button-wrapper">
+                  <button className="ui yellow button">Cancel</button>
+                </div>
+              </div>
+            </Link>
 
-        <div className="button-container">
-          <div className="button-wrapper">
-            <button
-              className="ui red button"
-              onClick={this.onDeleteButtonClick}>
-              Delete
+            <div className="button-container">
+              <div className="button-wrapper">
+                <button
+                  className="ui red button"
+                  onClick={this.onDeleteButtonClick}>
+                  Delete
                 </button>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -18,8 +18,12 @@ class CustomerShowPage extends Component {
     return (
       <>
         <Navbar />
-        <h1>Customers</h1>
+        <div className="ui container">
+        <div className="ui segment" style={{marginBottom: "1rem"}}>
+        <h1 style={{textAlign: "center", fontSize:"2rem", marginBottom:"1rem"}}>Customers</h1>
         <CustomerSearchForm />
+        </div>
+        </div>
         <div className="ui container">
           <table className="ui celled table">
             <thead>
