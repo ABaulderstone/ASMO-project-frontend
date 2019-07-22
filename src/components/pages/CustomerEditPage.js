@@ -66,6 +66,9 @@ class CustomerEditPage extends Component {
 
     return (
       <>
+      <div className="ui container">
+       <div className="ui segment">
+       <h1 style={{textAlign: "center", fontSize:"1.5rem"}}>Edit Customer</h1>
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           {error}
           <div>
@@ -112,6 +115,8 @@ class CustomerEditPage extends Component {
                   Delete
                 </button>
             </div>
+          </div>
+          </div>
           </div>
         
       </>
