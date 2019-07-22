@@ -4,28 +4,26 @@ import { Field, reduxForm } from "redux-form";
 import Input from "./../../components/forms/fields/Input";
 
 class RosterItem extends Component {
-
-  
-  
   render() {
     return (
-      <>
-        <div className="item">
-          <div className="ui tiny image">
-            <img src={this.props.avatar} />
+      
+        <div className="card">
+          <div className="content">
+            <div className="right floated mini ui image">
+              <img src={this.props.avatar} />
+            </div>
+            <div className= "header">{this.props.name}</div>
+            <div className ="meta"> {this.props.duty}</div>
           </div>
-          <a class="header">{this.props.name}</a>
-          <div className="right aligned content">
+          <div className="extra content">
             <label>
               Floor
-              <div style={{ display: "inline-block" }}>
-                <Field
-                  name={this.props.id}
-                  component={Input}
-                  type="radio"
-                  value="floor"
-                />
-              </div>
+              <Field
+                name={this.props.id}
+                component={Input}
+                type="radio"
+                value="floor"
+              />
             </label>
             <label>
               Kitchen
@@ -47,10 +45,9 @@ class RosterItem extends Component {
             </label>
           </div>
         </div>
-      </>
+      
     );
   }
 }
 
-
-export default(RosterItem);
+export default RosterItem;
