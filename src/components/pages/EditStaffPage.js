@@ -46,11 +46,11 @@ class EditStaffPage extends Component {
   onDeleteButtonClick = async () => {
     const { id } = this.state;
     await this.props.deleteStaff(id)
-    .then(() => {
-      this.props.history.push("/staff");
-    }).catch(err => {
-      throw new SubmissionError(err.response.data);
-    })
+      .then(() => {
+        this.props.history.push("/staff");
+      }).catch(err => {
+        throw new SubmissionError(err.response.data);
+      })
   };
 
   componentDidMount() {
@@ -81,28 +81,28 @@ class EditStaffPage extends Component {
             </div>
             <div className="button-container">
               <div className="button-wrapper">
-                <input className="ui button" type="submit" value="Save" />
+                <input className="ui green button" type="submit" value="Save" />
               </div>
             </div>
           </form>
           <Link to="/staff">
             <div className="button-container">
               <div className="button-wrapper">
-                <button className="ui button"> Cancel </button>
+                <button className="ui yellow button"> Cancel </button>
               </div>
             </div>
           </Link>
 
-          
-            <div className="button-container">
-              <div className="button-wrapper">
-                <button 
-                  className="ui button"
-                  onClick={this.onDeleteButtonClick}
-                > Delete </button>
-              </div>
+
+          <div className="button-container">
+            <div className="button-wrapper">
+              <button
+                className="ui red button"
+                onClick={this.onDeleteButtonClick}
+              > Delete </button>
             </div>
-          
+          </div>
+
         </>
       </>
     );

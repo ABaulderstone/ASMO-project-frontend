@@ -48,9 +48,9 @@ class CustomerEditPage extends Component {
   onDeleteButtonClick = async () => {
     const { id } = this.state;
     console.log(id);
-    await this.props.deleteCustomer(id).then (() => {
+    await this.props.deleteCustomer(id).then(() => {
       this.props.history.push("/customers/show")
-    }).catch (err => {
+    }).catch(err => {
       throw new SubmissionError(err.response.data)
     });
   };
@@ -66,59 +66,59 @@ class CustomerEditPage extends Component {
 
     return (
       <>
-      <div className="ui container">
-       <div className="ui segment">
-       <h1 style={{textAlign: "center", fontSize:"1.5rem"}}>Edit Customer</h1>
-        <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
-          {error}
-          <div>
-            <label>Name</label>
-            <Field name="name" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Phone</label>
-            <Field name="phone" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Email</label>
-            <Field name="email" component={Input} type="text" />
-          </div>
-          <div>
-            <label>Unit</label>
-            <Field
-              name="unit"
-              component={Input}
-              type="text"
-              placeholder="optional"
-            />
-          </div>
-          <div>
-            <AddressForm />
-          </div>
-          <div className="button-container">
-            <input className="ui button" type="submit" value="Save" />
-          </div>
-        </form>
-        <Link to="/customers/show">
-          <div className="button-container">
-            <div className="button-wrapper">
-              <button className="ui button">Cancel</button> 
-            </div>
-          </div>
-        </Link>
-        
-          <div className="button-container">
-            <div className="button-wrapper">
-              <button
-                className="ui button"
-                onClick={this.onDeleteButtonClick}>
+        <div className="ui container">
+          <div className="ui segment">
+            <h1 style={{ textAlign: "center", fontSize: "1.5rem" }}>Edit Customer</h1>
+            <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+              {error}
+              <div>
+                <label>Name</label>
+                <Field name="name" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Phone</label>
+                <Field name="phone" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Email</label>
+                <Field name="email" component={Input} type="text" />
+              </div>
+              <div>
+                <label>Unit</label>
+                <Field
+                  name="unit"
+                  component={Input}
+                  type="text"
+                  placeholder="optional"
+                />
+              </div>
+              <div>
+                <AddressForm />
+              </div>
+              <div className="button-container">
+                <input className="ui green button" type="submit" value="Save" />
+              </div>
+            </form>
+            <Link to="/customers/show">
+              <div className="button-container">
+                <div className="button-wrapper">
+                  <button className="ui yellow button">Cancel</button>
+                </div>
+              </div>
+            </Link>
+
+            <div className="button-container">
+              <div className="button-wrapper">
+                <button
+                  className="ui red button"
+                  onClick={this.onDeleteButtonClick}>
                   Delete
                 </button>
+              </div>
             </div>
           </div>
-          </div>
-          </div>
-        
+        </div>
+
       </>
     );
   }
@@ -140,7 +140,7 @@ const WrappedCustomerEditPage = reduxForm({
       errors.email = "Email is required";
     }
     if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
-      errors.phone ="Not a valid Australian mobile number"
+      errors.phone = "Not a valid Australian mobile number"
     }
 
     return errors;
