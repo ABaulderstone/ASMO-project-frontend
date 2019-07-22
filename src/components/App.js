@@ -24,6 +24,7 @@ import EditStaffPage from "./pages/EditStaffPage";
 import CustomerEditPage from "./pages/CustomerEditPage";
 import { connect } from "react-redux";
 
+
 class App extends Component {
   render() {
     const { token } = this.props;
