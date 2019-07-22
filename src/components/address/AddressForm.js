@@ -3,8 +3,7 @@ import AddressSuggest from "./AddressSuggest";
 import AddressInput from "./AddressInput";
 import axios from "axios";
 import { connect } from "react-redux";
-import { setAddress } from "./../../actions"
-
+import { setAddress } from "./../../actions";
 
 const APP_ID_HERE = process.env.REACT_APP_ID;
 const APP_CODE_HERE = process.env.REACT_APP_CODE;
@@ -34,7 +33,7 @@ class AddressForm extends Component {
           maxresults: 1
         }
       })
-      .then(function (response) {
+      .then(function(response) {
         if (response.data.suggestions.length > 0) {
           const id = response.data.suggestions[0].locationId;
           const address = response.data.suggestions[0].address;
@@ -107,7 +106,7 @@ class AddressForm extends Component {
     const self = this;
     axios
       .get("https://geocoder.api.here.com/6.2/geocode.json", { params: params })
-      .then(function (response) {
+      .then(function(response) {
         const view = response.data.Response.View;
         if (view.length > 0 && view[0].Result.length > 0) {
           const location = view[0].Result[0].Location;
@@ -130,7 +129,7 @@ class AddressForm extends Component {
           this.setState({ isChecked: true, coords: null });
         }
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log("caught failed query");
         self.setState({
           isChecked: true,
@@ -180,19 +179,19 @@ class AddressForm extends Component {
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <br />
         {result}
-        <button className="btn btn-primary" onClick={this.onCheck} style={{ display: "block", margin: "auto" }}>
+        <button
+          className="ui button"
+          onClick={this.onCheck}
+          style={{ display: "block", margin: "auto" }}
+        >
           Check Address
         </button>
-        {/* <butto
-          type="submit"
-          className="btn btn-outline-secondary"
-          onClick={this.onClear}
-        >
-          Clear
-        </button> */}
       </div>
     );
   }
 }
 
-export default connect(null, { setAddress })(AddressForm);
+export default connect(
+  null,
+  { setAddress }
+)(AddressForm);
