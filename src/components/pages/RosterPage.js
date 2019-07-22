@@ -11,13 +11,11 @@ class RosterPage extends Component {
     this.props.fetchStaff();
   }
 
-  onSaveButtonClick = async (formValues) => {
-   
-    
+  onSaveButtonClick = async formValues => {
     await localAPI
       .post("/staff/duty", formValues)
       .then(() => {
-        this.props.history.push("/dashboard");
+        this.props.fetchStaff();
       })
       .catch(err => {
         throw new SubmissionError(err.response.data);
@@ -31,18 +29,22 @@ class RosterPage extends Component {
         <h1>Roster</h1>
         <Navbar />
         <form onSubmit={handleSubmit(this.onSaveButtonClick)}>
-          <div className="ui divided items">
+          <div className="ui cards">
             {staff.map(s => {
-              return <RosterItem id={s._id} name={s.name} avatar={s.avatar} key= {s._id}/>;
+              return (
+                <RosterItem
+                  id={s._id}
+                  name={s.name}
+                  avatar={s.avatar}
+                  key={s._id}
+                  duty={s.duty}
+                />
+              );
             })}
           </div>
           <div className="button-container">
             <div className="button-wrapper">
-              <input
-                className="ui button"
-                type="submit"
-                value="Save"
-              />
+              <input className="ui button" type="submit" value="Save" />
             </div>
           </div>
         </form>
