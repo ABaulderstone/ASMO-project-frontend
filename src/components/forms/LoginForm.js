@@ -9,9 +9,14 @@ import "./../../styles/LoginForm.css";
 class LoginForm extends Component {
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    await this.props.loginUser(email, password).catch(err => {
-      throw new SubmissionError(err.response.data);
-    });
+    await this.props
+      .loginUser(email, password)
+      .then(() => {
+        this.props.history.push("/dashboard");
+      })
+      .catch(err => {
+        throw new SubmissionError(err.response.data);
+      });
     this.props.reset();
   };
 
@@ -40,13 +45,12 @@ class LoginForm extends Component {
         </div>
         <div className="forget-pass-container">
           <div className="forget-pass-wrapper">
-          <Link to="forgot_password">
+            <Link to="forgot_password">
               <button className="button-style button-effect">
                 Forgot Password?
               </button>
-          </Link>
-            </div>
-         
+            </Link>
+          </div>
         </div>
         <div className="add-new-container">
           <div className="add-new-wrapper">
@@ -55,7 +59,7 @@ class LoginForm extends Component {
                 Create new account
               </button>
             </Link>
-            
+
             {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
           </div>
         </div>
