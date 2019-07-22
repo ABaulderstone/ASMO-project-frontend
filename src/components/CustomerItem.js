@@ -15,7 +15,7 @@ function CustomerItem(props) {
               state: { name: props.name }
             }}
           >
-            <button className="ui button">Edit</button>
+            <button className="ui yellow button">Edit</button>
           </Link>
         </td>
       </tr>
