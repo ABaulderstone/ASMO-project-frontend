@@ -12,11 +12,10 @@ class RosterPage extends Component {
   }
 
   onSaveButtonClick = async () => {
-    const { id } = this.state;
     await localAPI
-      .put(`/staff/${id}`)
+      .post(`/staff/duty`)
       .then(() => {
-        this.props.history.push("/roster");
+        this.props.history.push("/dashboard");
       })
       .catch(err => {
         throw new SubmissionError(err.response.data);
@@ -27,7 +26,7 @@ class RosterPage extends Component {
     const { staff } = this.props;
     return (
       <>
-        <h1>hahsad</h1>
+        <h1>Roster</h1>
         <Navbar />
         <div className="ui divided items">
           {staff.map(s => {

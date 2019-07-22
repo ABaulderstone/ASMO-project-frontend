@@ -44,17 +44,8 @@ function RosterItem(props) {
 
 const WrappedRosterItem = reduxForm({
   form: "roster",
-  validate: formValues => {
-    const errors = {};
-    if (!formValues.name) {
-      errors.name = "Name is Required";
-    }
 
-    return errors;
-  }
 })(RosterItem);
 
-export default connect(
-  null,
-  { RosterItem }
-)(WrappedRosterItem);
+export default connect()
+ (WrappedRosterItem);
