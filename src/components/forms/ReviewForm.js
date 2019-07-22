@@ -6,19 +6,23 @@ import Input from "./fields/Input";
 import Rating from "react-rating";
 import "./../../styles/ReviewForm.css";
 
-//smiling face white
+//star white
 import est1 from "./../../images/est1.png";
-import es2 from "./../../images/es2.png";
-import es3 from "./../../images/es3.png";
-import es4 from "./../../images/es4.png";
-import es5 from "./../../images/es5.png";
+//Smiling face keep it for incase in the future 
+// import es1 from "./../../images/est1.png";
+// import es2 from "./../../images/es2.png";
+// import es3 from "./../../images/es3.png";
+// import es4 from "./../../images/es4.png";
+// import es5 from "./../../images/es5.png";
 
-//smiling face yellow 
+//Star yello 
 import fst1 from "./../../images/fst1.png";
-import fs2 from "./../../images/fs2.png";
-import fs3 from "./../../images/fs3.png";
-import fs4 from "./../../images/fs4.png";
-import fs5 from "./../../images/fs5.png";
+//Smiling face keep it for incase in the future
+// import fs1 from "./../../images/fst1.png";
+// import fs2 from "./../../images/fs2.png";
+// import fs3 from "./../../images/fs3.png";
+// import fs4 from "./../../images/fs4.png";
+// import fs5 from "./../../images/fs5.png";
 
 class ReviewForm extends Component {
   state = {
