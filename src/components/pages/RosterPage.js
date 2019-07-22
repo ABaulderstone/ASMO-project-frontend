@@ -11,9 +11,11 @@ class RosterPage extends Component {
     this.props.fetchStaff();
   }
 
-  onSaveButtonClick = async () => {
+  onSaveButtonClick = async (formValues) => {
+   
+    
     await localAPI
-      .post(`/staff/duty`)
+      .post("/staff/duty", formValues)
       .then(() => {
         this.props.history.push("/dashboard");
       })
@@ -23,31 +25,34 @@ class RosterPage extends Component {
   };
 
   render() {
-    const { staff } = this.props;
+    const { staff, handleSubmit } = this.props;
     return (
       <>
         <h1>Roster</h1>
         <Navbar />
-        <div className="ui divided items">
-          {staff.map(s => {
-            return <RosterItem id={s._id} name={s.name} avatar={s.avatar} />;
-          })}
-        </div>
-        <div className="button-container">
-          <div className="button-wrapper">
-            <input
-              className="ui button"
-              onClick={this.onSaveButtonClick}
-              type="submit"
-              value="Save"
-            />
+        <form onSubmit={handleSubmit(this.onSaveButtonClick)}>
+          <div className="ui divided items">
+            {staff.map(s => {
+              return <RosterItem id={s._id} name={s.name} avatar={s.avatar} key= {s._id}/>;
+            })}
           </div>
-        </div>
+          <div className="button-container">
+            <div className="button-wrapper">
+              <input
+                className="ui button"
+                type="submit"
+                value="Save"
+              />
+            </div>
+          </div>
+        </form>
       </>
     );
   }
 }
-
+const WrappedRosterPage = reduxForm({
+  form: "duty"
+})(RosterPage);
 const mapStateToProps = state => {
   return {
     staff: state.staff
@@ -57,4 +62,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchStaff }
-)(RosterPage);
+)(WrappedRosterPage);
