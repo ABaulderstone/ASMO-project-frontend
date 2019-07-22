@@ -25,7 +25,7 @@ class Birthday extends Component {
 
 
         const SelectExample = () => (
-            <Select placeholder='Select your birth day' options={birthdayOptions} />
+            <Select placeholder='Eat for free on your birthday' options={birthdayOptions} />
         )
         return (
             <div>

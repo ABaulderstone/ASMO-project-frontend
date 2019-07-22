@@ -25,7 +25,7 @@ class Anniversary extends Component {
 
 
         const SelectExample = () => (
-            <Select placeholder='Select your anniversary' options={anniversaryOptions} />
+            <Select placeholder='Free bottle of wine' options={anniversaryOptions} />
         )
         return (
             <div>
