@@ -10,9 +10,10 @@ class CustomerSearchPage extends Component {
     return (
       <>
         <Navbar />
-        <div>
-          <h1>Search here</h1>
-          <CustomerSearchForm />
+        <div className="ui container">
+          <div className="ui segment">
+          <h1 style={{fontSize: "1.5rem", textAlign: "center", margin: "1rem"}}>Member Search</h1>
+          <CustomerSearchForm  />
           {customers.map(customer => {
             return (
               <CustomerCard
@@ -23,6 +24,7 @@ class CustomerSearchPage extends Component {
               />
             );
           })}
+          </div>
         </div>
       </>
     );
