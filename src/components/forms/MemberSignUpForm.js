@@ -78,12 +78,12 @@ class MemberSignUpForm extends Component {
         </div>
 
         <div>
-          <label>Eat for free on your Birthday</label>
+          <label>Birthday</label>
           <Birthday />
         </div>
 
         <div>
-          <label>Free manager selection sparkling wine</label>
+          <label>Anniversary</label>
           <Anniversary />
         </div>
 
@@ -113,7 +113,7 @@ const WrappedMemberSignUpForm = reduxForm({
     }
 
     if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
-      errors.phone ="Not a valid Australian mobile number"
+      errors.phone = "Not a valid Australian mobile number"
     }
 
     return errors;
