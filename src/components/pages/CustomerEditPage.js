@@ -74,7 +74,7 @@ class CustomerEditPage extends Component {
           </div>
           <div>
             <label>Phone</label>
-            <Field name="phone" component={Input} type="number" />
+            <Field name="phone" component={Input} type="text" />
           </div>
           <div>
             <label>Email</label>
@@ -99,18 +99,18 @@ class CustomerEditPage extends Component {
         <Link to="/customers/show">
           <div className="button-container">
             <div className="button-wrapper">
-              <input className="ui button" value="Cancel" />
+              <button className="ui button">Cancel</button> 
             </div>
           </div>
         </Link>
         
           <div className="button-container">
             <div className="button-wrapper">
-              <input
+              <button
                 className="ui button"
-                onClick={this.onDeleteButtonClick}
-                value="Delete"
-              />
+                onClick={this.onDeleteButtonClick}>
+                  Delete
+                </button>
             </div>
           </div>
         
@@ -133,6 +133,9 @@ const WrappedCustomerEditPage = reduxForm({
 
     if (!formValues.email) {
       errors.email = "Email is required";
+    }
+    if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
+      errors.phone ="Not a valid Australian mobile number"
     }
 
     return errors;

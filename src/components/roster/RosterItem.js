@@ -16,7 +16,7 @@ function RosterItem(props) {
             Floor
             <div style={{ display: "inline-block" }}>
               <Field
-                name="status"
+                name={props.id}
                 component={Input}
                 type="radio"
                 value="floor"
@@ -26,7 +26,7 @@ function RosterItem(props) {
           <label>
             Kitchen
             <Field
-              name="status"
+              name={props.id}
               component={Input}
               type="radio"
               value="kitchen"
@@ -34,13 +34,8 @@ function RosterItem(props) {
           </label>
           <label>
             Off
-            <Field name="status" component={Input} type="radio" value="off" />
+            <Field name={props.id} component={Input} type="radio" value="off" />
           </label>
-        </div>
-        <div className="button-container">
-          <div className="button-wrapper">
-            <input className="ui button" type="submit" value="Save" />
-          </div>
         </div>
       </div>
     </>
@@ -49,17 +44,8 @@ function RosterItem(props) {
 
 const WrappedRosterItem = reduxForm({
   form: "roster",
-  validate: formValues => {
-    const errors = {};
-    if (!formValues.name) {
-      errors.name = "Name is Required";
-    }
 
-    return errors;
-  }
 })(RosterItem);
 
-export default connect(
-  null,
-  { RosterItem }
-)(WrappedRosterItem);
+export default connect()
+ (WrappedRosterItem);

@@ -3,28 +3,23 @@ import { Link } from "react-router-dom";
 import Navbar from "./../navbar/Navbar";
 import { fetchCustomers } from "./../../actions/index";
 import { connect } from "react-redux";
-import LocalAPI from "./../../apis/local";
+import CustomerSearchForm from "./../forms/CustomerSearchForm";
 import CustomerItem from "./../../components/CustomerItem";
 
 class CustomerShowPage extends Component {
-  state = {
-    customers: []
-  };
-  componentDidMount() {
-    LocalAPI.get("/customers").then(response => {
-      this.setState({
-        customers: response.data
-      });
-    });
+  
+    componentDidMount() {
+    this.props.fetchCustomers()
   }
 
   render() {
-    const { customers } = this.state;
+    const { customers } = this.props;
     console.log(customers);
     return (
       <>
         <Navbar />
         <h1>Customers</h1>
+        <CustomerSearchForm />
         <div className="ui container">
           <table className="ui celled table">
             <thead>
@@ -51,5 +46,10 @@ class CustomerShowPage extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    customers: state.customers
+  };
 
-export default CustomerShowPage;
+}
+export default connect(mapStateToProps, {fetchCustomers}) (CustomerShowPage);

@@ -30,8 +30,9 @@ class EditStaffPage extends Component {
           throw new SubmissionError(err.response.data);
         });
     } else {
+      const avatar = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
       await localapi
-        .put(`/staff/${id}`, { name })
+        .put(`/staff/${id}`, { name, avatar })
         .then(() => {
           this.props.reset();
           this.props.history.push("/staff");
@@ -44,7 +45,12 @@ class EditStaffPage extends Component {
 
   onDeleteButtonClick = async () => {
     const { id } = this.state;
-    await this.props.deleteStaff(id);
+    await this.props.deleteStaff(id)
+    .then(() => {
+      this.props.history.push("/staff");
+    }).catch(err => {
+      throw new SubmissionError(err.response.data);
+    })
   };
 
   componentDidMount() {
@@ -82,22 +88,21 @@ class EditStaffPage extends Component {
           <Link to="/staff">
             <div className="button-container">
               <div className="button-wrapper">
-                <input className="ui button" value="Cancel" />
+                <button className="ui button"> Cancel </button>
               </div>
             </div>
           </Link>
 
-          <Link to="/staff">
+          
             <div className="button-container">
               <div className="button-wrapper">
-                <input
+                <button 
                   className="ui button"
                   onClick={this.onDeleteButtonClick}
-                  value="Delete"
-                />
+                > Delete </button>
               </div>
             </div>
-          </Link>
+          
         </>
       </>
     );
