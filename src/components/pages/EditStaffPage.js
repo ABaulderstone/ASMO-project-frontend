@@ -30,8 +30,9 @@ class EditStaffPage extends Component {
           throw new SubmissionError(err.response.data);
         });
     } else {
+      const avatar = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
       await localapi
-        .put(`/staff/${id}`, { name })
+        .put(`/staff/${id}`, { name, avatar })
         .then(() => {
           this.props.reset();
           this.props.history.push("/staff");

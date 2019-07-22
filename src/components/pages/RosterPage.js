@@ -2,29 +2,59 @@ import React, { Component } from "react";
 import Navbar from "./../navbar/Navbar";
 import RosterItem from "./../roster/RosterItem";
 import { connect } from "react-redux";
+import { Field, reduxForm, SubmissionError } from "redux-form";
 import { fetchStaff } from "./../../actions/index";
+import localAPI from "./../../apis/local";
 
 class RosterPage extends Component {
   componentDidMount() {
     this.props.fetchStaff();
   }
 
+  onSaveButtonClick = async formValues => {
+    await localAPI
+      .post("/staff/duty", formValues)
+      .then(() => {
+        this.props.fetchStaff();
+      })
+      .catch(err => {
+        throw new SubmissionError(err.response.data);
+      });
+  };
+
   render() {
-    const { staff } = this.props;
+    const { staff, handleSubmit } = this.props;
     return (
       <>
-        <h1>hahsad</h1>
+        <h1>Roster</h1>
         <Navbar />
-        <div className="ui divided items">
-          {staff.map(s => {
-            return <RosterItem id={s._id} name={s.name} avatar={s.avatar} />;
-          })}
-        </div>
+        <form onSubmit={handleSubmit(this.onSaveButtonClick)}>
+          <div className="ui cards">
+            {staff.map(s => {
+              return (
+                <RosterItem
+                  id={s._id}
+                  name={s.name}
+                  avatar={s.avatar}
+                  key={s._id}
+                  duty={s.duty}
+                />
+              );
+            })}
+          </div>
+          <div className="button-container">
+            <div className="button-wrapper">
+              <input className="ui button" type="submit" value="Save" />
+            </div>
+          </div>
+        </form>
       </>
     );
   }
 }
-
+const WrappedRosterPage = reduxForm({
+  form: "duty"
+})(RosterPage);
 const mapStateToProps = state => {
   return {
     staff: state.staff
@@ -34,4 +64,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchStaff }
-)(RosterPage);
+)(WrappedRosterPage);

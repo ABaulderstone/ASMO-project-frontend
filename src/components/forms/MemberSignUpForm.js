@@ -6,6 +6,8 @@ import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import "./../../styles/MemberSignUpForm.css";
 import stringifyAddress from "./../../utility/stringifyAddress";
+import Birthday from "./../birthday/Birthday";
+import Anniversary from "./../anniversary/Anniversary";
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
@@ -27,20 +29,20 @@ class MemberSignUpForm extends Component {
         .catch(err => {
           throw new SubmissionError(err.response.data);
         });
-    } else 
+    } else
 
-    await LocalAPI.post(`/customers`, {
-      name,
-      phone,
-      email
-    })
-      .then(() => {
-        this.props.reset();
-        this.props.history.push("/thankyou_member");
+      await LocalAPI.post(`/customers`, {
+        name,
+        phone,
+        email
       })
-      .catch(err => {
-        throw new SubmissionError(err.response.data);
-      });
+        .then(() => {
+          this.props.reset();
+          this.props.history.push("/thankyou_member");
+        })
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
   };
 
   render() {
@@ -74,9 +76,21 @@ class MemberSignUpForm extends Component {
         <div>
           <AddressForm />
         </div>
+
+        <div>
+          <label>Birthday</label>
+          <Birthday />
+        </div>
+
+        <div>
+          <label>Anniversary</label>
+          <Anniversary />
+        </div>
+
         <div className="button-container">
           <input className="ui button" type="submit" value="Submit" />
         </div>
+
       </form>
     );
   }
@@ -99,7 +113,7 @@ const WrappedMemberSignUpForm = reduxForm({
     }
 
     if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
-      errors.phone ="Not a valid Australian mobile number"
+      errors.phone = "Not a valid Australian mobile number"
     }
 
     return errors;

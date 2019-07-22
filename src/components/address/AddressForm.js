@@ -3,8 +3,7 @@ import AddressSuggest from "./AddressSuggest";
 import AddressInput from "./AddressInput";
 import axios from "axios";
 import { connect } from "react-redux";
-import {setAddress} from "./../../actions"
-
+import { setAddress } from "./../../actions";
 
 const APP_ID_HERE = process.env.REACT_APP_ID;
 const APP_CODE_HERE = process.env.REACT_APP_CODE;
@@ -138,8 +137,8 @@ class AddressForm extends Component {
         });
       });
 
-      const {address} = this.state;
-      this.props.setAddress(address);
+    const { address } = this.state;
+    this.props.setAddress(address);
   };
 
   alert() {
@@ -180,19 +179,19 @@ class AddressForm extends Component {
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <br />
         {result}
-        <button className="btn btn-primary" onClick={this.onCheck}>
-          Check
-        </button>
-        {/* <button
-          type="submit"
-          className="btn btn-outline-secondary"
-          onClick={this.onClear}
+        <button
+          className="ui button"
+          onClick={this.onCheck}
+          style={{ display: "block", margin: "auto" }}
         >
-          Clear
-        </button> */}
+          Check Address
+        </button>
       </div>
     );
   }
 }
 
-export default connect(null, {setAddress})(AddressForm);
+export default connect(
+  null,
+  { setAddress }
+)(AddressForm);
