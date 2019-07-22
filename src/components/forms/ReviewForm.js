@@ -125,7 +125,7 @@ class ReviewForm extends Component {
           </div>
           <div className="button-container">
             <div className="button-wrapper">
-              <input className="ui button" type="submit" value="Send" />
+              <input className="ui blue button" type="submit" value="Send" />
             </div>
           </div>
         </form>

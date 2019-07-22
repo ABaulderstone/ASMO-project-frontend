@@ -48,9 +48,9 @@ class CustomerEditPage extends Component {
   onDeleteButtonClick = async () => {
     const { id } = this.state;
     console.log(id);
-    await this.props.deleteCustomer(id).then (() => {
+    await this.props.deleteCustomer(id).then(() => {
       this.props.history.push("/customers/show")
-    }).catch (err => {
+    }).catch(err => {
       throw new SubmissionError(err.response.data)
     });
   };
@@ -93,27 +93,27 @@ class CustomerEditPage extends Component {
             <AddressForm />
           </div>
           <div className="button-container">
-            <input className="ui button" type="submit" value="Save" />
+            <input className="ui green button" type="submit" value="Save" />
           </div>
         </form>
         <Link to="/customers/show">
           <div className="button-container">
             <div className="button-wrapper">
-              <button className="ui button">Cancel</button> 
+              <button className="ui yellow button">Cancel</button>
             </div>
           </div>
         </Link>
-        
-          <div className="button-container">
-            <div className="button-wrapper">
-              <button
-                className="ui button"
-                onClick={this.onDeleteButtonClick}>
-                  Delete
+
+        <div className="button-container">
+          <div className="button-wrapper">
+            <button
+              className="ui red button"
+              onClick={this.onDeleteButtonClick}>
+              Delete
                 </button>
-            </div>
           </div>
-        
+        </div>
+
       </>
     );
   }
@@ -135,7 +135,7 @@ const WrappedCustomerEditPage = reduxForm({
       errors.email = "Email is required";
     }
     if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
-      errors.phone ="Not a valid Australian mobile number"
+      errors.phone = "Not a valid Australian mobile number"
     }
 
     return errors;

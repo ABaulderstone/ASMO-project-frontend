@@ -45,7 +45,7 @@ class StaffForm extends Component {
           </div>
           <div className="button-container">
             <div className="button-wrapper">
-              <input className="ui button" type="submit" value="create" />
+              <input className="ui green button" type="submit" value="create" />
             </div>
           </div>
         </form>
