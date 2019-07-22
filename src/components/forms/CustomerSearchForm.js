@@ -24,6 +24,7 @@ class CustomerSearchForm extends Component {
         <div className="button-container">
           <div className="button-wrapper">
             <input
+              style={{marginBottom: "1.5rem"}}
               className="ui button button-pos"
               type="submit"
               value="Search"
