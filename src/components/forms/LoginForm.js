@@ -6,12 +6,19 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import "./../../styles/LoginForm.css";
 
+
 class LoginForm extends Component {
+  state = {
+    loading: false
+  }
+  
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
+    this.setState({loading: true});
     await this.props
       .loginUser(email, password)
       .then(() => {
+        this.setState({loading: false});
         this.props.history.push("/dashboard");
       })
       .catch(err => {
@@ -34,15 +41,17 @@ class LoginForm extends Component {
           <label>Password</label>
           <Field name="password" component={Input} type="password" />
         </div>
-        <div className="button-container">
+        {!this.state.loading && <div className="button-container">
           <div className="button-wrapper">
-            <input
+             <input
               className="ui button button-pos"
               type="submit"
               value="Login"
             />
+            
           </div>
-        </div>
+        </div>}
+        {this.state.loading && <div className="button-container"><button className="ui loading button" >Loading</button></div>}
         <div className="forget-pass-container">
           <div className="forget-pass-wrapper">
             <Link to="forgot_password">
