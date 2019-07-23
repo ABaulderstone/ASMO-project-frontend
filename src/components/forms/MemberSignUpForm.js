@@ -11,8 +11,13 @@ import Anniversary from "./../anniversary/Anniversary";
 import { Select } from 'semantic-ui-react'
 
 class MemberSignUpForm extends Component {
+
+  state = {
+    loading: false
+  }
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
+    this.setState({loading: true})
     const add = this.props.address.address;
     console.log(formValues);
 
@@ -110,7 +115,9 @@ class MemberSignUpForm extends Component {
         </div>
 
         <div className="button-container">
-          <input className="ui green button" type="submit" value="Submit" />
+        {!this.state.loading && <input className="ui green button" type="submit" value="Submit" /> }
+        {this.state.loading && <button className="ui green loading  button" >Loading</button>}
+          
         </div>
 
       </form>
