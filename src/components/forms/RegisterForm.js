@@ -7,11 +7,17 @@ import Input from "./fields/Input";
 import "./../../styles/RegisterForm.css";
 
 class RegisterForm extends Component {
+
+  state = {
+    loading: false
+  }
   onFormSubmit = async formValues => {
     const { email, password, confrimPassword } = formValues;
+    this.setState({loading: true});
     await this.props
       .registerUser(email, password, confrimPassword)
       .then(() => {
+        this.setState({loading:false});
         this.props.history.push("/dashboard");
       })
       .catch(err => {
@@ -44,10 +50,12 @@ class RegisterForm extends Component {
             <Field name="confrimPassword" component={Input} type="password" />
           </div>
           <div className="button-container">
-            <div className="button-wrapper">
-              <input className="ui green button" type="submit" value="create" />
-            </div>
+          {!this.state.loading &&  <div className="button-wrapper">
+              <input className="ui primary button" type="submit" value="Create" />
+            </div>}
+            {this.state.loading && <button className= "ui primary loading button">Loading</button>}
           </div>
+          }
           <Link to="/login">
             <button className="button-style new-account-button button-effect">
               Already have an Account?
