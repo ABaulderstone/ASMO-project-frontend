@@ -37,7 +37,7 @@ class LoginForm extends Component {
         <div className="button-container">
           <div className="button-wrapper">
             <input
-              className="ui button button-pos"
+              className="ui blue button button-pos"
               type="submit"
               value="Login"
             />
