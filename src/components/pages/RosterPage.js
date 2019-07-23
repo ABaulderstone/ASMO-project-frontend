@@ -7,17 +7,26 @@ import { fetchStaff } from "./../../actions/index";
 import localAPI from "./../../apis/local";
 
 class RosterPage extends Component {
+  state = {
+    loading: false,
+    error: null
+  };
+
   componentDidMount() {
     this.props.fetchStaff();
   }
 
-
   onSaveButtonClick = async formValues => {
-
     await localAPI
       .post("/staff/duty", formValues)
       .then(() => {
+        this.setState({ loading: true });
+      })
+      .then(() => {
         this.props.fetchStaff();
+      })
+      .then(() => {
+        this.setState({ loading: false });
       })
       .catch(err => {
         throw new SubmissionError(err.response.data);
@@ -45,10 +54,21 @@ class RosterPage extends Component {
             })}
           </div>
           <div className="button-container">
-            <div className="button-wrapper">
-              <input className="ui button" type="submit" value="Save" />
-            </div>
+            {!this.state.loading && (
+              <div className="button-wrapper">
+                <input
+                  style={{ marginBottom: "1.5rem" }}
+                  className="ui primary button button-pos"
+                  type="submit"
+                  value="Save"
+                />
+              </div>
+            )}
+            {this.state.loading && (
+              <button className="ui primary loading button">Loading</button>
+            )}
           </div>
+          {this.state.error}
         </form>
       </>
     );
