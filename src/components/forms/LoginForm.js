@@ -41,17 +41,18 @@ class LoginForm extends Component {
           <label>Password</label>
           <Field name="password" component={Input} type="password" />
         </div>
-        {!this.state.loading && <div className="button-container">
-          <div className="button-wrapper">
+        <div className="button-container">
+        {!this.state.loading && <div className="button-wrapper">
              <input
-              className="ui button button-pos"
+              className="ui primary button button-pos"
               type="submit"
               value="Login"
             />
             
-          </div>
-        </div>}
-        {this.state.loading && <div className="button-container"><button className="ui loading button" >Loading</button></div>}
+          </div>}
+          {this.state.loading && <button className="ui primary loading button" >Loading</button>}
+        </div>
+        
         <div className="forget-pass-container">
           <div className="forget-pass-wrapper">
             <Link to="forgot_password">
