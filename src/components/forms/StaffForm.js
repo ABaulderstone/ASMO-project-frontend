@@ -7,8 +7,12 @@ import FileInput from "./fields/FileInput";
 import ImageUploadAPI from "./../../apis/image_upload";
 
 class StaffForm extends Component {
+  state = {
+    loading: false
+  };
   onFormSubmit = async formValues => {
     const { name, image } = formValues;
+    this.setState({ loading: true });
     if (image) {
       const formData = new FormData();
       formData.append("image", image);
@@ -43,11 +47,23 @@ class StaffForm extends Component {
             <label>Image</label>
             <Field name="image" component={FileInput} type="file" />
           </div>
+
           <div className="button-container">
-            <div className="button-wrapper">
-              <input className="ui green button" type="submit" value="create" />
-            </div>
+            {!this.state.loading && (
+              <div className="button-wrapper">
+                <input
+                  style={{ marginBottom: "1.5rem" }}
+                  className="ui green button button-pos"
+                  type="submit"
+                  value="Create"
+                />
+              </div>
+            )}
+            {this.state.loading && (
+              <button className="ui green loading button">Loading</button>
+            )}
           </div>
+          {this.state.error}
         </form>
       </>
     );
