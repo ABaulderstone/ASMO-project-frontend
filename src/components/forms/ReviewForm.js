@@ -146,7 +146,19 @@ class ReviewForm extends Component {
             </div>
           </div>
           <div>
+            <h2> Floor Staff </h2>
             {floorStaff && floorStaff.map(staff => {
+              return (<div className = "image-container"> 
+              <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
+              </div>
+              )
+
+            })}
+
+          </div>
+          <div>
+            <h2> Kitchen Staff  </h2>
+            {kitchenStaff && kitchenStaff.map(staff => {
               return (<div className = "image-container"> 
               <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
               </div>
