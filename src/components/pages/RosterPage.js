@@ -11,7 +11,9 @@ class RosterPage extends Component {
     this.props.fetchStaff();
   }
 
+
   onSaveButtonClick = async formValues => {
+
     await localAPI
       .post("/staff/duty", formValues)
       .then(() => {
