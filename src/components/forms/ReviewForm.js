@@ -28,10 +28,12 @@ class ReviewForm extends Component {
   state = {
     foodRating: null,
     serviceRating: null,
-    comment: null
+    comment: null,
+    floorStaff: null,
+    kitchenStaff: null
   }
   onFormSubmit = async () => {
-    const { foodRating, serviceRating, comment } = this.state;
+    const { foodRating, serviceRating, comment, floorStaff, kitchenStaff} = this.state;
     if (comment) {
       return (
         await LocalAPI.post(`/reviews`, {
@@ -67,6 +69,20 @@ class ReviewForm extends Component {
 
   onCommentChange = (name, event) => {
     this.setState({ [name]: event.target.value })
+  }
+   componentDidMount() {
+     const kitchenQuery = LocalAPI.get("/staff?duty=kitchen");
+     const floorQuery = LocalAPI.get("/staff?duty=floor");
+     Promise.all([kitchenQuery,floorQuery])
+     .then(responses => {
+       this.setState({kitchenStaff: responses[0].data});
+       this.setState({floorStaff: responses[1].data});
+     })
+     .catch(err => {
+       throw new SubmissionError(err.response.data);
+     })
+    
+
   }
 
   render() {
