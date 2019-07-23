@@ -30,7 +30,8 @@ class ReviewForm extends Component {
     serviceRating: null,
     comment: null,
     floorStaff: null,
-    kitchenStaff: null
+    kitchenStaff: null,
+    warning: null
   }
   onFormSubmit = async () => {
     const { foodRating, serviceRating, comment, floorStaff, kitchenStaff} = this.state;
@@ -83,7 +84,8 @@ class ReviewForm extends Component {
        this.setState({floorStaff: responses[1].data});
      })
      .catch(err => {
-       throw new SubmissionError(err.response.data);
+       console.log(err);
+       this.setState({warning: "No staff set!"})
      })
     
 
@@ -91,13 +93,14 @@ class ReviewForm extends Component {
 
   render() {
     const { handleSubmit, error } = this.props;
-    const {floorStaff, kitchenStaff} = this.state;
+    const {floorStaff, kitchenStaff, warning} = this.state;
     console.log(floorStaff, kitchenStaff);
 
 
     return (
       <>
         {error}
+        {warning}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
 
           <div className="field">
