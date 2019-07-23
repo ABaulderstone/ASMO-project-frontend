@@ -58,14 +58,14 @@ class RosterPage extends Component {
               <div className="button-wrapper">
                 <input
                   style={{ marginBottom: "1.5rem" }}
-                  className="ui primary button button-pos"
+                  className="ui green button button-pos"
                   type="submit"
                   value="Save"
                 />
               </div>
             )}
             {this.state.loading && (
-              <button className="ui primary loading button">Loading</button>
+              <button className="ui green loading button">Loading</button>
             )}
           </div>
           {this.state.error}
