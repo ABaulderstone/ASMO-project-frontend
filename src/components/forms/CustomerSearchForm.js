@@ -17,6 +17,7 @@ class CustomerSearchForm extends Component {
     return (
       <>
         {error}
+<<<<<<< HEAD
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <label>Phone Number</label>
           <Field name="phone" component={Input} type="number" />
@@ -29,6 +30,20 @@ class CustomerSearchForm extends Component {
                 value="Search"
               />
             </div>
+=======
+      <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
+        <Field placeholder="Phone Number" name="phone" component={Input} type="number" />
+
+        <div className="button-container">
+          <div className="button-wrapper">
+            <input
+              style={{marginBottom: "1.5rem"}}
+              className="ui blue button button-pos"
+              type="submit"
+              value="Search"
+            />
+          </div>
+>>>>>>> 9527020ad00008a71b9756726662d3f7b3116bee
           </div>
         </form>
       </>

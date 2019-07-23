@@ -11,9 +11,13 @@ class RosterPage extends Component {
     this.props.fetchStaff();
   }
 
+<<<<<<< HEAD
   onSaveButtonClick = async (formValues) => {
 
 
+=======
+  onSaveButtonClick = async formValues => {
+>>>>>>> 9527020ad00008a71b9756726662d3f7b3116bee
     await localAPI
       .post("/staff/duty", formValues)
       .then(() => {
@@ -46,11 +50,15 @@ class RosterPage extends Component {
           </div>
           <div className="button-container">
             <div className="button-wrapper">
+<<<<<<< HEAD
               <input
                 className="ui green button"
                 type="submit"
                 value="Save"
               />
+=======
+              <input className="ui button" type="submit" value="Save" />
+>>>>>>> 9527020ad00008a71b9756726662d3f7b3116bee
             </div>
           </div>
         </form>

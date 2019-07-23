@@ -8,11 +8,13 @@ import "./../../styles/MemberSignUpForm.css";
 import stringifyAddress from "./../../utility/stringifyAddress";
 import Birthday from "./../birthday/Birthday";
 import Anniversary from "./../anniversary/Anniversary";
+import { Select } from 'semantic-ui-react'
 
 class MemberSignUpForm extends Component {
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
     const add = this.props.address.address;
+    console.log(formValues);
 
     if (add) {
       const address = stringifyAddress(unit, add);
@@ -47,6 +49,20 @@ class MemberSignUpForm extends Component {
 
   render() {
     const { handleSubmit, error } = this.props;
+    const birthdayOptions = [
+      { key: 'af', value: 'af', text: 'January' },
+      { key: 'ax', value: 'ax', text: 'February' },
+      { key: 'al', value: 'al', text: 'March' },
+      { key: 'dz', value: 'dz', text: 'April' },
+      { key: 'as', value: 'as', text: 'May' },
+      { key: 'ad', value: 'ad', text: 'June' },
+      { key: 'ao', value: 'ao', text: 'July' },
+      { key: 'ai', value: 'ai', text: 'August' },
+      { key: 'ag', value: 'ag', text: 'September' },
+      { key: 'ar', value: 'ar', text: 'October' },
+      { key: 'am', value: 'am', text: 'Novemer' },
+      { key: 'aw', value: 'aw', text: 'December' },
+  ]
 
     return (
       <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
@@ -79,12 +95,18 @@ class MemberSignUpForm extends Component {
 
         <div>
           <label>Birthday</label>
-          <Birthday />
+          <Field  name="birthday" component={Select} placeholder="Get a Free Meal" options={birthdayOptions}>
+            
+          </Field>
+
         </div>
 
         <div>
           <label>Anniversary</label>
-          <Anniversary />
+          <Field 
+          name="anniversary"
+          component={Anniversary}
+          />
         </div>
 
         <div className="button-container">
