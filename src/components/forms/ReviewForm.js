@@ -39,7 +39,9 @@ class ReviewForm extends Component {
         await LocalAPI.post(`/reviews`, {
           foodRating,
           serviceRating,
-          comment
+          comment,
+          floorStaff,
+          kitchenStaff
         }).then(() => {
           this.props.reset();
           this.props.history.push("/thankyou")
@@ -52,7 +54,9 @@ class ReviewForm extends Component {
 
     await LocalAPI.post(`/reviews`, {
       foodRating,
-      serviceRating
+      serviceRating,
+      floorStaff,
+      kitchenStaff
     }).then(() => {
       this.props.reset();
       this.props.history.push("/thankyou")
@@ -141,9 +145,13 @@ class ReviewForm extends Component {
               </div>
             </div>
           </div>
-          <div> 
+          <div>
             {floorStaff && floorStaff.map(staff => {
-              return <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
+              return (<div className = "image-container"> 
+              <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
+              </div>
+              )
+
             })}
 
           </div>
