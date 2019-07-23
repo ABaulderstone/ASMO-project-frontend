@@ -87,6 +87,8 @@ class ReviewForm extends Component {
 
   render() {
     const { handleSubmit, error } = this.props;
+    const {floorStaff, kitchenStaff} = this.state;
+    console.log(floorStaff, kitchenStaff);
 
 
     return (
@@ -112,7 +114,7 @@ class ReviewForm extends Component {
           </div>
           <div className="field">
             <div className="rating-container" style={{ marginBottom: "20px" }}>
-              <label><h2>How was your meal?</h2></label>
+              <label><h2>How was the service?</h2></label>
             </div>
             <div className="rating-container">
 
@@ -138,6 +140,12 @@ class ReviewForm extends Component {
                 />
               </div>
             </div>
+          </div>
+          <div> 
+            {floorStaff && floorStaff.map(staff => {
+              return <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
+            })}
+
           </div>
           <div className="button-container">
             <div className="button-wrapper">
