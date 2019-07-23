@@ -88,7 +88,7 @@ class MemberSignUpForm extends Component {
         </div>
 
         <div className="button-container">
-          <input className="ui button" type="submit" value="Submit" />
+          <input className="ui green button" type="submit" value="Submit" />
         </div>
 
       </form>
