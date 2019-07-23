@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm, SubmissionError } from "redux-form";
+import { Field, reduxForm} from "redux-form";
 import Input from "./fields/Input";
 import { searchCustomerByNumber } from "./../../actions/index";
 
 class CustomerSearchForm extends Component {
   state = {
-    loading: false
+    loading: false,
+    error: null
   };
 
   onFormSubmit = async formValues => {
@@ -17,7 +18,8 @@ class CustomerSearchForm extends Component {
         this.setState({ loading: false });
       })
       .catch(err => {
-        throw new SubmissionError(err.response.data);
+        console.log(err);
+        this.setState({loading: false, error:"Search Failed"});
       });
   };
   render() {
@@ -44,6 +46,7 @@ class CustomerSearchForm extends Component {
             </div>}
             {this.state.loading && <button className= "ui primary loading button">Loading</button>}
           </div>
+          {this.state.error}
         </form>
       </>
     );
