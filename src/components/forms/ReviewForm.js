@@ -28,16 +28,20 @@ class ReviewForm extends Component {
   state = {
     foodRating: null,
     serviceRating: null,
-    comment: null
+    comment: null,
+    floorStaff: null,
+    kitchenStaff: null
   }
   onFormSubmit = async () => {
-    const { foodRating, serviceRating, comment } = this.state;
+    const { foodRating, serviceRating, comment, floorStaff, kitchenStaff} = this.state;
     if (comment) {
       return (
         await LocalAPI.post(`/reviews`, {
           foodRating,
           serviceRating,
-          comment
+          comment,
+          floorStaff,
+          kitchenStaff
         }).then(() => {
           this.props.reset();
           this.props.history.push("/thankyou")
@@ -50,7 +54,9 @@ class ReviewForm extends Component {
 
     await LocalAPI.post(`/reviews`, {
       foodRating,
-      serviceRating
+      serviceRating,
+      floorStaff,
+      kitchenStaff
     }).then(() => {
       this.props.reset();
       this.props.history.push("/thankyou")
@@ -68,9 +74,25 @@ class ReviewForm extends Component {
   onCommentChange = (name, event) => {
     this.setState({ [name]: event.target.value })
   }
+   componentDidMount() {
+     const kitchenQuery = LocalAPI.get("/staff?duty=kitchen");
+     const floorQuery = LocalAPI.get("/staff?duty=floor");
+     Promise.all([kitchenQuery,floorQuery])
+     .then(responses => {
+       this.setState({kitchenStaff: responses[0].data});
+       this.setState({floorStaff: responses[1].data});
+     })
+     .catch(err => {
+       throw new SubmissionError(err.response.data);
+     })
+    
+
+  }
 
   render() {
     const { handleSubmit, error } = this.props;
+    const {floorStaff, kitchenStaff} = this.state;
+    console.log(floorStaff, kitchenStaff);
 
 
     return (
@@ -96,7 +118,7 @@ class ReviewForm extends Component {
           </div>
           <div className="field">
             <div className="rating-container" style={{ marginBottom: "20px" }}>
-              <label><h2>How was your meal?</h2></label>
+              <label><h2>How was the service?</h2></label>
             </div>
             <div className="rating-container">
 
@@ -122,6 +144,16 @@ class ReviewForm extends Component {
                 />
               </div>
             </div>
+          </div>
+          <div>
+            {floorStaff && floorStaff.map(staff => {
+              return (<div className = "image-container"> 
+              <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
+              </div>
+              )
+
+            })}
+
           </div>
           <div className="button-container">
             <div className="button-wrapper">
