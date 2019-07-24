@@ -4,6 +4,8 @@ import AddressInput from "./AddressInput";
 import axios from "axios";
 import { connect } from "react-redux";
 import { setAddress } from "./../../actions";
+import stringifyAddress from "./../../utility/stringifyAddress";
+
 
 const APP_ID_HERE = process.env.REACT_APP_ID;
 const APP_CODE_HERE = process.env.REACT_APP_CODE;
@@ -83,6 +85,7 @@ class AddressForm extends Component {
   };
   // User has clicked the check button
   onCheck = evt => {
+    this.setState({isChecked: false});
     evt.preventDefault();
     let params = {
       app_id: APP_ID_HERE,
@@ -184,6 +187,12 @@ class AddressForm extends Component {
         <AddressSuggest query={this.state.query} onChange={this.onQuery} />
         <br />
         {result}
+        {this.state.address.district && this.state.isChecked && 
+        <div className="alert alert-success" role="alert">
+          <div id="err-msg" className="ui green message">
+        {stringifyAddress(null, this.state.address)}
+        </div>
+        </div>}
         <button
           className="ui yellow button"
           onClick={this.onCheck}
