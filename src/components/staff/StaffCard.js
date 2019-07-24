@@ -6,7 +6,7 @@ function StaffCard(props) {
     <>
       <div className="card">
         <div className="image">
-          <img src={props.avatar} />
+          <img src={props.avatar} alt= {props.name} />
         </div>
 
         <div className="content">

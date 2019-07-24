@@ -32,6 +32,7 @@ class CommentsShowPage extends Component {
                   />
                 );
               }
+              return null
             })}
           </div>
         </div>

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Navbar from "./../navbar/Navbar";
 import { fetchCustomers } from "./../../actions/index";
 import { connect } from "react-redux";

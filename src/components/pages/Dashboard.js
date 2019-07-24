@@ -88,6 +88,9 @@ const mapStateToProps = (state) => {
             chartData.datasets[0].data[4] = val.kitchen.avg;
             chartData.datasets[1].data[4] = val.floor.avg;
             break;
+        default: 
+        console.log("No such day");
+        break;
 
        }
     }
