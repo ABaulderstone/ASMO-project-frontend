@@ -8,11 +8,15 @@ import "./../../styles/MemberSignUpForm.css";
 import stringifyAddress from "./../../utility/stringifyAddress";
 import Birthday from "./../birthday/Birthday";
 import Anniversary from "./../anniversary/Anniversary";
-import { Select } from 'semantic-ui-react'
+import { Select } from "semantic-ui-react";
 
 class MemberSignUpForm extends Component {
+  state = {
+    loading: false
+  };
   onFormSubmit = async formValues => {
     const { name, phone, email, unit } = formValues;
+    this.setState({ loading: true });
     const add = this.props.address.address;
     console.log(formValues);
 
@@ -32,7 +36,6 @@ class MemberSignUpForm extends Component {
           throw new SubmissionError(err.response.data);
         });
     } else
-
       await LocalAPI.post(`/customers`, {
         name,
         phone,
@@ -50,19 +53,19 @@ class MemberSignUpForm extends Component {
   render() {
     const { handleSubmit, error } = this.props;
     const birthdayOptions = [
-      { key: 'af', value: 'af', text: 'January' },
-      { key: 'ax', value: 'ax', text: 'February' },
-      { key: 'al', value: 'al', text: 'March' },
-      { key: 'dz', value: 'dz', text: 'April' },
-      { key: 'as', value: 'as', text: 'May' },
-      { key: 'ad', value: 'ad', text: 'June' },
-      { key: 'ao', value: 'ao', text: 'July' },
-      { key: 'ai', value: 'ai', text: 'August' },
-      { key: 'ag', value: 'ag', text: 'September' },
-      { key: 'ar', value: 'ar', text: 'October' },
-      { key: 'am', value: 'am', text: 'Novemer' },
-      { key: 'aw', value: 'aw', text: 'December' },
-  ]
+      { key: "af", value: "af", text: "January" },
+      { key: "ax", value: "ax", text: "February" },
+      { key: "al", value: "al", text: "March" },
+      { key: "dz", value: "dz", text: "April" },
+      { key: "as", value: "as", text: "May" },
+      { key: "ad", value: "ad", text: "June" },
+      { key: "ao", value: "ao", text: "July" },
+      { key: "ai", value: "ai", text: "August" },
+      { key: "ag", value: "ag", text: "September" },
+      { key: "ar", value: "ar", text: "October" },
+      { key: "am", value: "am", text: "Novemer" },
+      { key: "aw", value: "aw", text: "December" }
+    ];
 
     return (
       <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
@@ -80,39 +83,41 @@ class MemberSignUpForm extends Component {
           <Field name="email" component={Input} type="text" />
         </div>
         <div>
-          <label>Unit</label>
+          <label>Address 1 (optional)</label>
           <Field
             name="unit"
             component={Input}
             type="text"
-            placeholder="optional"
+            placeholder="Apartment, suite, unit number."
           />
         </div>
-
         <div>
           <AddressForm />
         </div>
 
         <div>
           <label>Birthday</label>
-          <Field  name="birthday" component={Select} placeholder="Get a Free Meal" options={birthdayOptions}>
-            
-          </Field>
-
+          <Field
+            name="birthday"
+            component={Select}
+            placeholder="Get a Free Meal"
+            options={birthdayOptions}
+          />
         </div>
 
         <div>
           <label>Anniversary</label>
-          <Field 
-          name="anniversary"
-          component={Anniversary}
-          />
+          <Field name="anniversary" component={Anniversary} />
         </div>
 
         <div className="button-container">
-          <input className="ui green button" type="submit" value="Submit" />
+          {!this.state.loading && (
+            <input className="ui green button" type="submit" value="Submit" />
+          )}
+          {this.state.loading && (
+            <button className="ui green loading  button">Loading</button>
+          )}
         </div>
-
       </form>
     );
   }
@@ -134,8 +139,12 @@ const WrappedMemberSignUpForm = reduxForm({
       errors.email = "Email is required";
     }
 
-    if (!(/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(formValues.phone))) {
-      errors.phone = "Not a valid Australian mobile number"
+    if (
+      !/^04(\s?[0-9]{2}\s?)([0-9]{3}\s?[0-9]{3}|[0-9]{2}\s?[0-9]{2}\s?[0-9]{2})$/.test(
+        formValues.phone
+      )
+    ) {
+      errors.phone = "Not a valid Australian mobile number";
     }
 
     return errors;
