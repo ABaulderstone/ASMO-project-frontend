@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm} from "redux-form";
+import { Field, reduxForm } from "redux-form";
 import Input from "./fields/Input";
 import { searchCustomerByNumber } from "./../../actions/index";
 
@@ -13,13 +13,14 @@ class CustomerSearchForm extends Component {
   onFormSubmit = async formValues => {
     this.setState({ loading: true, error: false });
     const { phone } = formValues;
-    this.props.searchCustomerByNumber(phone)
+    this.props
+      .searchCustomerByNumber(phone)
       .then(() => {
         this.setState({ loading: false });
       })
       .catch(err => {
         console.log(err);
-        this.setState({loading: false, error:"Search Failed!"});
+        this.setState({ loading: false, error: "Search Failed!" });
       });
   };
   render() {
@@ -36,17 +37,25 @@ class CustomerSearchForm extends Component {
           />
 
           <div className="button-container">
-            {!this.state.loading && <div className="button-wrapper">
-              <input
-                style={{ marginBottom: "1.5rem" }}
-                className="ui primary button button-pos"
-                type="submit"
-                value="Search"
-              />
-            </div>}
-            {this.state.loading && <button className= "ui primary loading button">Loading</button>}
+            {!this.state.loading && (
+              <div className="button-wrapper">
+                <input
+                  style={{ marginBottom: "1.5rem" }}
+                  className="ui primary button button-pos"
+                  type="submit"
+                  value="Search"
+                />
+              </div>
+            )}
+            {this.state.loading && (
+              <button className="ui primary loading button">Loading</button>
+            )}
           </div>
-          {this.state.error && <div className="ui red message" style={{padding: "8px 16px 8px 16px", display:"inline-block", margin: "0"}}>{this.state.error}</div>} 
+          {this.state.error && (
+            <div className="ui red message" id="err-msg">
+              {this.state.error}
+            </div>
+          )}
         </form>
       </>
     );
