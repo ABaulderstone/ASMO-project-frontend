@@ -24,7 +24,6 @@ class CommentsShowPage extends Component {
               if (review.comment) {
                 return (
                   <CommentCard
-                    key={review._id}
                     comment={review.comment}
                     foodRating={review.foodRating}
                     serviceRating={review.serviceRating}

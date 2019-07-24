@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Navbar from "./../navbar/Navbar";
 import RosterItem from "./../roster/RosterItem";
 import { connect } from "react-redux";
-import { Field, reduxForm, SubmissionError } from "redux-form";
+import { reduxForm, SubmissionError } from "redux-form";
 import { fetchStaff } from "./../../actions/index";
 import localAPI from "./../../apis/local";
 
