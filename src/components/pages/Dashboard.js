@@ -42,6 +42,7 @@ class Dashboard extends Component {
 
   render() {
     const {chartData} = this.props;
+    console.log(chartData);
 
     return (
       <>
@@ -49,7 +50,7 @@ class Dashboard extends Component {
         <div>
           <h1>Dashboard</h1>
           <div>Land of Smiles</div>
-          {chartData && <BarChart chartData={chartData} legendPosition="bottom" />}
+          {chartData.datasets && <BarChart chartData={chartData} legendPosition="bottom" />}
         </div>
       </>
     );
