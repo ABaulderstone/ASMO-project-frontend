@@ -5,21 +5,17 @@ import BarChart from "./../chart/BarChart";
 import {connect} from "react-redux";
 import {fetchChartData} from "./../../actions/index";
 import moment from "moment";
-import tz from "moment-timezone";
-import { stat } from "fs";
+import "moment-timezone";
+
 
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-    this.state = {
-      chartData: {}
-    };
-  }
+
 
   componentDidMount() {
     this.props.fetchChartData();
   }
+ 
 
 
 
@@ -96,7 +92,7 @@ const mapStateToProps = (state) => {
        }
     }
   })
-    //or start out with array
+   
   }
 
   return {

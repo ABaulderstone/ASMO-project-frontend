@@ -18,13 +18,23 @@ class StaffForm extends Component {
       formData.append("image", image);
       const response = await ImageUploadAPI.post("/images/", formData);
       const { imageUrl: avatar } = response.data;
-      console.log(avatar);
-      await this.props.newStaffSubmission(name, avatar).catch(err => {
+      await this.props.newStaffSubmission(name, avatar)
+      .then (() => {
+        this.setState({ loading: false });
+
+      })
+      .catch(err => {
+        this.setState({ loading: false });
         throw new SubmissionError(err.response.data);
       });
       this.props.reset();
     } else {
-      await this.props.newStaffSubmission(name).catch(err => {
+      await this.props.newStaffSubmission(name).then (() => {
+        this.setState({ loading: false });
+
+      })
+      .catch(err => {
+        this.setState({ loading: false });
         throw new SubmissionError(err.response.data);
       });
       this.props.reset();
@@ -36,7 +46,9 @@ class StaffForm extends Component {
 
     return (
       <>
-        {error}
+        {error && <div className="ui red message" id="err-msg">
+              {error}
+            </div>}
 
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <div className="field">
@@ -63,7 +75,7 @@ class StaffForm extends Component {
               <button className="ui green loading button">Loading</button>
             )}
           </div>
-          {this.state.error}
+          
         </form>
       </>
     );
@@ -75,9 +87,12 @@ const WrappedStaffForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {
-      errors.name = "Name is Required";
+      errors.name = (
+        <div id="err-msg" className="ui yellow message err-msg">
+          Name is required!
+        </div>
+      );
     }
-
     return errors;
   }
 })(StaffForm);
