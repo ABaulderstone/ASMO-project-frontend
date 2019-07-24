@@ -10,10 +10,15 @@ import { deleteStaff } from "./../../actions/index";
 import { async } from "q";
 
 class EditStaffPage extends Component {
+  state = {
+    loading: null
+  }
+  
   onFormSubmit = async formValues => {
     const { name, image } = formValues;
     const { id } = this.state;
     if (image) {
+      this.setState({loading: true});
       const formData = new FormData();
       formData.append("image", image);
       const response = await ImageUploadAPI.post("/images/", formData);
@@ -23,21 +28,26 @@ class EditStaffPage extends Component {
       await localapi
         .put(`/staff/${id}`, { name, avatar })
         .then(() => {
+          this.setState({loading:false});
           this.props.reset();
           this.props.history.push("/staff");
         })
         .catch(err => {
+          this.setState({loading:false});
           throw new SubmissionError(err.response.data);
         });
     } else {
-      const avatar = "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
+     
+      this.setState({loading: true});
       await localapi
-        .put(`/staff/${id}`, { name, avatar })
+        .put(`/staff/${id}`, { name})
         .then(() => {
+          this.setState({loading:false});
           this.props.reset();
           this.props.history.push("/staff");
         })
         .catch(err => {
+          this.setState({loading:false});
           throw new SubmissionError(err.response.data);
         });
     }
@@ -45,10 +55,13 @@ class EditStaffPage extends Component {
 
   onDeleteButtonClick = async () => {
     const { id } = this.state;
+    this.setState({loading: true});
     await this.props.deleteStaff(id)
       .then(() => {
+        this.setState({loading: false});
         this.props.history.push("/staff");
       }).catch(err => {
+        this.setState({loading: false});
         throw new SubmissionError(err.response.data);
       })
   };
@@ -60,7 +73,7 @@ class EditStaffPage extends Component {
   }
 
   render() {
-    const { handleSubmit, error, name } = this.props;
+    const { handleSubmit, error } = this.props;
     return (
       <>
         {error}
@@ -81,7 +94,12 @@ class EditStaffPage extends Component {
             </div>
             <div className="button-container">
               <div className="button-wrapper">
-                <input className="ui green button" type="submit" value="Save" />
+              {!this.state.loading && (
+            <input className="ui green button" type="submit" value="Submit" />
+          )}
+          {this.state.loading && (
+            <button className="ui green loading  button">Loading</button>
+          )}
               </div>
             </div>
           </form>
