@@ -37,8 +37,8 @@ class RosterPage extends Component {
     const { staff, handleSubmit } = this.props;
     return (
       <>
-        <h1>Roster</h1>
         <Navbar />
+        <h1 className="page-header">Roster</h1>
         <form onSubmit={handleSubmit(this.onSaveButtonClick)}>
           <div className="ui cards">
             {staff.map(s => {

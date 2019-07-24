@@ -12,14 +12,7 @@ class CustomerSearchPage extends Component {
         <Navbar />
         <div className="ui container">
           <div className="ui segment">
-            <h1
-              style={{
-                fontSize: "2rem",
-                textAlign: "center"
-              }}
-            >
-              Member Search
-            </h1>
+            <h1 className="page-header">Member Search</h1>
             <CustomerSearchForm />
             {customers.map(customer => {
               return (
