@@ -10,8 +10,8 @@ const CustomerCard = props => {
       <div className="extra content">
         <div>Email:{props.email}</div> 
         <div>Phone Number: {props.phone}</div>
-        <div>Birthday: {props.dob || "No birthday given"}</div>
-        <div>Anniversary: {props.anniversary || "No anniversary given"}</div>
+        <div>Birthday: {props.birthday}</div>
+        <div>Anniversary: {props.anniversary}</div>
       </div>
     </div>
   );
