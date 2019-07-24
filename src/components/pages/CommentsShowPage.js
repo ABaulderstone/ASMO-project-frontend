@@ -24,10 +24,13 @@ class CommentsShowPage extends Component {
               if (review.comment) {
                 return (
                   <CommentCard
+                    id= {review._id}
                     comment={review.comment}
                     foodRating={review.foodRating}
                     serviceRating={review.serviceRating}
                     date={review.date}
+                    floorStaff={review.floorStaff}
+                    kitchenStaff={review.kitchenStaff}
                   />
                 );
               }
