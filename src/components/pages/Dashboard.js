@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Navbar from "./../navbar/Navbar";
 import "bulma/css/bulma.css";
 import BarChart from "./../chart/BarChart";
-import connect from "react-redux";
+import {connect} from "react-redux";
+import {fetchChartData} from "./../../actions/index";
+import LocalAPI from "./../../apis/local";
 
 
 class Dashboard extends Component {
@@ -13,7 +15,9 @@ class Dashboard extends Component {
     };
   }
 
-  
+  componentDidMount() {
+    this.props.fetchChartData();
+  }
 
   getChartData() {
     // ajax calls here
@@ -37,13 +41,15 @@ class Dashboard extends Component {
   }
 
   render() {
+    const {chartData} = this.props;
+
     return (
       <>
         <Navbar />
         <div>
           <h1>Dashboard</h1>
           <div>Land of Smiles</div>
-          <BarChart chartData={this.state.chartData} legendPosition="bottom" />
+          {chartData && <BarChart chartData={chartData} legendPosition="bottom" />}
         </div>
       </>
     );
@@ -51,8 +57,30 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  chartData: state.chartData
+  let chartData = {};
+  
+  if (state.chartData.length > 0) {
+    chartData.labels = ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"];
+    chartData.datasets = [
+      {
+        label: "Kitchen",
+        data: [2, 2, 2, 2, 2, 2, 2],
+        backgroundColor: "#D6E9C6"
+      },
+      {
+        label: "Floor",
+        data: [2, 2, 2, 2, 2, 2, 2],
+        backgroundColor: "#EBCCD1"
+      }
+    ]
+    //create a const that is the current week number 1..52
+    //loop through dates and get each dates week number and if that matches our current weeek keep it
+    //or start out with array
+  }
 
+  return {
+    chartData
+  };
 }
 
-export default connect(mapStateToProps) (Dashboard);
+export default connect(mapStateToProps, {fetchChartData}) (Dashboard);

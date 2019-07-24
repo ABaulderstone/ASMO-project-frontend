@@ -9,11 +9,10 @@ import {
 } from "./types";
 
 import LocalAPI from "./../apis/local";
-import { async } from "q";
 const setChartData = (response) => {
   return {
     type: SET_CHART_DATA,
-    payload: response.data;
+    payload: response.data
   }
 }
 const setCustomers = customers => {
