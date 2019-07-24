@@ -12,18 +12,25 @@ class CustomerSearchPage extends Component {
         <Navbar />
         <div className="ui container">
           <div className="ui segment">
-          <h1 style={{fontSize: "1.5rem", textAlign: "center", margin: "1rem"}}>Member Search</h1>
-          <CustomerSearchForm  />
-          {customers.map(customer => {
-            return (
-              <CustomerCard
-                name={customer.name}
-                email={customer.email}
-                phone={customer.phone}
-                address={customer.address}
-              />
-            );
-          })}
+            <h1
+              style={{
+                fontSize: "2rem",
+                textAlign: "center"
+              }}
+            >
+              Member Search
+            </h1>
+            <CustomerSearchForm />
+            {customers.map(customer => {
+              return (
+                <CustomerCard
+                  name={customer.name}
+                  email={customer.email}
+                  phone={customer.phone}
+                  address={customer.address}
+                />
+              );
+            })}
           </div>
         </div>
       </>
