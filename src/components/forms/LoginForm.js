@@ -4,21 +4,19 @@ import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
-import "./../../styles/LoginForm.css";
-
 
 class LoginForm extends Component {
   state = {
     loading: false
-  }
-  
+  };
+
   onFormSubmit = async formValues => {
     const { email, password } = formValues;
-    this.setState({loading: true});
+    this.setState({ loading: true });
     await this.props
       .loginUser(email, password)
       .then(() => {
-        this.setState({loading: false});
+        this.setState({ loading: false });
         this.props.history.push("/dashboard");
       })
       .catch(err => {
@@ -42,19 +40,22 @@ class LoginForm extends Component {
           <Field name="password" component={Input} type="password" />
         </div>
         <div className="button-container">
-        {!this.state.loading && <div className="button-wrapper">
-             <input
-              className="ui primary button button-pos"
-              type="submit"
-              value="Login"
-            />
-            
-          </div>}
-          {this.state.loading && <button className="ui primary loading button" >Loading</button>}
+          {!this.state.loading && (
+            <div className="button-wrapper">
+              <input
+                className="ui primary button button-pos"
+                type="submit"
+                value="Login"
+              />
+            </div>
+          )}
+          {this.state.loading && (
+            <button className="ui primary loading button">Loading</button>
+          )}
         </div>
-        
+
         <div className="forget-pass-container">
-          <div className="forget-pass-wrapper">
+          <div>
             <Link to="forgot_password">
               <button className="button-style button-effect">
                 Forgot Password?
@@ -63,14 +64,12 @@ class LoginForm extends Component {
           </div>
         </div>
         <div className="add-new-container">
-          <div className="add-new-wrapper">
+          <div>
             <Link to="/register">
-              <button className="button-style new-account-button button-effect">
+              <button className="button-style new-account-button">
                 Create new account
               </button>
             </Link>
-
-            {/* <a title="Create new Account"><i className="universal access icon large"></i></a> */}
           </div>
         </div>
       </form>
@@ -83,11 +82,33 @@ const WrappedLoginForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.email) {
-      errors.email = <div style={{display: "inline-block", margin: "0.5rem 0 0.5rem 0", padding: "8px 16px 8px 16px"}} className="ui yellow message">Name is required!</div>;
+      errors.email = (
+        <div
+          style={{
+            display: "inline-block",
+            margin: "0.5rem 0 0.5rem 0",
+            padding: "8px 16px 8px 16px"
+          }}
+          className="ui yellow message"
+        >
+          Name is required!
+        </div>
+      );
     }
 
     if (!formValues.password) {
-      errors.password = <div style={{display: "inline-block", margin: "0.5rem 0 0.5rem 0", padding: "8px 16px 8px 16px"}} className="ui yellow message">Password is required!</div>;
+      errors.password = (
+        <div
+          style={{
+            display: "inline-block",
+            margin: "0.5rem 0 0.5rem 0",
+            padding: "8px 16px 8px 16px"
+          }}
+          className="ui yellow message"
+        >
+          Password is required!
+        </div>
+      );
     }
 
     return errors;

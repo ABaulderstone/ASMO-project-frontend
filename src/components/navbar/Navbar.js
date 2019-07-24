@@ -8,31 +8,31 @@ export default class Navbar extends Component {
     activeMenu: false,
     pages: [
       {
-        name: "dashboard",
+        name: "Dashboard",
         URL: "/dashboard"
       },
       {
-        name: "customers",
+        name: "Customers",
         URL: "/customers/show"
       },
       {
-        name: "comments",
+        name: "Comments",
         URL: "/comments"
       },
       {
-        name: "staff",
+        name: "Staff",
         URL: "/staff"
       },
       {
-        name: "roster",
+        name: "Roster",
         URL: "/roster"
       },
       {
-        name: "app",
+        name: "App",
         URL: "/app_choice"
       },
       {
-        name: "logout",
+        name: "Logout",
         URL: "/goodbye"
       }
     ]
@@ -44,7 +44,7 @@ export default class Navbar extends Component {
     });
   };
   render() {
-    let { pages = [], color } = this.state;
+    let { pages = [] } = this.state;
     // let navbarItems = pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />);
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">

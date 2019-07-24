@@ -27,13 +27,15 @@ class CustomerSearchForm extends Component {
     const { handleSubmit, error } = this.props;
     return (
       <>
-        {error}
+        {error && <div className="ui red message" id="err-msg">
+              {error}
+            </div>}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <Field
             placeholder="Phone Number"
             name="phone"
             component={Input}
-            type="number"
+            type="text"
           />
 
           <div className="button-container">
@@ -67,7 +69,7 @@ const WrappedCustomerSearchForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.number) {
-      errors.email = "Number is required";
+      errors.number = "Number is required";
     }
 
     return errors;

@@ -16,9 +16,7 @@ const anniversaryOptions = [
     { key: 'aw', value: 'aw', text: 'December' },
 ]
 
-const SelectExample = () => (
-    <Select placeholder='Select your anniversary' options={anniversaryOptions} />
-)
+
 
 class Anniversary extends Component {
     render() {

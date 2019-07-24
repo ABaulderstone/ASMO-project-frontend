@@ -4,20 +4,18 @@ import { registerUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
-import "./../../styles/RegisterForm.css";
 
 class RegisterForm extends Component {
-
   state = {
     loading: false
-  }
+  };
   onFormSubmit = async formValues => {
     const { email, password, confrimPassword } = formValues;
-    this.setState({loading: true});
+    this.setState({ loading: true });
     await this.props
       .registerUser(email, password, confrimPassword)
       .then(() => {
-        this.setState({loading:false});
+        this.setState({ loading: false });
         this.props.history.push("/dashboard");
       })
       .catch(err => {
@@ -50,12 +48,19 @@ class RegisterForm extends Component {
             <Field name="confrimPassword" component={Input} type="password" />
           </div>
           <div className="button-container">
-          {!this.state.loading &&  <div className="button-wrapper">
-              <input className="ui primary button" type="submit" value="Create" />
-            </div>}
-            {this.state.loading && <button className= "ui primary loading button">Loading</button>}
+            {!this.state.loading && (
+              <div className="button-wrapper">
+                <input
+                  className="ui primary button"
+                  type="submit"
+                  value="Create"
+                />
+              </div>
+            )}
+            {this.state.loading && (
+              <button className="ui primary loading button">Loading</button>
+            )}
           </div>
-          }
           <Link to="/login">
             <button className="button-style new-account-button button-effect">
               Already have an Account?
@@ -72,23 +77,43 @@ const WrappedRegisterForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.email) {
-      errors.email = "Email is required";
+      errors.email = (
+        <div className="ui yellow message" id="err-msg">
+          Email is required
+        </div>
+      );
     }
 
     if (!formValues.password) {
-      errors.password = "Password is required";
+      errors.password = (
+        <div className="ui yellow message" id="err-msg">
+          Password is required
+        </div>
+      );
     }
 
     if (!formValues.confrimPassword) {
-      errors.confrimPassword = " Confirm Password is required";
+      errors.confrimPassword = (
+        <div className="ui yellow message" id="err-msg">
+          Confirm Password is required
+        </div>
+      );
     }
 
     if (!formValues.restaurantName) {
-      errors.restaurantName = " Restaurant name is required";
+      errors.restaurantName = (
+        <div className="ui yellow message" id="err-msg">
+          Restaurant name is required
+        </div>
+      );
     }
 
     if (formValues.password !== formValues.confrimPassword) {
-      errors.confrimPassword = "Must match password";
+      errors.confrimPassword = (
+        <div className="ui yellow message" id="err-msg">
+          Must match password
+        </div>
+      );
     }
 
     return errors;

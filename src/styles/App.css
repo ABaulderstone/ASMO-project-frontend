@@ -2,16 +2,80 @@ input,
 label {
   display: block;
 }
-
+/* PAGE HEADERS */
 .page-header {
   font-size: 2rem;
   text-align: center;
   margin: 1rem;
   margin-bottom: 1vh;
 }
-
+/* ERROR MSGS */
 #err-msg {
   display: inline-block;
   margin: 0.5rem 0rem 0.5rem 0rem;
   padding: 8px 16px 8px 16px;
+}
+
+.button-style {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: blue;
+  background-color: transparent;
+  /* show a hand cursor     on hover; some argue that we
+    should keep the default arrow cursor for buttons */
+  cursor: pointer;
+}
+/* PAGES */
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forget-pass-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.add-new-container {
+  display: flex;
+  align-items: right;
+  justify-content: right;
+}
+
+.new-account-button {
+  margin-top: 15px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.image-container {
+  display: inline-block;
+}
+
+/* RATING */
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.image-container {
+  display: inline-block;
 }

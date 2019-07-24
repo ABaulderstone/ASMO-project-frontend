@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { Field } from "redux-form";
 import Input from "./../../components/forms/fields/Input";
 
 class RosterItem extends Component {
@@ -10,7 +9,7 @@ class RosterItem extends Component {
         <div className="card">
           <div className="content">
             <div className="right floated mini ui image">
-              <img src={this.props.avatar} />
+              <img src={this.props.avatar} alt={this.props.name} />
             </div>
             <div className= "header">{this.props.name}</div>
             <div className ="meta"> {this.props.duty}</div>
