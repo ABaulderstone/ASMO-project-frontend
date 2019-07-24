@@ -149,9 +149,6 @@ class AddressForm extends Component {
     if (this.state.coords === null) {
       return (
         <div className="alert alert-warning" role="alert">
-<<<<<<< HEAD
-         <div style={{display: "inline-block", padding: "8px 16px 8px 16px"}} className="ui red message"> <b>Invalid.</b> The address is not recognized.</div>
-=======
           <div
             style={{ display: "inline-block", padding: "8px 16px 8px 16px" }}
             className="ui red message"
@@ -159,22 +156,17 @@ class AddressForm extends Component {
             {" "}
             <b>Invalid.</b> The address is not recognized.
           </div>
->>>>>>> dev
         </div>
       );
     } else {
       return (
         <div className="alert alert-success" role="alert">
-<<<<<<< HEAD
-          <div style={{display: "inline-block", padding: "8px 16px 8px 16px"}} className="ui green message"><b>Valid Address.</b></div>
-=======
           <div
             style={{ display: "inline-block", padding: "8px 16px 8px 16px" }}
             className="ui green message"
           >
             <b>Valid Address.</b>
           </div>
->>>>>>> dev
         </div>
       );
     }

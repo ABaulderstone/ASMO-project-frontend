@@ -21,26 +21,7 @@ class Dashboard extends Component {
     this.props.fetchChartData();
   }
 
-  getChartData() {
-    // ajax calls here
-    this.setState({
-      chartData: {
-        labels: ["Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun"],
-        datasets: [
-          {
-            label: "Kitchen",
-            data: [1, 2, 5, 4],
-            backgroundColor: "#D6E9C6"
-          },
-          {
-            label: "Floor",
-            data: [1, 2, 5, 4],
-            backgroundColor: "#EBCCD1"
-          }
-        ]
-      }
-    });
-  }
+
 
   render() {
     const {chartData} = this.props;
