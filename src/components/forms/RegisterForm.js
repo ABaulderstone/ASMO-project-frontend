@@ -4,7 +4,6 @@ import { registerUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
-import "./../../styles/RegisterForm.css";
 
 class RegisterForm extends Component {
   state = {

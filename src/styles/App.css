@@ -26,7 +26,7 @@ label {
     should keep the default arrow cursor for buttons */
   cursor: pointer;
 }
-/* LOGIN PAGE */
+/* PAGES */
 .button-container {
   display: flex;
   align-items: center;
@@ -48,4 +48,34 @@ label {
 
 .new-account-button {
   margin-top: 15px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.image-container {
+  display: inline-block;
+}
+
+/* RATING */
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-container {
+  margin-top: 10px;
+}
+
+.image-container {
+  display: inline-block;
 }

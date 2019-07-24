@@ -4,9 +4,7 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import LocalAPI from "./../../apis/local";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
-import "./../../styles/MemberSignUpForm.css";
 import stringifyAddress from "./../../utility/stringifyAddress";
-import Birthday from "./../birthday/Birthday";
 import Anniversary from "./../anniversary/Anniversary";
 import { Select } from "semantic-ui-react";
 
