@@ -7,9 +7,8 @@ import CustomerSearchForm from "./../forms/CustomerSearchForm";
 import CustomerItem from "./../../components/CustomerItem";
 
 class CustomerShowPage extends Component {
-  
-    componentDidMount() {
-    this.props.fetchCustomers()
+  componentDidMount() {
+    this.props.fetchCustomers();
   }
 
   render() {
@@ -19,10 +18,10 @@ class CustomerShowPage extends Component {
       <>
         <Navbar />
         <div className="ui container">
-        <div className="ui segment" style={{marginBottom: "1rem"}}>
-        <h1 style={{textAlign: "center", fontSize:"2rem", marginBottom:"1rem"}}>Customers</h1>
-        <CustomerSearchForm />
-        </div>
+          <div className="ui segment" style={{ marginBottom: "1rem" }}>
+            <h1 className="page-header">Customers</h1>
+            <CustomerSearchForm />
+          </div>
         </div>
         <div className="ui container">
           <table className="ui celled table">
@@ -54,6 +53,8 @@ function mapStateToProps(state) {
   return {
     customers: state.customers
   };
-
 }
-export default connect(mapStateToProps, {fetchCustomers}) (CustomerShowPage);
+export default connect(
+  mapStateToProps,
+  { fetchCustomers }
+)(CustomerShowPage);
