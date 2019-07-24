@@ -7,7 +7,7 @@ import localapi from "./../../apis/local";
 import ImageUploadAPI from "./../../apis/image_upload";
 import { Link } from "react-router-dom";
 import { deleteStaff } from "./../../actions/index";
-import { async } from "q";
+
 
 class EditStaffPage extends Component {
   state = {

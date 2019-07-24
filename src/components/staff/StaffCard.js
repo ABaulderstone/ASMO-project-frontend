@@ -10,7 +10,7 @@ function StaffCard(props) {
         </div>
 
         <div className="content">
-          <a className="header">{props.name}</a>
+          <h1 className="header">{props.name}</h1>
           <Link
             to={{ pathname: `/staff/${props.id}`, state: { name: props.name } }}
           >

@@ -44,7 +44,7 @@ export default class Navbar extends Component {
     });
   };
   render() {
-    let { pages = [], color } = this.state;
+    let { pages = [] } = this.state;
     // let navbarItems = pages.map(page => <NavbarItem page={page.name} key={page.name} URL={page.URL} />);
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
