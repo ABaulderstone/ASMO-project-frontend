@@ -1,21 +1,18 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Field, reduxForm, SubmissionError } from "redux-form";
+import { reduxForm, SubmissionError } from "redux-form";
 import LocalAPI from "./../../apis/local";
-import Input from "./fields/Input";
 import Rating from "react-rating";
-import "./../../styles/ReviewForm.css";
 
 //star white
 import est1 from "./../../images/est1.png";
-//Smiling face keep it for incase in the future 
+//Smiling face keep it for incase in the future
 // import es1 from "./../../images/est1.png";
 // import es2 from "./../../images/es2.png";
 // import es3 from "./../../images/es3.png";
 // import es4 from "./../../images/es4.png";
 // import es5 from "./../../images/es5.png";
 
-//Star yello 
+//Star yello
 import fst1 from "./../../images/fst1.png";
 //Smiling face keep it for incase in the future
 // import fs1 from "./../../images/fst1.png";
@@ -32,25 +29,30 @@ class ReviewForm extends Component {
     floorStaff: null,
     kitchenStaff: null,
     warning: null
-  }
+  };
   onFormSubmit = async () => {
-    const { foodRating, serviceRating, comment, floorStaff, kitchenStaff} = this.state;
+    const {
+      foodRating,
+      serviceRating,
+      comment,
+      floorStaff,
+      kitchenStaff
+    } = this.state;
     if (comment) {
-      return (
-        await LocalAPI.post(`/reviews`, {
-          foodRating,
-          serviceRating,
-          comment,
-          floorStaff,
-          kitchenStaff
-        }).then(() => {
+      return await LocalAPI.post(`/reviews`, {
+        foodRating,
+        serviceRating,
+        comment,
+        floorStaff,
+        kitchenStaff
+      })
+        .then(() => {
           this.props.reset();
-          this.props.history.push("/thankyou")
+          this.props.history.push("/thankyou");
         })
-          .catch(err => {
-            throw new SubmissionError(err.response.data);
-          })
-      )
+        .catch(err => {
+          throw new SubmissionError(err.response.data);
+        });
     }
 
     await LocalAPI.post(`/reviews`, {
@@ -58,87 +60,99 @@ class ReviewForm extends Component {
       serviceRating,
       floorStaff,
       kitchenStaff
-    }).then(() => {
-      this.props.reset();
-      this.props.history.push("/thankyou")
     })
+      .then(() => {
+        this.props.reset();
+        this.props.history.push("/thankyou");
+      })
       .catch(err => {
         throw new SubmissionError(err.response.data);
-      })
+      });
   };
 
   onInputChange = (name, event) => {
-    this.setState({ [name]: event })
-
-  }
+    this.setState({ [name]: event });
+  };
 
   onCommentChange = (name, event) => {
-    this.setState({ [name]: event.target.value })
-  }
-   componentDidMount() {
-     const kitchenQuery = LocalAPI.get("/staff?duty=kitchen");
-     const floorQuery = LocalAPI.get("/staff?duty=floor");
-     Promise.all([kitchenQuery,floorQuery])
-     .then(responses => {
-       this.setState({kitchenStaff: responses[0].data});
-       this.setState({floorStaff: responses[1].data});
-     })
-     .catch(err => {
-       console.log(err);
-       this.setState({warning: "No staff set!"})
-     })
-    
-
+    this.setState({ [name]: event.target.value });
+  };
+  componentDidMount() {
+    const kitchenQuery = LocalAPI.get("/staff?duty=kitchen");
+    const floorQuery = LocalAPI.get("/staff?duty=floor");
+    Promise.all([kitchenQuery, floorQuery])
+      .then(responses => {
+        this.setState({ kitchenStaff: responses[0].data });
+        this.setState({ floorStaff: responses[1].data });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ warning: "No staff set!" });
+      });
   }
 
   render() {
     const { handleSubmit, error } = this.props;
-    const {floorStaff, kitchenStaff, warning} = this.state;
+    const { floorStaff, kitchenStaff, warning } = this.state;
     console.log(floorStaff, kitchenStaff);
-
 
     return (
       <>
         {error}
         {warning}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
-
           <div className="field">
             <div className="rating-container" style={{ marginBottom: "20px" }}>
-              <label><h2>How was your meal?</h2></label>
+              <label>
+                <h2>How was your meal?</h2>
+              </label>
             </div>
             <div className="rating-container">
-
               <Rating
                 initialRating={this.state.foodRating}
-                onChange={(event) => this.onInputChange("foodRating", event)}
-                emptySymbol={[est1, est1, est1, est1, est1].map(es => <span className="icon-text"><img style={{ padding: "0 9px 0 9px" }} src={es} /></span>)}
-                fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => <span className="icon-text"><img style={{ padding: "0 9px 0 9px" }} src={fs} /></span>)}
+                onChange={event => this.onInputChange("foodRating", event)}
+                emptySymbol={[est1, est1, est1, est1, est1].map(es => (
+                  <span className="icon-text">
+                    <img style={{ padding: "0 9px 0 9px" }} src={es} />
+                  </span>
+                ))}
+                fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => (
+                  <span className="icon-text">
+                    <img style={{ padding: "0 9px 0 9px" }} src={fs} />
+                  </span>
+                ))}
               />
-
-
             </div>
           </div>
           <div className="field">
             <div className="rating-container" style={{ marginBottom: "20px" }}>
-              <label><h2>How was the service?</h2></label>
+              <label>
+                <h2>How was the service?</h2>
+              </label>
             </div>
             <div className="rating-container">
-
               <Rating
                 initialRating={this.state.serviceRating}
-                onChange={(event) => this.onInputChange("serviceRating", event)}
-                emptySymbol={[est1, est1, est1, est1, est1].map(es => <span className="icon-text"><img style={{ padding: "0 9px 0 9px" }} src={es} /></span>)}
-                fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => <span className="icon-text"><img style={{ padding: "0 9px 0 9px" }} src={fs} /></span>)}
+                onChange={event => this.onInputChange("serviceRating", event)}
+                emptySymbol={[est1, est1, est1, est1, est1].map(es => (
+                  <span className="icon-text">
+                    <img style={{ padding: "0 9px 0 9px" }} src={es} />
+                  </span>
+                ))}
+                fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => (
+                  <span className="icon-text">
+                    <img style={{ padding: "0 9px 0 9px" }} src={fs} />
+                  </span>
+                ))}
               />
-
-
             </div>
           </div>
-          <div >
+          <div>
             <div className="field">
               <div className="rating-container">
-                <label><h3>Any comments?</h3></label>
+                <label>
+                  <h3>Any comments?</h3>
+                </label>
               </div>
               <div>
                 <textarea
@@ -150,25 +164,33 @@ class ReviewForm extends Component {
           </div>
           <div>
             <h2> Floor Staff </h2>
-            {floorStaff && floorStaff.map(staff => {
-              return (<div className = "image-container"> 
-              <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
-              </div>
-              )
-
-            })}
-
+            {floorStaff &&
+              floorStaff.map(staff => {
+                return (
+                  <div className="image-container">
+                    <img
+                      className="ui tiny circular image"
+                      src={staff.avatar}
+                      alt={staff.name}
+                    />
+                  </div>
+                );
+              })}
           </div>
           <div>
-            <h2> Kitchen Staff  </h2>
-            {kitchenStaff && kitchenStaff.map(staff => {
-              return (<div className = "image-container"> 
-              <img className = "ui tiny circular image" src={staff.avatar} alt={staff.name} />
-              </div>
-              )
-
-            })}
-
+            <h2> Kitchen Staff </h2>
+            {kitchenStaff &&
+              kitchenStaff.map(staff => {
+                return (
+                  <div className="image-container">
+                    <img
+                      className="ui tiny circular image"
+                      src={staff.avatar}
+                      alt={staff.name}
+                    />
+                  </div>
+                );
+              })}
           </div>
           <div className="button-container">
             <div className="button-wrapper">
@@ -197,4 +219,4 @@ const WrappedReviewForm = reduxForm({
   }
 })(ReviewForm);
 
-export default (WrappedReviewForm);
+export default WrappedReviewForm;
