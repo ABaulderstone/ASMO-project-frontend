@@ -6,3 +6,4 @@ export const MEMBER_SUMBITTED= "MEMBER_SUBMITTED";
 export const SET_CUSTOMERS= "SET_CUSTOMERS";
 export const SET_COMMENTS = "SET_COMMENTS";
 export const SET_STAFF = "SET_STAFF";
+export const SET_CHART_DATA = "SET_CHART_DATA";
