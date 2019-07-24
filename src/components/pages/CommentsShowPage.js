@@ -29,6 +29,8 @@ class CommentsShowPage extends Component {
                     foodRating={review.foodRating}
                     serviceRating={review.serviceRating}
                     date={review.date}
+                    floorStaff={review.floorStaff}
+                    kitchenStaff={review.kitchenStaff}
                   />
                 );
               }

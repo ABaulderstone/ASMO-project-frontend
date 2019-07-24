@@ -6,15 +6,27 @@ const CommentCard = props => {
     const formattedDate = moment(props.date)
     .tz("Australia/Sydney")
     .format("DD-MM-YYYY HH:mm");
-    console.log(formattedDate);
 
   return (
     
     <div className="ui card" key={props.id} style={{width: "100%"}}>
-    <div className="content"><div className="header">{formattedDate}</div></div>
+    <div className="content"><div className="header">{formattedDate}</div>
+    <div className="right floated meta">
+      Food: {props.foodRating} Service:{props.serviceRating}
+      </div>
+    </div>
+    
       <div style={{fontSize: "1.8vh"}} className="content">{props.comment}</div>
       <div className="extra content">
-        Food: {props.foodRating} Service: {props.serviceRating}
+        Kitchen: {props.kitchenStaff.map( staff => {
+          return(
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+          )
+        })} Floor: {props.floorStaff.map( staff => {
+          return(
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+          )
+        })}
       </div>
     </div>
   );
