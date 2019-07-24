@@ -83,11 +83,11 @@ const WrappedLoginForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.email) {
-      errors.email = "Email is required";
+      errors.email = <div style={{display: "inline-block", margin: "0.5rem 0 0.5rem 0", padding: "8px 16px 8px 16px"}} className="ui yellow message">Name is required!</div>;
     }
 
     if (!formValues.password) {
-      errors.password = "Password is required";
+      errors.password = <div style={{display: "inline-block", margin: "0.5rem 0 0.5rem 0", padding: "8px 16px 8px 16px"}} className="ui yellow message">Password is required!</div>;
     }
 
     return errors;
