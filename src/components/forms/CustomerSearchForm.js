@@ -11,7 +11,7 @@ class CustomerSearchForm extends Component {
   };
 
   onFormSubmit = async formValues => {
-    this.setState({ loading: true });
+    this.setState({ loading: true, error: false });
     const { phone } = formValues;
     this.props.searchCustomerByNumber(phone)
       .then(() => {
@@ -19,7 +19,7 @@ class CustomerSearchForm extends Component {
       })
       .catch(err => {
         console.log(err);
-        this.setState({loading: false, error:"Search Failed"});
+        this.setState({loading: false, error:"Search Failed!"});
       });
   };
   render() {
@@ -46,7 +46,7 @@ class CustomerSearchForm extends Component {
             </div>}
             {this.state.loading && <button className= "ui primary loading button">Loading</button>}
           </div>
-          {this.state.error}
+          {this.state.error && <div className="ui red message" style={{padding: "8px 16px 8px 16px", display:"inline-block", margin: "0"}}>{this.state.error}</div>} 
         </form>
       </>
     );
