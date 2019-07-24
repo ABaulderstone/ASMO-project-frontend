@@ -21,6 +21,8 @@ class CustomerSearchPage extends Component {
                   email={customer.email}
                   phone={customer.phone}
                   address={customer.address}
+                  birthday={customer.birthday}
+                  anniversary={customer.anniversary}
                 />
               );
             })}

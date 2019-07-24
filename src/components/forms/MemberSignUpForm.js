@@ -5,15 +5,16 @@ import LocalAPI from "./../../apis/local";
 import Input from "./fields/Input";
 import AddressForm from "../address/AddressForm";
 import stringifyAddress from "./../../utility/stringifyAddress";
-import Anniversary from "./../anniversary/Anniversary";
-import { Select } from "semantic-ui-react";
+
+import ReduxMonthDropdown from "./fields/ReduxMonthDropdown";
+
 
 class MemberSignUpForm extends Component {
   state = {
     loading: false
   };
   onFormSubmit = async formValues => {
-    const { name, phone, email, unit } = formValues;
+    const { name, phone, email, unit, birthday = "not given", anniversary = "not given" } = formValues;
     this.setState({ loading: true });
     const add = this.props.address.address;
     console.log(formValues);
@@ -24,46 +25,41 @@ class MemberSignUpForm extends Component {
         name,
         phone,
         email,
-        address
+        address,
+        birthday,
+        anniversary
       })
         .then(() => {
+          this.setState({ loading: false });
           this.props.reset();
           this.props.history.push("/thankyou_member");
         })
         .catch(err => {
+          this.setState({ loading: false });
           throw new SubmissionError(err.response.data);
         });
     } else
       await LocalAPI.post(`/customers`, {
         name,
         phone,
-        email
+        email,
+        birthday,
+        anniversary
       })
         .then(() => {
+          this.setState({ loading: false });
           this.props.reset();
           this.props.history.push("/thankyou_member");
         })
         .catch(err => {
+          this.setState({ loading: false });
           throw new SubmissionError(err.response.data);
         });
   };
 
   render() {
     const { handleSubmit, error } = this.props;
-    const birthdayOptions = [
-      { key: "af", value: "af", text: "January" },
-      { key: "ax", value: "ax", text: "February" },
-      { key: "al", value: "al", text: "March" },
-      { key: "dz", value: "dz", text: "April" },
-      { key: "as", value: "as", text: "May" },
-      { key: "ad", value: "ad", text: "June" },
-      { key: "ao", value: "ao", text: "July" },
-      { key: "ai", value: "ai", text: "August" },
-      { key: "ag", value: "ag", text: "September" },
-      { key: "ar", value: "ar", text: "October" },
-      { key: "am", value: "am", text: "Novemer" },
-      { key: "aw", value: "aw", text: "December" }
-    ];
+    
 
     return (
       <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
@@ -97,15 +93,20 @@ class MemberSignUpForm extends Component {
           <label>Birthday</label>
           <Field
             name="birthday"
-            component={Select}
-            placeholder="Get a Free Meal"
-            options={birthdayOptions}
+            component={ReduxMonthDropdown}
+            label="Eat for free on your birthday!"
+            
           />
         </div>
 
         <div>
           <label>Anniversary</label>
-          <Field name="anniversary" component={Anniversary} />
+          <Field
+            name="anniversary"
+            component={ReduxMonthDropdown}
+            label="Free bottle of wine on your anniversary!"
+            
+          />
         </div>
 
         <div className="button-container">
