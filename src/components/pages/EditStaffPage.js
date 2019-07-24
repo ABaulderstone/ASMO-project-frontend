@@ -37,10 +37,10 @@ class EditStaffPage extends Component {
           throw new SubmissionError(err.response.data);
         });
     } else {
-     
+      
       this.setState({loading: true});
       await localapi
-        .put(`/staff/${id}`, { name})
+        .put(`/staff/${id}`, { name })
         .then(() => {
           this.setState({loading:false});
           this.props.reset();
