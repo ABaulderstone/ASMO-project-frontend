@@ -6,18 +6,18 @@ function StaffCard(props) {
     <>
       <div className="card">
         <div className="image">
-          <img src={props.avatar} />
+          <img src={props.avatar} alt= {props.name} />
         </div>
 
         <div className="content">
-          <a className="header">{props.name}</a>
+          <h1 className="header">{props.name}</h1>
           <Link
             to={{ pathname: `/staff/${props.id}`, state: { name: props.name } }}
           >
-            <a>
+            
               <i className="edit icon" />
               Edit
-            </a>
+            
           </Link>
         </div>
       </div>

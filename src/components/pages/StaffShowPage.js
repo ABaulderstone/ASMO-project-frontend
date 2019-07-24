@@ -24,7 +24,7 @@ class StaffShowPage extends Component {
         <div className="ui container">
           <div className="ui six doubling cards" style={{ marginTop: "10px" }}>
             {staff.map(s => {
-              return <StaffCard id={s._id} name={s.name} avatar={s.avatar} />;
+              return <StaffCard id={s._id} name={s.name} avatar={s.avatar} key={s._id} />;
             })}
           </div>
         </div>

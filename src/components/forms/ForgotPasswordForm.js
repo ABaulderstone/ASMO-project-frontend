@@ -18,6 +18,7 @@ class ForgotPasswordForm extends Component {
 
     return (
       <>
+      {error}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <div className="field">
             <label>Email</label>

@@ -113,12 +113,12 @@ class ReviewForm extends Component {
                 onChange={event => this.onInputChange("foodRating", event)}
                 emptySymbol={[est1, est1, est1, est1, est1].map(es => (
                   <span className="icon-text">
-                    <img style={{ padding: "0 9px 0 9px" }} src={es} />
+                    <img style={{ padding: "0 9px 0 9px" }} src={es} alt="empty star" />
                   </span>
                 ))}
                 fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => (
                   <span className="icon-text">
-                    <img style={{ padding: "0 9px 0 9px" }} src={fs} />
+                    <img style={{ padding: "0 9px 0 9px" }} src={fs} alt="full star" />
                   </span>
                 ))}
               />
@@ -136,12 +136,12 @@ class ReviewForm extends Component {
                 onChange={event => this.onInputChange("serviceRating", event)}
                 emptySymbol={[est1, est1, est1, est1, est1].map(es => (
                   <span className="icon-text">
-                    <img style={{ padding: "0 9px 0 9px" }} src={es} />
+                    <img style={{ padding: "0 9px 0 9px" }} src={es} alt="empty star" />
                   </span>
                 ))}
                 fullSymbol={[fst1, fst1, fst1, fst1, fst1].map(fs => (
                   <span className="icon-text">
-                    <img style={{ padding: "0 9px 0 9px" }} src={fs} />
+                    <img style={{ padding: "0 9px 0 9px" }} src={fs} alt="full star" />
                   </span>
                 ))}
               />
