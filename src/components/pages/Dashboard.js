@@ -4,7 +4,9 @@ import "bulma/css/bulma.css";
 import BarChart from "./../chart/BarChart";
 import {connect} from "react-redux";
 import {fetchChartData} from "./../../actions/index";
-import LocalAPI from "./../../apis/local";
+import moment from "moment";
+import tz from "moment-timezone";
+import { stat } from "fs";
 
 
 class Dashboard extends Component {
@@ -42,7 +44,6 @@ class Dashboard extends Component {
 
   render() {
     const {chartData} = this.props;
-    console.log(chartData);
 
     return (
       <>
@@ -65,17 +66,55 @@ const mapStateToProps = (state) => {
     chartData.datasets = [
       {
         label: "Kitchen",
-        data: [2, 2, 2, 2, 2, 2, 2],
+        data: [0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "#D6E9C6"
       },
       {
         label: "Floor",
-        data: [2, 2, 2, 2, 2, 2, 2],
+        data: [0, 0, 0, 0, 0, 0, 0],
         backgroundColor: "#EBCCD1"
       }
     ]
     //create a const that is the current week number 1..52
+    const currentWeek = moment().week();
+    console.log(currentWeek);
     //loop through dates and get each dates week number and if that matches our current weeek keep it
+    state.chartData.forEach(val => {
+      const week = moment(val.date, "DD MM YYYY").week();
+       if (week===currentWeek) { 
+         switch ((moment(val.date, "DD MM YYY").day())) {
+         case 0:
+           chartData.datasets[0].data[6] = val.kitchen.avg;
+           chartData.datasets[1].data[6] = val.floor.avg;
+           break;
+         case 1:
+            chartData.datasets[0].data[0] = val.kitchen.avg;
+            chartData.datasets[1].data[0] = val.floor.avg;
+            break;
+         case 2:
+            chartData.datasets[0].data[1] = val.kitchen.avg;
+            chartData.datasets[1].data[1] = val.floor.avg;
+            break;
+        case 3:
+            chartData.datasets[0].data[2] = val.kitchen.avg;
+            chartData.datasets[1].data[2] = val.floor.avg;
+            break;
+        case 4:
+            chartData.datasets[0].data[3] = val.kitchen.avg;
+            chartData.datasets[1].data[3] = val.floor.avg;
+            break;
+        case 5:
+            chartData.datasets[0].data[4] = val.kitchen.avg;
+            chartData.datasets[1].data[4] = val.floor.avg;
+            break;
+        case 6:
+            chartData.datasets[0].data[4] = val.kitchen.avg;
+            chartData.datasets[1].data[4] = val.floor.avg;
+            break;
+
+       }
+    }
+  })
     //or start out with array
   }
 
