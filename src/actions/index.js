@@ -4,11 +4,17 @@ import {
   SET_ADDRESS,
   SET_COMMENTS,
   SET_CUSTOMERS,
-  SET_STAFF
+  SET_STAFF,
+  SET_CHART_DATA
 } from "./types";
 
 import LocalAPI from "./../apis/local";
-
+const setChartData = (response) => {
+  return {
+    type: SET_CHART_DATA,
+    payload: response.data
+  }
+}
 const setCustomers = customers => {
   return {
     type: SET_CUSTOMERS,
@@ -60,15 +66,11 @@ export const loginUser = (email, password) => {
 
 export const newStaffSubmission = (name, avatar) => {
   return async (dispatch, getState) => {
-    const response = await LocalAPI.post(`/staff`, {
-      name,
-      avatar
-    }).then(response => {
-      dispatch({
+    const response = await LocalAPI.post(`/staff`, {name,avatar}) 
+    dispatch({
         type: SET_STAFF,
         payload: response.data
       });
-    });
   };
 };
 
@@ -141,3 +143,10 @@ export const deleteCustomer = id => {
     });
   };
 };
+
+export const fetchChartData = () => {
+  return async(dispatch, getState) => {
+    const response = await LocalAPI.get("/stats");
+    dispatch(setChartData(response));
+  }
+}

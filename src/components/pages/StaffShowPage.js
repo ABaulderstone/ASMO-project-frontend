@@ -17,7 +17,7 @@ class StaffShowPage extends Component {
         <Navbar />
         <div className="ui container">
           <div className="ui segment">
-            <h1 style={{ textAlign: "center", fontSize: "40px" }}>Staff</h1>
+            <h1 className="page-header">Staff</h1>
             <StaffForm history={this.props.history} />
           </div>
         </div>

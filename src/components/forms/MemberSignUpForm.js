@@ -128,15 +128,27 @@ const WrappedMemberSignUpForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {
-      errors.name = "Name is required";
+      errors.name = (
+        <div id="err-msg" className="ui yellow message err-msg">
+          Name is required!
+        </div>
+      );
     }
 
     if (!formValues.phone) {
-      errors.phone = "Phone is required";
+      errors.phone = (
+        <div id="err-msg" className="ui yellow message">
+          Phone is required!
+        </div>
+      );
     }
 
     if (!formValues.email) {
-      errors.email = "Email is required";
+      errors.email = (
+        <div id="err-msg" className="ui yellow message">
+          Email is required!
+        </div>
+      );
     }
 
     if (
@@ -144,7 +156,11 @@ const WrappedMemberSignUpForm = reduxForm({
         formValues.phone
       )
     ) {
-      errors.phone = "Not a valid Australian mobile number";
+      errors.phone = (
+        <div id="err-msg" className="ui yellow message">
+          Not a Valid Australian Mobile Number!
+        </div>
+      );
     }
 
     return errors;
