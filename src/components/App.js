@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <Router history={history}>
         <div>
-          {token && <h4>User Logged In!</h4>}
+          {token && <div />}
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/register" component={RegisterPage} />
