@@ -30,10 +30,12 @@ class MemberSignUpForm extends Component {
         anniversary
       })
         .then(() => {
+          this.setState({ loading: false });
           this.props.reset();
           this.props.history.push("/thankyou_member");
         })
         .catch(err => {
+          this.setState({ loading: false });
           throw new SubmissionError(err.response.data);
         });
     } else
@@ -45,10 +47,12 @@ class MemberSignUpForm extends Component {
         anniversary
       })
         .then(() => {
+          this.setState({ loading: false });
           this.props.reset();
           this.props.history.push("/thankyou_member");
         })
         .catch(err => {
+          this.setState({ loading: false });
           throw new SubmissionError(err.response.data);
         });
   };
