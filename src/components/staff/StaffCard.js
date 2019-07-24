@@ -14,10 +14,10 @@ function StaffCard(props) {
           <Link
             to={{ pathname: `/staff/${props.id}`, state: { name: props.name } }}
           >
-            <a>
+            
               <i className="edit icon" />
               Edit
-            </a>
+            
           </Link>
         </div>
       </div>
