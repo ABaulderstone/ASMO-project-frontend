@@ -1,3 +1,17 @@
-input, label {
-    display: block;
+input,
+label {
+  display: block;
+}
+
+.page-header {
+  font-size: 2rem;
+  text-align: center;
+  margin: 1rem;
+  margin-bottom: 1vh;
+}
+
+#err-msg {
+  display: inline-block;
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  padding: 8px 16px 8px 16px;
 }
