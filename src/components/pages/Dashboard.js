@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Navbar from "./../navbar/Navbar";
 import "bulma/css/bulma.css";
 import BarChart from "./../chart/BarChart";
+import connect from "react-redux";
+
 
 class Dashboard extends Component {
   constructor() {
@@ -11,9 +13,7 @@ class Dashboard extends Component {
     };
   }
 
-  componentWillMount() {
-    this.getChartData();
-  }
+  
 
   getChartData() {
     // ajax calls here
@@ -50,4 +50,9 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  chartData: state.chartData
+
+}
+
+export default connect(mapStateToProps) (Dashboard);
