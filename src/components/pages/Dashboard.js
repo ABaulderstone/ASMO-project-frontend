@@ -37,6 +37,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(typeof this.state.chartData);
     return (
       <>
         <Navbar />
