@@ -13,7 +13,7 @@ class AppChoicePage extends Component {
         <Grid container columns={3}>
           <Grid.Column>
             <Link to="/review" target="_blank">
-              <Segment className="ui button" circular style={square}>
+              <Segment className="ui blue button" circular style={square}>
                 Survey
               </Segment>
             </Link>
@@ -21,7 +21,7 @@ class AppChoicePage extends Component {
 
           <Grid.Column>
             <Link to="/customer" target="_blank">
-              <Segment className="ui button" circular style={square}>
+              <Segment className="ui green button" circular style={square}>
                 Member
               </Segment>
             </Link>
@@ -29,7 +29,7 @@ class AppChoicePage extends Component {
 
           <Grid.Column>
             <Link to="/member_search" target="_blank">
-              <Segment className="ui button" circular style={square}>
+              <Segment className="ui yellow button" circular style={square}>
                 Search
               </Segment>
             </Link>
