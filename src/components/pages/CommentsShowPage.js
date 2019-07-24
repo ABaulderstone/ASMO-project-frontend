@@ -18,25 +18,31 @@ class CommentsShowPage extends Component {
         <Navbar />
         <div className="ui container">
           <div className="ui segment">
-          <h1 style={{textAlign: "center", marginBottom: "1vh", fontSize: "2vw"}}>Comments</h1>
-          
-         
+            <h1
+              style={{
+                fontSize: "2rem",
+                textAlign: "center",
+                margin: "1rem",
+                marginBottom: "1vh"
+              }}
+            >
+              Comments
+            </h1>
+
             {reviews.map(review => {
-              if (review.comment){
-              return (
-                <CommentCard
-                  key={review._id}
-                  comment={review.comment}
-                  foodRating={review.foodRating}
-                  serviceRating={review.serviceRating}
-                  date={review.date}
-                />
-              );
+              if (review.comment) {
+                return (
+                  <CommentCard
+                    key={review._id}
+                    comment={review.comment}
+                    foodRating={review.foodRating}
+                    serviceRating={review.serviceRating}
+                    date={review.date}
+                  />
+                );
               }
             })}
-       
-         
-           </div>
+          </div>
         </div>
       </>
     );
