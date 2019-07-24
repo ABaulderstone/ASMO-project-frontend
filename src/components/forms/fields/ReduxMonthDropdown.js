@@ -26,7 +26,7 @@ const monthOptions = [
             placeholder={props.label} options={monthOptions} 
             selection {...props.input}
              value={props.input.value}
-             onChange={data => props.input.onChange(data.value)} />
+             onChange={(params,data) => props.input.onChange(data.value)} />
             </Form.Field>
             )
         }
