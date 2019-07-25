@@ -54,7 +54,7 @@ class LoginForm extends Component {
           )}
         </div>
 
-        <div className="forget-pass-container">
+        {/* <div className="forget-pass-container">
           <div>
             <Link to="forgot_password">
               <button className="button-style button-effect">
@@ -62,7 +62,7 @@ class LoginForm extends Component {
               </button>
             </Link>
           </div>
-        </div>
+        </div> */}
         <div className="add-new-container">
           <div>
             <Link to="/register">
