@@ -28,6 +28,7 @@ class CustomerSearchPage extends Component {
             })}
           </div>
         </div>
+
       </>
     );
   }

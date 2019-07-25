@@ -4,15 +4,19 @@ import { fetchCustomers } from "./../../actions/index";
 import { connect } from "react-redux";
 import CustomerSearchForm from "./../forms/CustomerSearchForm";
 import CustomerItem from "./../../components/CustomerItem";
+import { Link } from "react-router-dom";
 
 class CustomerShowPage extends Component {
+  state = {
+    isClicked: null
+  }
+  
   componentDidMount() {
     this.props.fetchCustomers();
   }
 
   render() {
     const { customers } = this.props;
-    console.log(customers);
     return (
       <>
         <Navbar pages={[]} />
@@ -41,11 +45,20 @@ class CustomerShowPage extends Component {
                   email={customer.email}
                   phone={customer.phone}
                 />
+                
               );
             })}
           </table>
         </div>
-      </>
+                <Link to="member_search">
+              <div className="button-container">
+                <div className="button-wrapper">
+                  <button className="ui primary button">Detailed Lookup</button>
+                </div>
+              </div>
+            </Link>
+        </>
+
     );
   }
 }
