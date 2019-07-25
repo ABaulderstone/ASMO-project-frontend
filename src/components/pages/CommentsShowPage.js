@@ -31,6 +31,7 @@ class CommentsShowPage extends Component {
                     date={review.date}
                     floorStaff={review.floorStaff}
                     kitchenStaff={review.kitchenStaff}
+                    key={review._id}
                   />
                 );
               }
