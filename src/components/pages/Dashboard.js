@@ -24,7 +24,7 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <div>
           <h1>Dashboard</h1>
           <div>Land of Smiles</div>

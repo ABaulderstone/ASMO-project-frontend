@@ -9,7 +9,7 @@ class CustomerSearchPage extends Component {
     const { customers } = this.props;
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]}/>
         <div className="ui container">
           <div className="ui segment">
             <h1 className="page-header">Member Search</h1>

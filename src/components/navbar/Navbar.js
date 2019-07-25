@@ -49,7 +49,7 @@ export default class Navbar extends Component {
     return (
       <nav className="navbar" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
-          <NavbarItem page="Satisfeed" />
+          
           <NavbarBurger
             active={this.state.activeMenu}
             toggleMenu={this.toggleMenu}

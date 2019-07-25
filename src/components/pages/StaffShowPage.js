@@ -14,7 +14,7 @@ class StaffShowPage extends Component {
     const { staff } = this.props;
     return (
       <>
-        <Navbar />
+        <Navbar  pages={[]} />
         <div className="ui container">
           <div className="ui segment">
             <h1 className="page-header">Staff</h1>

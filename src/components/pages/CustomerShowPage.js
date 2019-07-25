@@ -15,7 +15,7 @@ class CustomerShowPage extends Component {
     console.log(customers);
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <div className="ui container">
           <div className="ui segment" style={{ marginBottom: "1rem" }}>
             <h1 className="page-header">Customers</h1>
@@ -35,6 +35,7 @@ class CustomerShowPage extends Component {
             {customers.map(customer => {
               return (
                 <CustomerItem
+                  key={customer._id}
                   id={customer._id}
                   name={customer.name}
                   email={customer.email}

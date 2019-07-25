@@ -20,11 +20,11 @@ const CommentCard = props => {
       <div className="extra content">
         Kitchen: {props.kitchenStaff.map( staff => {
           return(
-            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} key={staff._id} />
           )
         })} Floor: {props.floorStaff.map( staff => {
           return(
-            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} key={staff._id} />
           )
         })}
       </div>
