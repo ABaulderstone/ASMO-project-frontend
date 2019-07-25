@@ -17,7 +17,6 @@ class CustomerShowPage extends Component {
 
   render() {
     const { customers } = this.props;
-    console.log(customers);
     return (
       <>
         <Navbar pages={[]} />

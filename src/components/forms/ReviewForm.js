@@ -94,7 +94,7 @@ class ReviewForm extends Component {
   render() {
     const { handleSubmit, error } = this.props;
     const { floorStaff, kitchenStaff, warning } = this.state;
-    console.log(floorStaff, kitchenStaff);
+    
 
     return (
       <>

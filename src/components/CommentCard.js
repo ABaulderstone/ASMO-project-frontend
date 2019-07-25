@@ -17,7 +17,7 @@ const CommentCard = props => {
     
       <div className="content"> <div className="right floated meta">
       Food: {props.foodRating} Service:{props.serviceRating}
-      </div><h5 class="ui header">{props.comment}</h5></div>
+      </div><h5 className="ui header">{props.comment}</h5></div>
       <div className="extra content">
         Kitchen: {props.kitchenStaff.map( staff => {
           return(
