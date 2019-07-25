@@ -10,21 +10,22 @@ const CommentCard = props => {
   return (
     
     <div className="ui card" key={props.id} style={{width: "100%"}}>
-    <div className="content"><div className="header">{formattedDate}</div>
-    <div className="right floated meta">
-      Food: {props.foodRating} Service:{props.serviceRating}
-      </div>
-    </div>
     
-      <div style={{fontSize: "1.8vh"}} className="content">{props.comment}</div>
+      <h3 className="ui  block header">{formattedDate}</h3>
+    
+  
+    
+      <div className="content"> <div className="right floated meta">
+      Food: {props.foodRating} Service:{props.serviceRating}
+      </div><h5 className="ui header">{props.comment}</h5></div>
       <div className="extra content">
         Kitchen: {props.kitchenStaff.map( staff => {
           return(
-            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} key={staff._id} />
           )
         })} Floor: {props.floorStaff.map( staff => {
           return(
-            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} />
+            <img src={staff.avatar} className= "ui mini circular image" alt={staff.name} key={staff._id} />
           )
         })}
       </div>

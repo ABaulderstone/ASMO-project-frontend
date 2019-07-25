@@ -11,7 +11,8 @@ import { deleteStaff } from "./../../actions/index";
 
 class EditStaffPage extends Component {
   state = {
-    loading: null
+    loading: null,
+    error: null
   }
   
   onFormSubmit = async formValues => {
@@ -21,9 +22,13 @@ class EditStaffPage extends Component {
       this.setState({loading: true});
       const formData = new FormData();
       formData.append("image", image);
-      const response = await ImageUploadAPI.post("/images/", formData);
+      const response = await ImageUploadAPI.post("/images/", formData)
+      .catch(err => {
+        this.setState({loading: false, error: err.response.data});
+        
+      });
       const { imageUrl: avatar } = response.data;
-      console.log(avatar);
+      
 
       await localapi
         .put(`/staff/${id}`, { name, avatar })
@@ -76,8 +81,10 @@ class EditStaffPage extends Component {
     const { handleSubmit, error } = this.props;
     return (
       <>
-        {error}
-        <>
+             {error && <div className="ui red message" id="err-msg">
+              {error}
+            </div>}
+        
           <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
             <div className="field">
               <label>Name</label>
@@ -122,7 +129,7 @@ class EditStaffPage extends Component {
           </div>
 
         </>
-      </>
+      
     );
   }
 }

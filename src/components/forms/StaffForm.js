@@ -16,7 +16,11 @@ class StaffForm extends Component {
     if (image) {
       const formData = new FormData();
       formData.append("image", image);
-      const response = await ImageUploadAPI.post("/images/", formData);
+      const response = await ImageUploadAPI.post("/images/", formData)
+      .catch(err => {
+        this.setState({ loading: false });
+        throw new SubmissionError(err.response.data);
+      });
       const { imageUrl: avatar } = response.data;
       await this.props.newStaffSubmission(name, avatar)
       .then (() => {
@@ -30,6 +34,7 @@ class StaffForm extends Component {
       this.props.reset();
     } else {
       await this.props.newStaffSubmission(name).then (() => {
+        this.setState({ loading: false });
         this.setState({ loading: false });
 
       })

@@ -47,7 +47,7 @@ class CustomerEditPage extends Component {
 
   onDeleteButtonClick = async () => {
     const { id } = this.state;
-    console.log(id);
+    
     await this.props.deleteCustomer(id).then(() => {
       this.props.history.push("/customers/show")
     }).catch(err => {

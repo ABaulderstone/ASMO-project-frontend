@@ -17,7 +17,7 @@ class MemberSignUpForm extends Component {
     const { name, phone, email, unit, birthday = "not given", anniversary = "not given" } = formValues;
     this.setState({ loading: true });
     const add = this.props.address.address;
-    console.log(formValues);
+  
 
     if (add) {
       const address = stringifyAddress(unit, add);

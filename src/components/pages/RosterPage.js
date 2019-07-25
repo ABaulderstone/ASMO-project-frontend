@@ -37,7 +37,7 @@ class RosterPage extends Component {
     const { staff, handleSubmit } = this.props;
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <h1 className="page-header">Roster</h1>
         <form onSubmit={handleSubmit(this.onSaveButtonClick)}>
           <div className="ui cards">

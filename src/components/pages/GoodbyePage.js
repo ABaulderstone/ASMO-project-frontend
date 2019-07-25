@@ -5,7 +5,7 @@ export default class GoodbyePage extends Component {
     setTimeout(() => {
       sessionStorage.removeItem("token");
       this.props.history.push("/login");
-    }, 3000);
+    }, 1500);
   }
   render() {
     return (

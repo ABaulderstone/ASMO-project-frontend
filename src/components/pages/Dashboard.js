@@ -24,7 +24,7 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <div>
           <h1>Dashboard</h1>
           <div>Land of Smiles</div>
@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
     ]
     //create a const that is the current week number 1..52
     const currentWeek = moment().week();
-    console.log(currentWeek);
+    
     //loop through dates and get each dates week number and if that matches our current weeek keep it
     state.chartData.forEach(val => {
       const week = moment(val.date, "DD MM YYYY").week();
