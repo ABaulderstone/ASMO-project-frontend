@@ -35,6 +35,7 @@ class CustomerShowPage extends Component {
             {customers.map(customer => {
               return (
                 <CustomerItem
+                  key={customer._id}
                   id={customer._id}
                   name={customer.name}
                   email={customer.email}
