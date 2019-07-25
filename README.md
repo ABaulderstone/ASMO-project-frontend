@@ -1,68 +1,93 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### Satisfeed: An app built on React by [Michael Bahari](https://github.com/ugkid), [Alex Baulderstone](https://github.com/ABaulderstone), [OB](https://github.com/) and [Sam Conway](https://github.com/).
 
-## Available Scripts
+**Satisfeed Live**: https://satisfeed.herokuapp.com/<br />
+**Satisfeed Repo**: https://github.com/ABaulderstone/ASMO-project-frontend<br />
 
-In the project directory, you can run:
+## Project Description
 
-### `npm start`
+### Problem Definition
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Satisfeed is a cloud-based restaurant app. The client wanted to improve food and service quality, staff team motivation, and CRM/member acquisition. To accomplish these requirements, we developed a platform that included both customer and management facing applications.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+### Features
 
-### `npm test`
+The Satisfeed life cycle includes three stages of user interaction. The app is browser-based and although responsive, it is designed to be used on an Ipad.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Roster
 
-### `npm run build`
+- Staff roster tool—managers can assign each staff member to kitchen or floor role.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 2. Feedback & Member Sign-up
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+- Rating and comments page—during payment/processing, customers can give a rating out of 5 stars for food quality and customer service. Profile photos of staff who are rostered on the day will be displayed at the bottom of the page and customers are able to leave a comment/review.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Member sign-up form—allows customers to easily become a member to receive exclusive offers through email/posted marketing.
 
-### `npm run eject`
+- Member database search tool—allows staff to search quickly for members during customer payment/processing.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 3. After-sales
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Real-time dashboard—lets managers see weekly kitchen/floor performance on a bart chart.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Customer comments feed—managers can browse through customer comments with ratings.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Member/staff management tool—allows managers to create, update and delete staff details.
 
-## Learn More
+### Screenshots
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Below are some screenshots from our app as of 25th May 2019.
+**Login Page**
+**Dashboard Page**
+**Members Page**
+**Edit Member Page**
+**Comments Page**
+**Staff Page**
+**Roster Page**
+**App Page**
+**Feedback Page**
+**Member Sign-up Form**
+**Member Search Page**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Tech Stack
 
-### Code Splitting
+### App Instructions
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## Design Documentation
 
-### Analyzing the Bundle Size
+### Design Process
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### User Stories
 
-### Making a Progressive Web App
+### Workflow Diagram
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Wireframes
 
-### Advanced Configuration
+### Database Entity Relationship Diagram
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Data Flow Diagram
 
-### Deployment
+### OO Design Documentation
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+## Details of Project Management & Planning Process
 
-### `npm run build` fails to minify
+### Project Plan & Timeline
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### Client Communications
+
+### Screenshots of Trello Board
+
+## Short Answer Questions
+
+### A) What are the most important aspects of quality software?
+
+### B) What libraries are being used in the app and why?
+
+### C) A team is about to engage in a project, developing a website for a small business. What knowledge and skills would they need in order to develop the project?
+
+### D) Within your own project what knowledge or skills were required to complete your project, and overcome challenges?
+
+### E) Evaluate how effective your knowledge and skills were this project, using examples, and suggest changes or improvements for future projects of a similar nature?
+
+###
+
+###
