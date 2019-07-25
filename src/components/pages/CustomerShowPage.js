@@ -15,7 +15,7 @@ class CustomerShowPage extends Component {
     console.log(customers);
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <div className="ui container">
           <div className="ui segment" style={{ marginBottom: "1rem" }}>
             <h1 className="page-header">Customers</h1>

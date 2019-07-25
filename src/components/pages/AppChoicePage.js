@@ -9,7 +9,7 @@ class AppChoicePage extends Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <Grid container columns={3}>
           <Grid.Column>
             <Link to="/review" target="_blank">

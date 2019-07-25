@@ -15,7 +15,7 @@ class CommentsShowPage extends Component {
     const { reviews } = this.props;
     return (
       <>
-        <Navbar />
+        <Navbar pages={[]} />
         <div className="ui container">
           <div className="ui segment">
             <h1 className="page-header">Comments</h1>
