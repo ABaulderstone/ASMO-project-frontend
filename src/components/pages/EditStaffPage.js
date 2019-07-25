@@ -23,7 +23,7 @@ class EditStaffPage extends Component {
       formData.append("image", image);
       const response = await ImageUploadAPI.post("/images/", formData);
       const { imageUrl: avatar } = response.data;
-      console.log(avatar);
+      
 
       await localapi
         .put(`/staff/${id}`, { name, avatar })
