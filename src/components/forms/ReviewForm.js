@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, SubmissionError } from "redux-form";
 import LocalAPI from "./../../apis/local";
 import Rating from "react-rating";
+import YellowAlert from "./../alerts/YellowAlert";
 
 //star white
 import est1 from "./../../images/est1.png";

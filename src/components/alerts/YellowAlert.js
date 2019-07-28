@@ -9,7 +9,7 @@ const YellowAlert = props => {
     return (
         <div
         style={customStyling}
-        id={props.id}
+        id={props.id || "err-msg"} 
         className="ui yellow message"
       >
         {props.message}
