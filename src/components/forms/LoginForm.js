@@ -4,6 +4,7 @@ import { loginUser } from "./../../actions";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import YellowAlert from "./../alerts/YellowAlert";
 
 class LoginForm extends Component {
   state = {
@@ -83,31 +84,27 @@ const WrappedLoginForm = reduxForm({
     const errors = {};
     if (!formValues.email) {
       errors.email = (
-        <div
-          style={{
-            display: "inline-block",
-            margin: "0.5rem 0 0.5rem 0",
-            padding: "8px 16px 8px 16px"
-          }}
-          className="ui yellow message"
-        >
-          Name is required!
-        </div>
+
+        <YellowAlert 
+        message="Email is required!"
+        display= "inline-block"
+        margin= "0.5rem 0 0.5rem 0"
+        padding="8px 16px 8px 16px"
+        /> 
+ 
       );
     }
 
     if (!formValues.password) {
       errors.password = (
-        <div
-          style={{
-            display: "inline-block",
-            margin: "0.5rem 0 0.5rem 0",
-            padding: "8px 16px 8px 16px"
-          }}
-          className="ui yellow message"
-        >
-          Password is required!
-        </div>
+   
+        <YellowAlert 
+        message="Password is required!"
+        display= "inline-block"
+        margin= "0.5rem 0 0.5rem 0"
+        padding="8px 16px 8px 16px"
+        /> 
+ 
       );
     }
 
