@@ -208,11 +208,21 @@ const WrappedReviewForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.foodRating) {
-      errors.foodRating = "Food rating is required";
+      errors.foodRating = (
+      <YellowAlert 
+      message="Food rating is required!"
+      id="err-msg"
+      /> 
+      );
     }
 
     if (!formValues.serviceRating) {
-      errors.serviceRating = "Service rating is required";
+      errors.serviceRating = (
+        <YellowAlert 
+        message="Service rating is required!"
+        id="err-msg"
+        /> 
+        );
     }
 
     return errors;
