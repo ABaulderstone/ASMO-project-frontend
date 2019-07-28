@@ -98,9 +98,7 @@ const WrappedLoginForm = reduxForm({
    
         <YellowAlert 
         message="Password is required!"
-        display= "inline-block"
-        margin= "0.5rem 0 0.5rem 0"
-        padding="8px 16px 8px 16px"
+        id="err-msg"
         /> 
  
       );

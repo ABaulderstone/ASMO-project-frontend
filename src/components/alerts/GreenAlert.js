@@ -10,6 +10,7 @@ const GreenAlert = props => {
         <div
         style={styling}
         className="ui yellow message"
+        id={props.id}
       >
         {props.message}
       </div>
