@@ -1,15 +1,14 @@
 import React from "react";
 
-const YellowAlert = props => {
-    const customStyling = {
+const GreenAlert = props => {
+    const styling = {
         display: props.display,
         margin: props.margin,
         padding: props.padding
       }
     return (
         <div
-        style={customStyling}
-        id={props.id}
+        style={styling}
         className="ui yellow message"
       >
         {props.message}
@@ -18,4 +17,4 @@ const YellowAlert = props => {
 
 }
 
-export default YellowAlert;
+export default GreenAlert;
