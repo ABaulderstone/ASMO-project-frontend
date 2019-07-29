@@ -1,4 +1,6 @@
-const YellowAlert = props => {
+import React from "react";
+
+const RedAlert = props => {
     const customStyling = {
         display: props.display,
         margin: props.margin,
@@ -16,4 +18,4 @@ const YellowAlert = props => {
 
 }
 
-export default YellowAlert;
+export default RedAlert;
