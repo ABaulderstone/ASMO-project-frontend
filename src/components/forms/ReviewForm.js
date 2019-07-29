@@ -3,6 +3,7 @@ import { reduxForm, SubmissionError } from "redux-form";
 import LocalAPI from "./../../apis/local";
 import Rating from "react-rating";
 import YellowAlert from "./../alerts/YellowAlert";
+import RedAlert from "./../alerts/RedAlert";
 
 //star white
 import est1 from "./../../images/est1.png";
@@ -99,8 +100,8 @@ class ReviewForm extends Component {
 
     return (
       <>
-        {error}
-        {warning}
+        {error && <RedAlert message={error} /> }
+        {warning && <RedAlert message={warning} />}
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <div className="field">
             <div className="rating-container" style={{ marginBottom: "20px" }}>
