@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { reduxForm, SubmissionError } from "redux-form";
 import LocalAPI from "./../../apis/local";
 import Rating from "react-rating";
+import YellowAlert from "./../alerts/YellowAlert";
 
 //star white
 import est1 from "./../../images/est1.png";
@@ -208,11 +209,21 @@ const WrappedReviewForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.foodRating) {
-      errors.foodRating = "Food rating is required";
+      errors.foodRating = (
+      <YellowAlert 
+      message="Food rating is required!"
+      id="err-msg"
+      /> 
+      );
     }
 
     if (!formValues.serviceRating) {
-      errors.serviceRating = "Service rating is required";
+      errors.serviceRating = (
+        <YellowAlert 
+        message="Service rating is required!"
+        id="err-msg"
+        /> 
+        );
     }
 
     return errors;
