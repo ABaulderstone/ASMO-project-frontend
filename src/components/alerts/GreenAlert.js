@@ -8,9 +8,9 @@ const GreenAlert = props => {
       }
     return (
         <div
-        style={styling}
-        className="ui yellow message"
-        id={props.id}
+        style={customStyling}
+        id={props.id || "err-msg"} 
+        className="ui green message"
       >
         {props.message}
       </div>

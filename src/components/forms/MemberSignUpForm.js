@@ -7,6 +7,7 @@ import AddressForm from "../address/AddressForm";
 import stringifyAddress from "./../../utility/stringifyAddress";
 
 import ReduxMonthDropdown from "./fields/ReduxMonthDropdown";
+import YellowAlert from "../alerts/RedAlert";
 
 
 class MemberSignUpForm extends Component {
@@ -127,27 +128,15 @@ const WrappedMemberSignUpForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.name) {
-      errors.name = (
-        <div id="err-msg" className="ui yellow message err-msg">
-          Name is required!
-        </div>
-      );
+      errors.name = <YellowAlert message="Name is required!" />
     }
 
     if (!formValues.phone) {
-      errors.phone = (
-        <div id="err-msg" className="ui yellow message">
-          Phone is required!
-        </div>
-      );
+      errors.phone = <YellowAlert message="Phone is required!" />
     }
 
     if (!formValues.email) {
-      errors.email = (
-        <div id="err-msg" className="ui yellow message">
-          Email is required!
-        </div>
-      );
+      errors.email = <YellowAlert message="Email is required!" />
     }
 
     if (
@@ -155,11 +144,7 @@ const WrappedMemberSignUpForm = reduxForm({
         formValues.phone
       )
     ) {
-      errors.phone = (
-        <div id="err-msg" className="ui yellow message">
-          Not a Valid Australian Mobile Number!
-        </div>
-      );
+      errors.phone = <YellowAlert message="Not a valid Australian mobile number!" />
     }
 
     return errors;
