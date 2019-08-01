@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Field, reduxForm } from "redux-form";
 import Input from "./fields/Input";
 import { searchCustomerByNumber } from "./../../actions/index";
+import YellowAlert from "./../alerts/YellowAlert"
 
 class CustomerSearchForm extends Component {
   state = {
@@ -69,7 +70,7 @@ const WrappedCustomerSearchForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.number) {
-      errors.number = "Number is required";
+      errors.number = <YellowAlert message="Number is required!" />
     }
 
     return errors;

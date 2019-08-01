@@ -5,6 +5,7 @@ import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
 import FileInput from "./fields/FileInput";
 import ImageUploadAPI from "./../../apis/image_upload";
+import RedAlert from "./../alerts/RedAlert";
 
 class StaffForm extends Component {
   state = {
@@ -51,9 +52,7 @@ class StaffForm extends Component {
 
     return (
       <>
-        {error && <div className="ui red message" id="err-msg">
-              {error}
-            </div>}
+        {error && <RedAlert message={error} />}
 
         <form className="ui form" onSubmit={handleSubmit(this.onFormSubmit)}>
           <div className="field">

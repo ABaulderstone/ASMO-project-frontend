@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { Field, reduxForm, SubmissionError } from "redux-form";
 import Input from "./fields/Input";
+import YellowAlert from "../alerts/YellowAlert";
 
 class ForgotPasswordForm extends Component {
   onFormSubmit = async formValues => {
@@ -40,7 +41,7 @@ const WrappedForgotPasswordForm = reduxForm({
   validate: formValues => {
     const errors = {};
     if (!formValues.email) {
-      errors.email = "Email is required";
+      errors.email = <YellowAlert message="Email is required!" />
     }
 
     return errors;
