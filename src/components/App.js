@@ -42,6 +42,7 @@ class App extends Component {
               path="/forgot_password"
               component={ForgotPasswordPage}
             />
+            <Route exact path="/reset_password" component={HomePage} />
 
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <PrivateRoute exact path="/customer" component={MemberSignUpPage} />
